@@ -1,39 +1,37 @@
 name: HTML CI Pipeline
 
-on:
+on:  
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - main  
 
 jobs:
   html-check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: Checkout Repository  
+        uses: actions/checkout@v3  
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Node.js  
+        uses: actions/setup-node@v3  
         with:
-          node-version: '18'
+          node-version: '18'  
 
-      - name: Initialize npm
-        run: npm init -y
+      - name: Initialize npm  
+        run: npm init -y  
 
-      - name: Install HTML Linter
-        run: npm install -g htmlhint
+      - name: Install HTML Linter  
+        run: npm install -g htmlhint  
 
-      - name: Verify Installation
-        run: |
-          npm list -g --depth=0
-          which htmlhint
+      - name: Verify Installation  
+        run: htmlhint --version  
 
-      - name: Lint HTML files
-        run: htmlhint "github_action_practice/github_action.html"
+      - name: Lint HTML files  
+        run: htmlhint '**/*.html'  
 
-      - name: Check for Broken Links
-        run: npx lychee --verbose github_action_practice/github_action.html
+      - name: Install Lychee for Broken Link Checking  
+        run: npm install -g lychee-link-checker  
+
+      - name: Check for Broken Links  
+        run: lychee --verbose github_action_practice/github_action.html  
