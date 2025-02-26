@@ -21,15 +21,19 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Initialize npm
+        run: npm init -y
+
       - name: Install HTML Linter
         run: npm install -g htmlhint
+
+      - name: Verify Installation
+        run: |
+          npm list -g --depth=0
+          which htmlhint
 
       - name: Lint HTML files
         run: htmlhint "github_action_practice/github_action.html"
 
-      - name: Install Lychee Link Checker
-        run: |
-          curl -sSfL https://raw.githubusercontent.com/lycheeverse/lychee/main/install.sh | bash -s -- --force
-
-      - name: Check for broken links
-        run: lychee --verbose github_action_practice/github_action.html
+      - name: Check for Broken Links
+        run: npx lychee --verbose github_action_practice/github_action.html
