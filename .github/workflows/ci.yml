@@ -1,0 +1,35 @@
+name: HTML CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  html-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install HTML Linter
+        run: npm install -g htmlhint
+
+      - name: Lint HTML files
+        run: htmlhint "github_action_practice/github_action.html"
+
+      - name: Install Lychee Link Checker
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/lycheeverse/lychee/main/install.sh | bash -s -- --force
+
+      - name: Check for broken links
+        run: lychee --verbose github_action_practice/github_action.html
