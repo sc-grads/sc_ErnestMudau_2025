@@ -3,42 +3,40 @@ name: Deploy MS SQL Database
 on:
   push:
     branches:
-      - main  # Runs when pushing to the main branch
+      - main
+  pull_request:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set Up SQL Server
+      - name: Set up MS SQL Server
         run: |
-          sudo /etc/init.d/mysql stop || true  # Stop MySQL if running
           sudo apt-get update
-          sudo apt-get install -y docker.io
-          sudo docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourStrong!Passw0rd' \
-            -p 1433:1433 --name sqlserver \
-            -d mcr.microsoft.com/mssql/server:2022-latest
-          sleep 20  # Wait for SQL Server to start
+          sudo apt-get install -y curl apt-transport-https software-properties-common
+          curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          sudo add-apt-repository "$(curl -fsSL https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)"
+          sudo apt-get update
+          sudo apt-get install -y mssql-server
+          sudo systemctl enable mssql-server
+          sudo systemctl start mssql-server
 
-      - name: Install SQL Server Client
+      - name: Install SQLCMD tools
         run: |
+          curl -fsSL https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list
           sudo apt-get update
-          sudo apt-get install -y curl apt-transport-https gnupg
-          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-          sudo add-apt-repository "$(curl -s https://packages.microsoft.com/config/ubuntu/20.04/prod.list)"
-          sudo apt-get update
-          sudo apt-get install -y mssql-tools unixodbc-dev
+          sudo ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
           echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
           source ~/.bashrc
 
-      - name: Deploy Database
+      - name: Test SQL Server Connection
         run: |
-          sqlcmd -S localhost -U SA -P 'YourStrong!Passw0rd' -Q "CREATE DATABASE MyDatabase"
-          sqlcmd -S localhost -U SA -P 'YourStrong!Passw0rd' -d MyDatabase -i ./scripts/setup.sql
+          /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrong!Passw0rd' -Q "SELECT @@VERSION"
 
-      - name: Verify Deployment
+      - name: Run Database Migrations (Optional)
         run: |
-          sqlcmd -S localhost -U SA -P 'YourStrong!Passw0rd' -Q "SELECT name FROM sys.databases"
+          /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrong!Passw0rd' -d master -i scripts/migrations.sql
