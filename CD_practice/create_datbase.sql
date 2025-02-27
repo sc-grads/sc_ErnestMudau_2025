@@ -1,0 +1,7 @@
+USE MyDatabase;
+CREATE TABLE Users (
+    ID INT PRIMARY KEY,
+    Name NVARCHAR(100),
+    Email NVARCHAR(100) UNIQUE
+);
+
