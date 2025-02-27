@@ -13,6 +13,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Check OS Version
+        run: cat /etc/os-release
+
       - name: Update Package Lists
         run: sudo apt-get update
 
@@ -31,7 +34,7 @@ jobs:
 
       - name: Install Compatibility Libraries
         run: |
-          sudo apt-get install -y libldap-2.5-0 unixodbc
+          sudo apt-get install -y libldap-common unixodbc
 
       - name: Install MS SQL Server
         run: |
@@ -53,10 +56,4 @@ jobs:
           echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
           source ~/.bashrc
 
-      - name: Verify MSSQL Server Installation
-        run: |
-          /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "YourStrong!Passw0rd" -Q "SELECT @@VERSION"
-
-      - name: Deploy Database (Optional)
-        run: |
-          /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "YourStrong!Passw0rd" -Q "CREATE DATABASE MyDatabase"
+      - name: Verify MSSQL
