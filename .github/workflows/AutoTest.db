@@ -1,0 +1,29 @@
+name: Deploy AutoTest Database
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-db:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install SQLCMD
+        run: sudo apt-get install -y mssql-tools unixodbc-dev
+
+      - name: Execute SQL Scripts
+        env:
+          SQL_SERVER: "random-address.ngrok.io,1433"
+          SQL_USER: "Auto_user"
+          SQL_PASSWORD: "StrongPassword123"
+
+        run: |
+          sqlcmd -S $SQL_SERVER -U $SQL_USER -P $SQL_PASSWORD -Q "CREATE DATABASE AutoTest"
+          sqlcmd -S $SQL_SERVER -U $SQL_USER -P $SQL_PASSWORD -d AutoTest -i create_table.sql
+          sqlcmd -S $SQL_SERVER -U $SQL_USER -P $SQL_PASSWORD -d AutoTest -i insert_user_sp.sql
+          sqlcmd -S $SQL_SERVER -U $SQL_USER -P $SQL_PASSWORD -d AutoTest -i insert_data.sql
