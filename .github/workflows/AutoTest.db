@@ -19,7 +19,7 @@ jobs:
       - name: Execute SQL Scripts
         env:
           env:
-           SQL_SERVER: "6.tcp.eu.ngrok.io,14422"
+           SQL_SERVER: "7.tcp.eu.ngrok.io:11062"
            SQL_USER: "Auto_user"
            SQL_PASSWORD: "StrongPassword123"
 
