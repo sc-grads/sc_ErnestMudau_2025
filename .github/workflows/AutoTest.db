@@ -18,9 +18,11 @@ jobs:
 
       - name: Execute SQL Scripts
         env:
-          SQL_SERVER: "random-address.ngrok.io,1433"
-          SQL_USER: "Auto_user"
-          SQL_PASSWORD: "StrongPassword123"
+          env:
+           SQL_SERVER: "5.tcp.eu.ngrok.io,13452"
+           SQL_USER: "Auto_user"
+           SQL_PASSWORD: "StrongPassword123"
+
 
         run: |
           sqlcmd -S $SQL_SERVER -U $SQL_USER -P $SQL_PASSWORD -Q "CREATE DATABASE AutoTest"
