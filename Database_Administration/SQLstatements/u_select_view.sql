@@ -1,0 +1,6 @@
+SELECT TOP (1000) [Expr1]
+      ,[FirstName]
+      ,[LastName]
+      ,[PhoneNumber]
+      ,[PhoneType]
+  FROM [AdventureWorks2022].[dbo].[EmployeePhoneDetail]
