@@ -1,0 +1,1 @@
+dbcc checkdb ('AdventureWorks2022')
