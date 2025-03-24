@@ -29,18 +29,19 @@ jobs:
 
       - name: Start ngrok
         run: |
-          ngrok authtoken ${{ secrets.2u5BkdsO7NrbhKDM6jNgzSoBrEH_QyLuSvoKLJyPQrz2XGEA}}
-          ngrok tcp 1433 > /dev/null &
-          sleep 10s  # Wait for ngrok to start
+          ngrok authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
+          nohup ngrok tcp 1433 > /dev/null 2>&1 &
+          sleep 10s  # Wait for ngrok to initialize
 
       - name: Get ngrok Public URL
         id: ngrok_url
         run: |
-          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url' | sed 's/tcp:\/\///')
-          echo "NGROK_URL=$NGROK_URL" >> $GITHUB_ENV
+          NGROK_FULL_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+          NGROK_HOST=$(echo $NGROK_FULL_URL | cut -d':' -f1 | sed 's/tcp:\/\///')
+          NGROK_PORT=$(echo $NGROK_FULL_URL | cut -d':' -f2)
+          echo "NGROK_HOST=$NGROK_HOST" >> $GITHUB_ENV
+          echo "NGROK_PORT=$NGROK_PORT" >> $GITHUB_ENV
 
       - name: Run SQL Script
         run: |
-          sqlcmd -S ${{ tcp://2.tcp.eu.ngrok.io:18537 }} -U Auto_user -P ${{ secrets.your_password }} -i setup.sql
-       
-
+          sqlcmd -S ${{ env.NGROK_HOST }},${{ env.NGROK_PORT }} -U Auto_user -P ${{ secrets.YOUR_SQL_PASSWORD }} -i setup.sql
