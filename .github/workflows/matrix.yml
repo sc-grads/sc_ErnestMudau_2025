@@ -1,20 +1,26 @@
-name : Matrix Demo
+name: Matrix Demo
 on: push
+
 jobs:
   build:
     strategy:
       matrix:
-        node-version: [12, 14 ,16]
-        operating-system: [ubuntu-latest, windows-latest]
+        node-version: [12, 14, 16]  # Define Node.js versions
+        operating-system: [ubuntu-latest, windows-latest]  # Define OS versions
     runs-on: ${{ matrix.operating-system }}
+
     steps:
-      - name : Get code
-      uses: actions/checkout@v3
-      - name: install NodeJS
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-system }}
+      - name: Get code
+        uses: actions/checkout@v3
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}  # Fixed variable name
+
       - name: Install Dependencies
         run: npm ci
+
       - name: Build project
         run: npm run build
+
