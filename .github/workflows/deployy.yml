@@ -10,36 +10,57 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+        
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
         with:
           path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Check for package-lock.json
+        id: check-lockfile
+        run: |
+          if [ -f "package-lock.json" ]; then
+            echo "lockfile_exists=true" >> $GITHUB_ENV
+          else
+            echo "lockfile_exists=false" >> $GITHUB_ENV
+          fi
+
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
+        run: |
+          if [ "$lockfile_exists" = "true" ]; then
+            npm ci
+          else
+            npm install
+          fi
+
       - name: Lint code
         run: npm run lint
 
   test:
-    needs: lint  # Ensures linting runs first
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v3
+
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
         with:
           path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
+
       - name: Test code
         id: run-tests
         run: npm run test
+
       - name: Upload test report
         if: failure() && steps.run-tests.outcome == 'failure'
         uses: actions/upload-artifact@v3
@@ -48,22 +69,26 @@ jobs:
           path: test.json
 
   build:
-    needs: test  # Ensures testing runs before building
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v3
+
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
         with:
           path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
+
       - name: Build website
         run: npm run build
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -71,18 +96,21 @@ jobs:
           path: dist
 
   deploy:
-    needs: build  # Ensures build completes before deployment
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v3
+
       - name: Get build artifacts
         uses: actions/download-artifact@v3
         with:
           name: dist-files
           path: ./dist
+
       - name: Output contents
         run: ls -la ./dist
+
       - name: Deploy site
         run: echo "Deploying..."
-        
+
