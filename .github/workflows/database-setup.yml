@@ -1,0 +1,46 @@
+name: Setup SQL Database with Stored Procedure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup-database:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install SQL Server CLI (sqlcmd)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mssql-tools unixodbc-dev
+
+      - name: Install jq (for JSON parsing)
+        run: sudo apt-get install -y jq
+
+      - name: Install ngrok
+        run: |
+          curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+          echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
+          sudo apt update && sudo apt install ngrok
+
+      - name: Start ngrok
+        run: |
+          ngrok authtoken ${{ secrets.2u5BkdsO7NrbhKDM6jNgzSoBrEH_QyLuSvoKLJyPQrz2XGEA}}
+          ngrok tcp 1433 > /dev/null &
+          sleep 10s  # Wait for ngrok to start
+
+      - name: Get ngrok Public URL
+        id: ngrok_url
+        run: |
+          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url' | sed 's/tcp:\/\///')
+          echo "NGROK_URL=$NGROK_URL" >> $GITHUB_ENV
+
+      - name: Run SQL Script
+        run: |
+          sqlcmd -S ${{ tcp://2.tcp.eu.ngrok.io:18537 }} -U Auto_user -P ${{ secrets.your_password }} -i setup.sql
+       
+
