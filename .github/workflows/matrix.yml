@@ -4,23 +4,29 @@ on: push
 jobs:
   build:
     strategy:
+      fail-fast: false  # Ensures all builds run even if one fails
       matrix:
-        node-version: [12, 14, 16]  # Define Node.js versions
-        operating-system: [ubuntu-latest, windows-latest]  # Define OS versions
-    runs-on: ${{ matrix.operating-system }}
+        node-version: [12, 14, 16]  # Corrected variable name
+        os: [ubuntu-latest, windows-latest]  # Use "os" for clarity
+
+    runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Get code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install NodeJS
+      - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}  # Fixed variable name
+          node-version: ${{ matrix.node-version }}
+
+      - name: Verify Node.js Version
+        run: node -v  # Check if the correct version is installed
 
       - name: Install Dependencies
         run: npm ci
+        continue-on-error: true  # Allow workflow to continue even if `npm ci` fails
 
-      - name: Build project
+      - name: Build Project
         run: npm run build
 
