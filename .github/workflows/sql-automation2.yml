@@ -1,0 +1,67 @@
+name: SQL Server Automation2
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  automate-sql:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Install SQL Server Express
+      run: |
+        choco install sql-server-express -y --params="'/INSTANCENAME:SQLEXPRESS /SECURITYMODE:SQL /SAPWD:StrongPassword123!'"
+        
+    - name: Start SQL Server service
+      run: net start MSSQL$SQLEXPRESS
+      
+    - name: Wait for SQL Server to start
+      run: |
+        $timeout = 120
+        $elapsed = 0
+        $interval = 5
+        while ($elapsed -lt $timeout) {
+          try {
+            Invoke-Sqlcmd -Query "SELECT 1" -ServerInstance ".\SQLEXPRESS" -ErrorAction Stop
+            break
+          } catch {
+            Start-Sleep -Seconds $interval
+            $elapsed += $interval
+          }
+        }
+        if ($elapsed -ge $timeout) {
+          Write-Error "SQL Server did not start within the timeout period"
+          exit 1
+        }
+        
+    - name: Run SQL scripts
+      run: |
+        Invoke-Sqlcmd -InputFile "./scripts/create_db.sql" -ServerInstance ".\SQLEXPRESS"
+        Invoke-Sqlcmd -InputFile "./scripts/insert_data.sql" -ServerInstance ".\SQLEXPRESS" -Database "AutoTestDB"
+        
+    - name: Install Pinggy
+      run: |
+        $pinggyUrl = "https://pinggy.io/dl/pinggy-win.zip"
+        $output = "pinggy.zip"
+        Invoke-WebRequest -Uri $pinggyUrl -OutFile $output
+        Expand-Archive -Path $output -DestinationPath .
+        Remove-Item $output
+        
+    - name: Start Pinggy tunnel for SQL Server
+      run: |
+        .\pinggy.exe tcp 1433
+        $tunnelUrl = (Get-Content "pinggy_session.txt" | Select-String -Pattern "tcp://.*").Matches.Value
+        echo "SQL Server exposed at: $tunnelUrl"
+        echo "SQL_SERVER_TUNNEL=$tunnelUrl" >> $env:GITHUB_ENV
+      continue-on-error: true
+      
+    - name: Print connection details
+      run: |
+        echo "SQL Server is now accessible via: ${{ env.SQL_SERVER_TUNNEL }}"
+        echo "Username: Auto_user"
+        echo "Password: qwerty"
