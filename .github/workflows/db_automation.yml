@@ -16,24 +16,34 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Step 1: Start SQL Server in Docker with proper configuration
-    - name: Start SQL Server container
+    # Step 1: Start SQL Server with proper error handling
+    - name: Start and verify SQL Server
       run: |
+        # Start container with restart policy
         docker run -d \
           --name sqlserver \
+          --restart unless-stopped \
           -e "ACCEPT_EULA=Y" \
           -e "SA_PASSWORD=${{ secrets.SQL_SA_PASSWORD }}" \
           -e "MSSQL_PID=Express" \
           -p 1433:1433 \
-          --health-cmd "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '${{ secrets.SQL_SA_PASSWORD }}' -Q 'SELECT 1'" \
-          --health-interval 10s \
-          --health-timeout 5s \
-          --health-retries 10 \
           mcr.microsoft.com/mssql/server:2019-latest
 
-        # Wait for container to be healthy
-        timeout 300 bash -c 'until docker inspect --format "{{json .State.Health.Status}}" sqlserver | grep -q "healthy"; do sleep 5; echo "Waiting for SQL Server to start..."; done'
-        
+        # Wait for SQL Server to be ready
+        for i in {1..30}; do
+          if docker logs sqlserver 2>&1 | grep -q "SQL Server is now ready"; then
+            echo "SQL Server is running"
+            break
+          fi
+          echo "Waiting for SQL Server to start... ($i/30)"
+          sleep 5
+        done
+
+        # Verify connection
+        docker exec sqlserver /opt/mssql-tools/bin/sqlcmd \
+          -S localhost -U SA -P "${{ secrets.SQL_SA_PASSWORD }}" \
+          -Q "SELECT @@VERSION" || (echo "SQL Server failed to start"; exit 1)
+
     # Step 2: Initialize Database
     - name: Create database and user
       run: |
@@ -43,7 +53,15 @@ jobs:
               CREATE LOGIN Auto_user WITH PASSWORD = '${{ secrets.SQL_USER_PASSWORD }}';
               USE AutoTestDB;
               CREATE USER Auto_user FOR LOGIN Auto_user;
-              EXEC sp_addrolemember 'db_owner', 'Auto_user';"
+              EXEC sp_addrolemember 'db_owner', 'Auto_user';
+              CREATE TABLE [user] (
+                  Id INT IDENTITY(1,1) PRIMARY KEY,
+                  Name NVARCHAR(100) NOT NULL,
+                  Surname NVARCHAR(100) NOT NULL,
+                  Email NVARCHAR(255) NOT NULL UNIQUE
+              );
+              INSERT INTO [user] (Name, Surname, Email)
+              VALUES ('Admin', 'User', 'admin@example.com');"
 
     # Step 3: Set up Pinggy tunnel
     - name: Start Pinggy tunnel
@@ -53,10 +71,10 @@ jobs:
         mkdir -p ~/.config/pinggy
         echo "token: ${{ secrets.PINGGY_TOKEN }}" > ~/.config/pinggy/config.yaml
         pinggy tcp 1433 --log pinggy.log > pinggy_url.txt &
-        sleep 10
+        sleep 15  # Extra time for tunnel establishment
         PINGGY_URL=$(grep -o "tcp://[^ ]*" pinggy_url.txt | head -n 1)
         echo "PUBLIC_URL=$PINGGY_URL" >> $GITHUB_ENV
-        cat pinggy_url.txt
+        echo "Tunnel established at: $PINGGY_URL"
 
     # Step 4: Show connection info
     - name: Display connection details
@@ -68,5 +86,5 @@ jobs:
         echo "Username: Auto_user"
         echo "Password: ${{ secrets.SQL_USER_PASSWORD }}"
         echo ""
-        echo "📌 Connection string:"
-        echo "Server=${PUBLIC_URL#tcp://};Database=AutoTestDB;User Id=Auto_user;Password=${{ secrets.SQL_USER_PASSWORD }};"
+        echo "📌 Test connection with:"
+        echo "sqlcmd -S ${PUBLIC_URL#tcp://} -U Auto_user -P ${{ secrets.SQL_USER_PASSWORD }} -d AutoTestDB -Q \"SELECT * FROM [user]\""
