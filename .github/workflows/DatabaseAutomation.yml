@@ -9,14 +9,14 @@ on:
 
 jobs:
   setup-database:
-    runs-on: ubuntu-latest  # Use GitHub-hosted runner
+    runs-on: ubuntu-latest  
 
     steps:
-      # Checkout the repository
+      
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Add Microsoft repository for SQL Server tools
+      
       - name: Add Microsoft repository for SQL Server tools
         run: |
           sudo apt-get update
@@ -25,15 +25,15 @@ jobs:
           curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
           sudo apt-get update
 
-      # Install SQL Server client (sqlcmd)
+      
       - name: Install SQL Server client
         run: sudo apt-get install -y mssql-tools unixodbc-dev
 
-      # Add SQL Server tools to PATH
+      
       - name: Add SQL Server tools to PATH
         run: echo "/opt/mssql-tools/bin" >> $GITHUB_PATH
 
-      # Test connection to SQL Server using an admin user
+      
       - name: Test Connection to SQL Server
         env:
           ADMIN_USER: ${{ secrets.ADMIN_USER }}
@@ -41,7 +41,7 @@ jobs:
         run: |
           sqlcmd -S "${{ secrets.PINGGY_URL }}" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -Q "SELECT @@VERSION" || echo "Connection failed: check server, user, or password"
 
-      # Execute the combined SQL script (SetupAll.sql) using the admin user
+     
       - name: Setup Database, User, Table, Procedure, and Data
         env:
           ADMIN_USER: ${{ secrets.ADMIN_USER }}
@@ -49,7 +49,7 @@ jobs:
         run: |
           sqlcmd -S "${{ secrets.PINGGY_URL }}" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup.sql"
 
-      # Test the setup by querying the user table using Auto_user
+      
       - name: Test Connection and Data
         run: |
           sqlcmd -S "${{ secrets.PINGGY_URL }}" -U Auto_user -P "${{ secrets.SQL_PASSWORD }}" -C -d AutoTest -Q "SELECT * FROM [dbo].[user];"
