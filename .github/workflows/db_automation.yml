@@ -1,4 +1,4 @@
-name: Database Automation1
+name: Database Automation
 
 on:
   workflow_dispatch:
@@ -11,31 +11,60 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
     services:
       sqlserver:
         image: mcr.microsoft.com/mssql/server:2019-latest
         env:
+          ACCEPT_EULA: "Y"
           SA_PASSWORD: ${{ secrets.SQL_SA_PASSWORD }}
-          ACCEPT_EULA: Y
+          MSSQL_PID: "Express"  # Explicitly set to free edition
         ports:
           - 1433:1433
-        options: --health-cmd "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -Q 'SELECT 1'" --health-interval 10s --health-timeout 5s --health-retries 5
+        options: >-
+          --health-cmd "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '${{ secrets.SQL_SA_PASSWORD }}' -Q 'SELECT 1'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Docker
-      run: docker-compose up -d
+    - name: Wait for SQL Server to be ready
+      run: |
+        for i in {1..30}; do
+          if docker exec sqlserver /opt/mssql-tools/bin/sqlcmd \
+            -S localhost -U SA -P "${{ secrets.SQL_SA_PASSWORD }}" \
+            -Q "SELECT 1" &> /dev/null; then
+            echo "SQL Server ready"
+            break
+          fi
+          echo "Waiting for SQL Server... ($i/30)"
+          sleep 5
+        done
 
     - name: Initialize Database
       run: |
-        docker exec sqlserver /bin/bash /scripts/init-db.sh
+        docker exec sqlserver /opt/mssql-tools/bin/sqlcmd \
+          -S localhost -U SA -P "${{ secrets.SQL_SA_PASSWORD }}" \
+          -Q "CREATE DATABASE AutoTestDB;
+              CREATE LOGIN Auto_user WITH PASSWORD = '${{ secrets.SQL_USER_PASSWORD }}';
+              USE AutoTestDB;
+              CREATE USER Auto_user FOR LOGIN Auto_user;
+              EXEC sp_addrolemember 'db_owner', 'Auto_user';"
 
     - name: Start Pinggy Tunnel
       run: |
-        chmod +x ./scripts/start-tunnel.sh
-        ./scripts/start-tunnel.sh
+        curl -fsSL https://pinggy.io/install.sh | bash
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        mkdir -p ~/.config/pinggy
+        echo "token: ${{ secrets.PINGGY_TOKEN }}" > ~/.config/pinggy/config.yaml
+        pinggy tcp 1433 --log pinggy.log > pinggy_url.txt &
+        sleep 10
+        PINGGY_URL=$(grep -o "tcp://[^ ]*" pinggy_url.txt | head -n 1)
+        echo "PUBLIC_URL=$PINGGY_URL" >> $GITHUB_ENV
+        cat pinggy_url.txt
 
     - name: Show Connection Info
       run: |
