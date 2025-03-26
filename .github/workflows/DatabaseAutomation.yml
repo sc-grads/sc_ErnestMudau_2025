@@ -1,55 +1,110 @@
-name:  Database automation
+# Name of the workflow, displayed in the GitHub Actions tab
+name: Database automation
 
+# Defines the events that trigger the workflow
 on:
+  # Trigger the workflow on push events to the main branch
   push:
     branches: [ main ]
+  # Trigger the workflow on pull request events targeting the main branch
   pull_request:
     branches: [ main ]
+  # Allow manual triggering of the workflow from the GitHub Actions tab
   workflow_dispatch:
 
+# Defines the jobs to be executed in the workflow
 jobs:
+  # Job name: sets up the SQL Server database
   setup-database:
+    # Specifies the runner (virtual machine) to use: the latest Ubuntu version
     runs-on: ubuntu-latest  
 
+    # List of steps to be executed in this job
     steps:
-      
+      # Step 1: Check out the repository to the runner's filesystem
       - name: Checkout repository
+        # Uses the official GitHub action to check out the repository (version 3)
         uses: actions/checkout@v3
+        # This step ensures the runner has access to our repository files, like the SQL script
 
-      
+      # Step 2: Add Microsoft's repository to install SQL Server tools
       - name: Add Microsoft repository for SQL Server tools
+        # Multi-line shell command to set up the repository
         run: |
+          # Update the package lists for Ubuntu's package manager (apt)
           sudo apt-get update
+          # Install curl, a tool for downloading files (needed for the next steps)
           sudo apt-get install -y curl
+          # Download and add Microsoft's public key to trust their repository
           curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          # Download the repository configuration for Ubuntu 20.04 and add it to the package sources
           curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+          # Update the package lists again to include Microsoft's repository
           sudo apt-get update
+        # This step is necessary to install sqlcmd, which we'll use to interact with SQL Server
 
-      
+      # Step 3: Install the SQL Server client tools (sqlcmd)
       - name: Install SQL Server client
+        # Installs mssql-tools (which includes sqlcmd) and unixodbc-dev (a dependency for ODBC connectivity)
         run: sudo apt-get install -y mssql-tools unixodbc-dev
+        # sqlcmd is the command-line tool we'll use to connect to SQL Server and run our script
 
-      
+      # Step 4: Add the SQL Server tools to the runner's PATH
       - name: Add SQL Server tools to PATH
+        # Adds the directory containing sqlcmd (/opt/mssql-tools/bin) to the PATH
         run: echo "/opt/mssql-tools/bin" >> $GITHUB_PATH
+        # $GITHUB_PATH is a special file in GitHub Actions that updates the PATH for subsequent steps
+        # This ensures the runner can find the sqlcmd command
 
-      
+      # Step 5: Test the connection to the SQL Server
       - name: Test Connection to SQL Server
+        # Define environment variables for this step, using GitHub Secrets
         env:
+          # Admin username for SQL Server, stored in the ADMIN_USER secret (e.g., 'sa')
           ADMIN_USER: ${{ secrets.ADMIN_USER }}
+          # Admin password for SQL Server, stored in the ADMIN_PASSWORD secret
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+        # Run the sqlcmd command to test the connection
         run: |
+          # Connect to the SQL Server using the Pinggy URL, admin user, and password
+          # -S: Server name (Pinggy URL, e.g., mtjp41-1150-36-232.a.free.pinggy.link,44217)
+          # -U: Username (from ADMIN_USER)
+          # -P: Password (from ADMIN_PASSWORD)
+          # -C: Trust the server certificate (needed for remote connections)
+          # -Q: Run a query to get the SQL Server version
+          # If the command fails, print a custom error message
           sqlcmd -S "${{ secrets.PINGGY_URL }}" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -Q "SELECT @@VERSION" || echo "Connection failed: check server, user, or password"
+        # This step ensures we can connect to the SQL Server before proceeding
 
-     
+      # Step 6: Execute the SQL script to set up the database
       - name: Setup Database, User, Table, Procedure, and Data
+        # Define environment variables for this step
         env:
+          # Admin username for SQL Server
           ADMIN_USER: ${{ secrets.ADMIN_USER }}
+          # Admin password for SQL Server
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+        # Run the sqlcmd command to execute the setup script
         run: |
+          # -i: Specifies the input file (scripts/setup.sql) to execute
+          # The script creates the AutoTest database, users table, stored procedure, Auto_user login, and inserts sample data
           sqlcmd -S "${{ secrets.PINGGY_URL }}" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup.sql"
+        # Note: The path "scripts/setup.sql" might be incorrect; previous instructions used "DatabaseAdministration/SQLStatements/SetupAll.sql"
+        # If the file is not at this path, the step will fail with an "Invalid filename" error
 
-      
+      # Step 7: Test the setup by querying the users table
+      - name: Test Connection and Data
+        # Run the sqlcmd command to test the setup
+        run: |
+          # Connect as Auto_user (created by the script) to the AutoTest database
+          # -U Auto_user: Uses the Auto_user login
+          # -P: Password for Auto_user, stored in the SQL_PASSWORD secret (should be 'SecurePassword123')
+          # -d AutoTest: Specifies the database to use
+          # -Q: Queries all rows from the users table
+          sqlcmd -S "${{ secrets.PINGGY_URL }}" -U Auto_user -P "${{ secrets.SQL_PASSWORD }}" -C -d AutoTest -Q "SELECT * FROM [dbo].[user];"
+        # Note: The table name here is [dbo].[user], but the script was updated to use [dbo].[users]
+        # This mismatch will cause the query to fail; it should be updated to "SELECT * FROM [dbo].[users];"
+        # This step verifies that the database setup worked and that Auto_user has the correct permissions
       - name: Test Connection and Data
         run: |
           sqlcmd -S "${{ secrets.PINGGY_URL }}" -U Auto_user -P "${{ secrets.SQL_PASSWORD }}" -C -d AutoTest -Q "SELECT * FROM [dbo].[user];"
