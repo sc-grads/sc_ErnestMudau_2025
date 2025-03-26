@@ -1,0 +1,45 @@
+name: Database Automation1
+
+on:
+  workflow_dispatch:
+
+env:
+  SA_PASSWORD: ${{ secrets.SQL_SA_PASSWORD }}
+  SQL_USER_PASSWORD: ${{ secrets.SQL_USER_PASSWORD }}
+  PINGGY_TOKEN: ${{ secrets.PINGGY_TOKEN }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          SA_PASSWORD: ${{ secrets.SQL_SA_PASSWORD }}
+          ACCEPT_EULA: Y
+        ports:
+          - 1433:1433
+        options: --health-cmd "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -Q 'SELECT 1'" --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker
+      run: docker-compose up -d
+
+    - name: Initialize Database
+      run: |
+        docker exec sqlserver /bin/bash /scripts/init-db.sh
+
+    - name: Start Pinggy Tunnel
+      run: |
+        chmod +x ./scripts/start-tunnel.sh
+        ./scripts/start-tunnel.sh
+
+    - name: Show Connection Info
+      run: |
+        echo "Database setup complete!"
+        echo "Public SQL Server URL: $PUBLIC_URL"
+        echo "Username: Auto_user"
+        echo "Password: ${{ secrets.SQL_USER_PASSWORD }}"
