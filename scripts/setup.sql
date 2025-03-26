@@ -9,10 +9,10 @@ GO
 USE AutoTest;
 GO
 
--- 3. Create the user table
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'user')
+-- 3. Create the users table (changed from user)
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'users')
 BEGIN
-    CREATE TABLE [dbo].[user] (
+    CREATE TABLE [dbo].[users] (
         Name NVARCHAR(50) NOT NULL,
         Surname NVARCHAR(50) NOT NULL,
         Email NVARCHAR(100) NOT NULL
@@ -33,7 +33,7 @@ CREATE PROCEDURE InsertUser
     @Email NVARCHAR(100)
 AS
 BEGIN
-    INSERT INTO [dbo].[user] (Name, Surname, Email)
+    INSERT INTO [dbo].[users] (Name, Surname, Email) -- Changed from [dbo].[user] to [dbo].[users]
     VALUES (@Name, @Surname, @Email);
 END
 GO
