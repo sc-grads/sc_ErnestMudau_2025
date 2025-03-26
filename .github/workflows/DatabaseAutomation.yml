@@ -47,7 +47,7 @@ jobs:
           ADMIN_USER: ${{ secrets.ADMIN_USER }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
         run: |
-          sqlcmd -S "${{ secrets.PINGGY_URL }}" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/Setup.sql"
+          sqlcmd -S "${{ secrets.PINGGY_URL }}" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup.sql"
 
       # Test the setup by querying the user table using Auto_user
       - name: Test Connection and Data
