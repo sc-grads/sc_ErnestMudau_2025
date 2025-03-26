@@ -1,4 +1,4 @@
-name: Database Automation
+name: Database Automation with SQL Server & Pinggy
 
 on:
   workflow_dispatch:
@@ -12,39 +12,30 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     
-    services:
-      sqlserver:
-        image: mcr.microsoft.com/mssql/server:2019-latest
-        env:
-          ACCEPT_EULA: "Y"
-          SA_PASSWORD: ${{ secrets.SQL_SA_PASSWORD }}
-          MSSQL_PID: "Express"  # Explicitly set to free edition
-        ports:
-          - 1433:1433
-        options: >-
-          --health-cmd "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '${{ secrets.SQL_SA_PASSWORD }}' -Q 'SELECT 1'"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 10
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Wait for SQL Server to be ready
+    # Step 1: Start SQL Server in Docker with proper configuration
+    - name: Start SQL Server container
       run: |
-        for i in {1..30}; do
-          if docker exec sqlserver /opt/mssql-tools/bin/sqlcmd \
-            -S localhost -U SA -P "${{ secrets.SQL_SA_PASSWORD }}" \
-            -Q "SELECT 1" &> /dev/null; then
-            echo "SQL Server ready"
-            break
-          fi
-          echo "Waiting for SQL Server... ($i/30)"
-          sleep 5
-        done
+        docker run -d \
+          --name sqlserver \
+          -e "ACCEPT_EULA=Y" \
+          -e "SA_PASSWORD=${{ secrets.SQL_SA_PASSWORD }}" \
+          -e "MSSQL_PID=Express" \
+          -p 1433:1433 \
+          --health-cmd "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '${{ secrets.SQL_SA_PASSWORD }}' -Q 'SELECT 1'" \
+          --health-interval 10s \
+          --health-timeout 5s \
+          --health-retries 10 \
+          mcr.microsoft.com/mssql/server:2019-latest
 
-    - name: Initialize Database
+        # Wait for container to be healthy
+        timeout 300 bash -c 'until docker inspect --format "{{json .State.Health.Status}}" sqlserver | grep -q "healthy"; do sleep 5; echo "Waiting for SQL Server to start..."; done'
+        
+    # Step 2: Initialize Database
+    - name: Create database and user
       run: |
         docker exec sqlserver /opt/mssql-tools/bin/sqlcmd \
           -S localhost -U SA -P "${{ secrets.SQL_SA_PASSWORD }}" \
@@ -54,7 +45,8 @@ jobs:
               CREATE USER Auto_user FOR LOGIN Auto_user;
               EXEC sp_addrolemember 'db_owner', 'Auto_user';"
 
-    - name: Start Pinggy Tunnel
+    # Step 3: Set up Pinggy tunnel
+    - name: Start Pinggy tunnel
       run: |
         curl -fsSL https://pinggy.io/install.sh | bash
         echo "$HOME/.local/bin" >> $GITHUB_PATH
@@ -66,9 +58,15 @@ jobs:
         echo "PUBLIC_URL=$PINGGY_URL" >> $GITHUB_ENV
         cat pinggy_url.txt
 
-    - name: Show Connection Info
+    # Step 4: Show connection info
+    - name: Display connection details
       run: |
-        echo "Database setup complete!"
+        echo "✅ Deployment Successful"
+        echo "======================"
         echo "Public SQL Server URL: $PUBLIC_URL"
+        echo "Database: AutoTestDB"
         echo "Username: Auto_user"
         echo "Password: ${{ secrets.SQL_USER_PASSWORD }}"
+        echo ""
+        echo "📌 Connection string:"
+        echo "Server=${PUBLIC_URL#tcp://};Database=AutoTestDB;User Id=Auto_user;Password=${{ secrets.SQL_USER_PASSWORD }};"
