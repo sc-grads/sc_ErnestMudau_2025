@@ -1,0 +1,82 @@
+name: SQL Server AutomationRE
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: windows-latest  # SQL Server works better on Windows runner
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Pinggy
+      run: |
+        curl -fsSL https://pinggy.io/install.sh | bash
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: Start authenticated tunnel
+      run: |
+        mkdir -p ~/.config/pinggy
+        echo "token: ${{ secrets.PINGGY_TOKEN }}" > ~/.config/pinggy/config.yaml
+        pinggy tcp 1433 --log pinggy.log > pinggy_url.txt &
+        sleep 10
+        cat pinggy_url.txt
+
+    - name: Setup SQL Database
+      env:
+        SA_PASSWORD: ${{ secrets.SQL_SA_PASSWORD }}
+      run: |
+        Write-Output "Waiting for SQL Server..."
+        $retryCount = 0
+        $maxRetries = 30
+        
+        while ($retryCount -lt $maxRetries) {
+            try {
+                Invoke-Sqlcmd -Query "SELECT 1" -ServerInstance "localhost" -Username "sa" -Password "$env:SA_PASSWORD" -ErrorAction Stop
+                break
+            }
+            catch {
+                $retryCount++
+                Start-Sleep -Seconds 2
+            }
+        }
+
+        Invoke-Sqlcmd -Query @"
+        CREATE DATABASE AutoTestDB;
+        GO
+        USE AutoTestDB;
+        GO
+        CREATE LOGIN Auto_user WITH PASSWORD = '$($env:SQL_USER_PASSWORD)';
+        CREATE USER Auto_user FOR LOGIN Auto_user;
+        EXEC sp_addrolemember 'db_owner', 'Auto_user';
+        GO
+        CREATE TABLE [user] (
+            Id INT IDENTITY(1,1) PRIMARY KEY,
+            Name NVARCHAR(100) NOT NULL,
+            Surname NVARCHAR(100) NOT NULL,
+            Email NVARCHAR(255) NOT NULL UNIQUE
+        );
+        GO
+        CREATE PROCEDURE InsertUser
+            @Name NVARCHAR(100),
+            @Surname NVARCHAR(100),
+            @Email NVARCHAR(255)
+        AS
+        BEGIN
+            INSERT INTO [user] (Name, Surname, Email)
+            VALUES (@Name, @Surname, @Email);
+        END
+        GO
+        EXEC InsertUser 'Admin', 'User', 'admin@example.com';
+        EXEC InsertUser 'John', 'Doe', 'john@example.com';
+        GO
+        "@ -ServerInstance "localhost" -Username "sa" -Password "$env:SA_PASSWORD"
+
+    - name: Show connection info
+      run: |
+        $url = Get-Content pinggy_url.txt | Select-String -Pattern "tcp://[^ ]*" | ForEach-Object { $_.Matches.Value }
+        Write-Output "✅ Database ready at: $url"
+        Write-Output "👤 Login: Auto_user"
+        Write-Output "🔑 Password: ${{ secrets.SQL_USER_PASSWORD }}"
