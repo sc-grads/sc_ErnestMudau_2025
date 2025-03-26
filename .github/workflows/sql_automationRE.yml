@@ -1,11 +1,11 @@
-name: SQL Server AutomationRE
+name: SQL Server Automation
 
 on:
   workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: windows-latest  # SQL Server works better on Windows runner
+    runs-on: windows-latest
     
     steps:
     - name: Checkout code
@@ -13,20 +13,38 @@ jobs:
 
     - name: Install Pinggy
       run: |
+        # Install Pinggy properly on Windows
         curl -fsSL https://pinggy.io/install.sh | bash
-        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        echo "$HOME/.local/bin" >> $env:GITHUB_PATH
+        pinggy --version
 
     - name: Start authenticated tunnel
       run: |
-        mkdir -p ~/.config/pinggy
-        echo "token: ${{ secrets.PINGGY_TOKEN }}" > ~/.config/pinggy/config.yaml
-        pinggy tcp 1433 --log pinggy.log > pinggy_url.txt &
-        sleep 10
-        cat pinggy_url.txt
+        # Create config directory and set token
+        mkdir -p "$HOME/.config/pinggy"
+        echo "token: ${{ secrets.PINGGY_TOKEN }}" > "$HOME/.config/pinggy/config.yaml"
+        
+        # Start tunnel and wait for connection
+        Start-Process -NoNewWindow -FilePath "pinggy" -ArgumentList "tcp 1433 --log pinggy.log" -RedirectStandardOutput "pinggy_url.txt"
+        
+        # Wait for URL to be generated
+        $timeout = 30
+        $startTime = Get-Date
+        while (-not (Test-Path "pinggy_url.txt") {
+            if (((Get-Date) - $startTime).TotalSeconds -gt $timeout) {
+                Write-Error "Timeout waiting for pinggy tunnel"
+                exit 1
+            }
+            Start-Sleep -Seconds 2
+        }
+        
+        # Display connection info
+        Get-Content pinggy_url.txt
 
     - name: Setup SQL Database
       env:
         SA_PASSWORD: ${{ secrets.SQL_SA_PASSWORD }}
+        SQL_USER_PASSWORD: ${{ secrets.SQL_USER_PASSWORD }}
       run: |
         Write-Output "Waiting for SQL Server..."
         $retryCount = 0
@@ -76,7 +94,7 @@ jobs:
 
     - name: Show connection info
       run: |
-        $url = Get-Content pinggy_url.txt | Select-String -Pattern "tcp://[^ ]*" | ForEach-Object { $_.Matches.Value }
+        $url = Select-String -Path "pinggy_url.txt" -Pattern "tcp://[^ ]*" | ForEach-Object { $_.Matches.Value }
         Write-Output "✅ Database ready at: $url"
         Write-Output "👤 Login: Auto_user"
         Write-Output "🔑 Password: ${{ secrets.SQL_USER_PASSWORD }}"
