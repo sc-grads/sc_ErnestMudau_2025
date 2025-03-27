@@ -8,8 +8,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup-database:
-    runs-on: ubuntu-latest  
+  setup-dev:
+    runs-on: ubuntu-latest
+    environment: development  # Associate this job with the development environment
 
     steps:
       - name: Checkout repository
@@ -29,20 +30,70 @@ jobs:
       - name: Add SQL Server tools to PATH
         run: echo "/opt/mssql-tools/bin" >> $GITHUB_PATH
 
-      - name: Test Connection to SQL Server
+      - name: Test Connection to SQL Server (Dev)
         env:
           ADMIN_USER: ${{ secrets.ADMIN_USER }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          PINGGY_URL: ${{ secrets.PINGGY_URL_DEV }}
         run: |
-          sqlcmd -S "${{ secrets.PINGGY_URL }}" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -Q "SELECT @@VERSION" || echo "Connection failed: check server, user, or password"
+          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -Q "SELECT @@VERSION" || echo "Connection failed: check server, user, or password"
      
-      - name: Setup Database, User, Table, Procedure, and Data
+      - name: Setup Database, User, Table, Procedure, and Data (Dev)
         env:
           ADMIN_USER: ${{ secrets.ADMIN_USER }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          PINGGY_URL: ${{ secrets.PINGGY_URL_DEV }}
         run: |
-          sqlcmd -S "${{ secrets.PINGGY_URL }}" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup.sql"
+          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup.sql"
       
-      - name: Test Connection and Data
+      - name: Test Connection and Data (Dev)
+        env:
+          PINGGY_URL: ${{ secrets.PINGGY_URL_DEV }}
         run: |
-          sqlcmd -S "${{ secrets.PINGGY_URL }}" -U Auto_user -P "${{ secrets.SQL_PASSWORD }}" -C -d AutoDBErnest -Q "SELECT * FROM [dbo].[user];"
+          sqlcmd -S "$PINGGY_URL" -U Auto_user -P "${{ secrets.SQL_PASSWORD }}" -C -d AutoDBErnest -Q "SELECT * FROM [dbo].[user];"
+
+  setup-prod:
+    runs-on: ubuntu-latest
+    environment: production  # Associate this job with the production environment
+    needs: setup-dev  # This job runs only after setup-dev succeeds
+    if: github.event_name != 'pull_request'  # Skip production deployment for pull requests
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Add Microsoft repository for SQL Server tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+          sudo apt-get update
+      
+      - name: Install SQL Server client
+        run: sudo apt-get install -y mssql-tools unixodbc-dev
+
+      - name: Add SQL Server tools to PATH
+        run: echo "/opt/mssql-tools/bin" >> $GITHUB_PATH
+
+      - name: Test Connection to SQL Server (Prod)
+        env:
+          ADMIN_USER: ${{ secrets.ADMIN_USER }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          PINGGY_URL: ${{ secrets.PINGGY_URL_PROD }}
+        run: |
+          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -Q "SELECT @@VERSION" || echo "Connection failed: check server, user, or password"
+     
+      - name: Setup Database, User, Table, Procedure, and Data (Prod)
+        env:
+          ADMIN_USER: ${{ secrets.ADMIN_USER }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          PINGGY_URL: ${{ secrets.PINGGY_URL_PROD }}
+        run: |
+          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup.sql"
+      
+      - name: Test Connection and Data (Prod)
+        env:
+          PINGGY_URL: ${{ secrets.PINGGY_URL_PROD }}
+        run: |
+          sqlcmd -S "$PINGGY_URL" -U Auto_user -P "${{ secrets.SQL_PASSWORD }}" -C -d AutoDBErnest -Q "SELECT * FROM [dbo].[user];"
