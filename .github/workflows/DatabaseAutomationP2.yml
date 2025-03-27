@@ -44,7 +44,7 @@ jobs:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
           PINGGY_URL: ${{ secrets.PINGGY_URL_DEV }}
         run: |
-          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup.sql"
+          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup2.sql"
       
       - name: Test Connection and Data (Dev)
         env:
@@ -90,7 +90,7 @@ jobs:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
           PINGGY_URL: ${{ secrets.PINGGY_URL_PROD }}
         run: |
-          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup.sql"
+          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup2.sql"
       
       - name: Test Connection and Data (Prod)
         env:
