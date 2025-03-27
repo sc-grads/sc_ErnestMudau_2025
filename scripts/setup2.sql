@@ -35,13 +35,13 @@ END
 GO
 
 -- 4. Create a stored procedure to insert data into the user table
-IF EXISTS (SELECT * FROM sys.procedures WHERE name = 'InsertUsers')
+IF EXISTS (SELECT * FROM sys.procedures WHERE name = 'InsertUser')
 BEGIN
-    DROP PROCEDURE InsertUsers;
+    DROP PROCEDURE InsertUser;
 END
 GO
 
-CREATE PROCEDURE InsertUsers
+CREATE PROCEDURE InsertUser
     @Name NVARCHAR(50),
     @Surname NVARCHAR(50),
     @Email NVARCHAR(100)
@@ -53,6 +53,6 @@ END
 GO
 
 -- 5. Insert sample data using the stored procedure
-EXEC InsertUsers @Name = 'John', @Surname = 'Doe', @Email = 'john.doe@example.com';
-EXEC InsertUsers @Name = 'Jane', @Surname = 'Smith', @Email = 'jane.smith@example.com';
+EXEC InsertUser @Name = 'John', @Surname = 'Doe', @Email = 'john.doe@example.com';
+EXEC InsertUser @Name = 'Jane', @Surname = 'Smith', @Email = 'jane.smith@example.com';
 GO
