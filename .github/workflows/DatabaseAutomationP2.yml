@@ -32,25 +32,26 @@ jobs:
 
       - name: Test Connection to SQL Server (Dev)
         env:
-          ADMIN_USER: ${{ secrets.ADMIN_USER }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          PINGGY_URL: ${{ secrets.PINGGY_URL_DEV }}
+          DEV_ADMIN_USER: ${{ secrets.DEV_ADMIN_USER }}
+          DEV_ADMIN_PASSWORD: ${{ secrets.DEV_ADMIN_PASSWORD }}
+          DEV_PINGGY_URL: ${{ secrets.DEV_PINGGY_URL }}
         run: |
-          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -Q "SELECT @@VERSION" || echo "Connection failed: check server, user, or password"
+          sqlcmd -S "$DEV_PINGGY_URL" -U "$DEV_ADMIN_USER" -P "$DEV_ADMIN_PASSWORD" -C -Q "SELECT @@VERSION" || echo "Connection failed: check server, user, or password"
      
       - name: Setup Database, User, Table, Procedure, and Data (Dev)
         env:
-          ADMIN_USER: ${{ secrets.ADMIN_USER }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          PINGGY_URL: ${{ secrets.PINGGY_URL_DEV }}
+          DEV_ADMIN_USER: ${{ secrets.DEV_ADMIN_USER }}
+          DEV_ADMIN_PASSWORD: ${{ secrets.DEV_ADMIN_PASSWORD }}
+          DEV_PINGGY_URL: ${{ secrets.DEV_PINGGY_URL }}
         run: |
-          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup2.sql"
+          sqlcmd -S "$DEV_PINGGY_URL" -U "$DEV_ADMIN_USER" -P "$DEV_ADMIN_PASSWORD" -C -i "scripts/setup2.sql"
       
       - name: Test Connection and Data (Dev)
         env:
-          PINGGY_URL: ${{ secrets.PINGGY_URL_DEV }}
+          DEV_PINGGY_URL: ${{ secrets.DEV_PINGGY_URL }}
+          DEV_SQL_PASSWORD: ${{ secrets.DEV_SQL_PASSWORD }}
         run: |
-          sqlcmd -S "$PINGGY_URL" -U Auto_user -P "${{ secrets.SQL_PASSWORD }}" -C -d AutoDBErnest -Q "SELECT * FROM [dbo].[user];"
+          sqlcmd -S "$DEV_PINGGY_URL" -U Auto_user -P "$DEV_SQL_PASSWORD" -C -d AutoDBErnest -Q "SELECT * FROM [dbo].[user];"
 
   setup-prod:
     runs-on: ubuntu-latest
@@ -78,22 +79,23 @@ jobs:
 
       - name: Test Connection to SQL Server (Prod)
         env:
-          ADMIN_USER: ${{ secrets.ADMIN_USER }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          PINGGY_URL: ${{ secrets.PINGGY_URL_PROD }}
+          PROD_ADMIN_USER: ${{ secrets.PROD_ADMIN_USER }}
+          PROD_ADMIN_PASSWORD: ${{ secrets.PROD_ADMIN_PASSWORD }}
+          PROD_PINGGY_URL: ${{ secrets.PROD_PINGGY_URL }}
         run: |
-          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -Q "SELECT @@VERSION" || echo "Connection failed: check server, user, or password"
+          sqlcmd -S "$PROD_PINGGY_URL" -U "$PROD_ADMIN_USER" -P "$PROD_ADMIN_PASSWORD" -C -Q "SELECT @@VERSION" || echo "Connection failed: check server, user, or password"
      
       - name: Setup Database, User, Table, Procedure, and Data (Prod)
         env:
-          ADMIN_USER: ${{ secrets.ADMIN_USER }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          PINGGY_URL: ${{ secrets.PINGGY_URL_PROD }}
+          PROD_ADMIN_USER: ${{ secrets.PROD_ADMIN_USER }}
+          PROD_ADMIN_PASSWORD: ${{ secrets.PROD_ADMIN_PASSWORD }}
+          PROD_PINGGY_URL: ${{ secrets.PROD_PINGGY_URL }}
         run: |
-          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup2.sql"
+          sqlcmd -S "$PROD_PINGGY_URL" -U "$PROD_ADMIN_USER" -P "$PROD_ADMIN_PASSWORD" -C -i "scripts/setup2.sql"
       
       - name: Test Connection and Data (Prod)
         env:
-          PINGGY_URL: ${{ secrets.PINGGY_URL_PROD }}
+          PROD_PINGGY_URL: ${{ secrets.PROD_PINGGY_URL }}
+          PROD_SQL_PASSWORD: ${{ secrets.PROD_SQL_PASSWORD }}
         run: |
-          sqlcmd -S "$PINGGY_URL" -U Auto_user -P "${{ secrets.SQL_PASSWORD }}" -C -d AutoDBErnest -Q "SELECT * FROM [dbo].[user];"
+          sqlcmd -S "$PROD_PINGGY_URL" -U Auto_user -P "$PROD_SQL_PASSWORD" -C -d AutoDBErnest -Q "SELECT * FROM [dbo].[user];"
