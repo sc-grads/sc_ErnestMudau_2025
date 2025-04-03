@@ -1,0 +1,25 @@
+name: Database Automation P2  
+
+on:
+  workflow_dispatch:  # Manually trigger the workflow
+
+jobs:
+  development:
+    # Use the reusable workflow defined in db-setup-template.yml
+    uses: ./.github/workflows/db-setup-template.yml
+    with:
+      environment: development  # Set environment as "development"
+    secrets:
+      sql_server: ${{ secrets.DEV_SQL_SERVER }}  # Development SQL Server address
+      sql_user: ${{ secrets.DEV_SQL_USER }}      # Development database username
+      sql_password: ${{ secrets.DEV_SQL_PASSWORD }}  # Development database password
+
+  Production:
+    needs: development  # Ensure the development job runs successfully before starting production
+    uses: ./.github/workflows/db-setup-template.yml
+    with:
+      environment: production  # Set environment as "production"
+    secrets:
+      sql_server: ${{ secrets.PROD_SQL_SERVER }}  # Production SQL Server address
+      sql_user: ${{ secrets.PROD_SQL_USER }}      # Production database username
+      sql_password: ${{ secrets.PROD_SQL_PASSWORD }}  # Production database password
