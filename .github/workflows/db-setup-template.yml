@@ -1,0 +1,112 @@
+# .github/workflows/db-setup-template.yml
+name: Database Setup Template
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: 'Target environment (development/production)'
+        required: true
+        type: string
+      admin_user:
+        description: 'Admin username secret name'
+        required: true
+        type: string
+      admin_password:
+        description: 'Admin password secret name'
+        required: true
+        type: string
+      pinggy_url:
+        description: 'Pinggy URL secret name'
+        required: true
+        type: string
+      sql_password:
+        description: 'SQL user password secret name'
+        required: true
+        type: string
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      # Step 1: Set up job (automatically handled by GitHub Actions)
+
+      # Step 2: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 3: Install sqlcmd
+      - name: Install sqlcmd
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+          sudo apt-get update
+          sudo apt-get install -y mssql-tools unixodbc-dev
+          echo "/opt/mssql-tools/bin" >> $GITHUB_PATH
+
+      # Debug Step: Test network connectivity
+      - name: Debug Network Connectivity
+        shell: bash
+        env:
+          PINGGY_URL: ${{ secrets[inputs.pinggy_url] }}
+        run: |
+          echo "Attempting to connect to: $PINGGY_URL"
+          # Extract host and port from PINGGY_URL (e.g., tcp:hostname,port -> hostname and port)
+          HOST=$(echo "$PINGGY_URL" | sed 's/tcp://' | cut -d',' -f1)
+          PORT=$(echo "$PINGGY_URL" | sed 's/tcp://' | cut -d',' -f2)
+          echo "Pinging host: $HOST"
+          ping -c 4 "$HOST" || echo "Ping failed"
+          echo "Testing port: $PORT on host: $HOST"
+          nc -zv "$HOST" "$PORT" || echo "Port test failed"
+
+      # Step 4: Deploy SQL
+      - name: Deploy SQL
+        shell: bash
+        env:
+          ADMIN_USER: ${{ secrets[inputs.admin_user] }}
+          ADMIN_PASSWORD: ${{ secrets[inputs.admin_password] }}
+          PINGGY_URL: ${{ secrets[inputs.pinggy_url] }}
+        run: |
+          set +e
+          # Test connection
+          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -Q "SELECT @@VERSION"
+          EXIT_CODE=$?
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "Error: Database connection failed - check server URL, credentials, or network"
+            echo "::error::Database connection test failed"
+            exit 1
+          fi
+          echo "Database connection successful"
+          # Run setup script
+          sqlcmd -S "$PINGGY_URL" -U "$ADMIN_USER" -P "$ADMIN_PASSWORD" -C -i "scripts/setup2.sql"
+          EXIT_CODE=$?
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "Error: Database setup failed - check script syntax or permissions"
+            echo "::error::Database setup execution failed"
+            exit 1
+          fi
+          echo "Database setup completed successfully"
+
+      # Step 5: Verify Deployment
+      - name: Verify Deployment
+        shell: bash
+        env:
+          PINGGY_URL: ${{ secrets[inputs.pinggy_url] }}
+          SQL_PASSWORD: ${{ secrets[inputs.sql_password] }}
+        run: |
+          set +e
+          sqlcmd -S "$PINGGY_URL" -U Auto_user -P "$SQL_PASSWORD" -C -d AutoDBErnest -Q "SELECT * FROM [dbo].[user];"
+          EXIT_CODE=$?
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "Error: Data verification failed - check user permissions or data existence"
+            echo "::error::Data verification failed"
+            exit 1
+          fi
+          echo "Data verification successful"
+
+      # Step 6: Post Checkout repository (automatically handled by GitHub Actions)
+      # Step 7: Complete job (automatically handled by GitHub Actions)
