@@ -1,0 +1,76 @@
+# GitHub Actions Workflow - Database Setup Template
+# This workflow automates the database setup and verification process.
+
+name: Database Setup Template
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string  # Defines the environment (development or production)
+    secrets:
+      sql_server:
+        required: true  # SQL Server host (e.g., "your-db-host,1433")
+      sql_user:
+        required: true  # SQL Server username
+      sql_password:
+        required: true  # SQL Server password
+
+jobs:
+  setup-database:
+    runs-on: ubuntu-latest  # Runs the job on an Ubuntu runner
+    environment: ${{ inputs.environment }}  # Uses the passed environment input
+
+    env:
+      SQL_SERVER: ${{ secrets.sql_server }}  # Set SQL Server host from secrets
+      SQL_USER: ${{ secrets.sql_user }}  # Set SQL Server username from secrets
+      SQL_PASSWORD: ${{ secrets.sql_password }}  # Set SQL Server password from secrets
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Ensures the full history is available
+
+      # Step 2: Install SQL Server command-line tools
+      - name: Install SQL Server tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl gnupg  # Install necessary packages
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -  # Add Microsoft's package signing key
+          curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list  # Add Microsoft package source
+          sudo apt-get update
+          sudo ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev  # Install SQL Server tools
+          echo "/opt/mssql-tools/bin" >> $GITHUB_PATH  # Add SQL tools to system PATH
+
+      # Step 3: Execute database setup script
+      - name: Execute database setup
+        run: |
+          echo "Starting database setup for ${{ inputs.environment }} environment"
+          
+          {
+            # Run SQL script using sqlcmd (timeout 60 seconds)
+            sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -i scripts/setup2.sql -l 60
+          } || {
+            echo "Database setup failed for ${{ inputs.environment }} environment"
+            exit 1  # Exit with failure if the setup fails
+          }
+
+          echo "Database setup completed successfully for ${{ inputs.environment }} environment"
+
+      # Step 4: Verify the database deployment
+      - name: Verify database deployment
+        run: |
+          echo "Verifying database deployment for ${{ inputs.environment }} environment"
+          
+          {
+            # Check if the user table exists and fetch data
+            sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -Q "SELECT * FROM AutoDBErnest.dbo.user" -l 60
+          } || {
+            echo "Database verification failed for ${{ inputs.environment }} environment"
+            exit 1  # Exit with failure if verification fails
+          }
+
+          echo "Database verification successful for ${{ inputs.environment }} environment"
