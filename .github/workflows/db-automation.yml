@@ -1,0 +1,30 @@
+# .github/workflows/database-automation-p2.yml
+name: Database Automation P2
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  setup-dev:
+    uses: ./.github/workflows/db-setup-template.yml
+    with:
+      environment: development
+      admin_user: DEV_ADMIN_USER
+      admin_password: DEV_ADMIN_PASSWORD
+      pinggy_url: DEV_PINGGY_URL
+      sql_password: DEV_SQL_PASSWORD
+
+  setup-prod:
+    needs: setup-dev
+    if: github.event_name != 'pull_request'
+    uses: ./.github/workflows/db-setup-template.yml
+    with:
+      environment: production
+      admin_user: PROD_ADMIN_USER
+      admin_password: PROD_ADMIN_PASSWORD
+      pinggy_url: PROD_PINGGY_URL
+      sql_password: PROD_SQL_PASSWORD
