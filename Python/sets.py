@@ -5,4 +5,6 @@ elements.add('erny')
 print(elements)
 print('----------')
 #elements.remove('erny')
-#elements.clear
+#elements.clear()
+
+git: set = set()
