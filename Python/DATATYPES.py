@@ -15,6 +15,6 @@ coordinates = (2.5, 1.0)
 #Mapping types
 users = {'Mario': 1 ,'ernest' : 2}
 
- #set types
- reffle = {1, 10, 25, 50}
- frozen = frozenset({1,2,3}) #this makes sure that you dont modify the set
+# Set types
+raffle = {1, 10, 25, 50}                      # Set
+frozen = frozenset({1, 2, 3})        #this makes sure that you dont modify the set
