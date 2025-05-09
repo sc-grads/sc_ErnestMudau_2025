@@ -13,3 +13,4 @@ jobs:
           curl -H "Content-Type: application/json" -d '{
             "text": "🚀 Pull Request Approved! \nRepo: '${{ github.repository }}' \nPR: '${{ github.event.pull_request.html_url }}' \nApproved by: '${{ github.actor }}'"
           }' '${{ secrets.TEAMS_WEBHOOK_URL }}'
+
