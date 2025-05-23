@@ -6,26 +6,27 @@ DECLARE @myDateOffset AS datetimeoffset(2) = '2015-06-25 01:02:03.456 +05:30';
 SELECT @myDateOffset = @myDateOffset;
 
 -- Display the value of @myDateOffset
-SELECT @myDateOffset;
+SELECT @myDateOffset AS OriginalDateOffset;
 
--- Display the date part of @myDateOffset
-SELECT DATEPART(year, @myDateOffset);
+-- Display the year part of @myDateOffset
+SELECT DATEPART(year, @myDateOffset) AS YearPart;
 
 -- Use the TODATETIMEOFFSET function to create a new datetimeoffset value
--- with different time zone offsets
-SELECT TODATETIMEOFFSET('2015-06-25 1:1:1.456', '+05:30') AS MyDateOffset;
+-- with a specific time zone offset
+SELECT TODATETIMEOFFSET('2015-06-25 01:01:01.456', '+05:30') AS MyDateOffset;
 
--- Declare a new variable @myDateOffset2 of type TimeWithOffset
-DECLARE @myDateOffset2 AS TimeWithOffset;
+-- Declare a new variable @myDateOffset2 of type datetimeoffset
+DECLARE @myDateOffset2 AS datetimeoffset;
 
--- The above line will result in an error because TimeWithOffset is not a valid data type
--- To fix this, you can use the datetimeoffset data type instead
--- DECLARE @myDateOffset2 AS datetimeoffset;
+-- Assign a value to @myDateOffset2 using TODATETIMEOFFSET
+SELECT @myDateOffset2 = TODATETIMEOFFSET('2015-06-25 01:02:03.456', '+05:30');
 
--- Assign a value to @myDateOffset2 (commented out due to the error above)
--- SELECT @myDateOffset2 = TODATETIMEOFFSET('2015-06-25 01:02:03.456 +05:30', '+05:30');
+-- Display the value of @myDateOffset2
+SELECT @myDateOffset2 AS DateOffset2;
 
--- Display the value of @myDateOffset as a datetimeoffset value
+-- Declare and assign another datetimeoffset variable
 DECLARE @myDateOffset3 AS datetimeoffset;
 SELECT @myDateOffset3 = '2015-06-25 01:02:03.456 +05:30';
-SELECT @myDateOffset3 AS MyDateOffsetTz;
+
+-- Display @myDateOffset3
+SELECT @myDateOffset3 AS MyDateOffsetTz;

@@ -3,3 +3,6 @@ CREATE TABLE tblTransaction (
     DateOfTransaction SMALLDATETIME NULL,
     EmployeeNumber INT NOT NULL
 );
+
+select *
+from tblTransaction
