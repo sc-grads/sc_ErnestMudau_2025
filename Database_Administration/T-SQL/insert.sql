@@ -1,4 +1,6 @@
-insert into dbo.tableSecond
-Values(679)
+select *
 
-,(345),(234);
+from [dbo].[tableFirst]
+go
+select *
+from [dbo].[tableSecond]
