@@ -1,0 +1,181 @@
+5,AS,1,American Samoa
+77,AU,9,Victoria
+71,AU,9,Tasmania
+66,AU,9,South Australia
+64,AU,9,Queensland
+50,AU,9,New South Wales
+83,CA,6,Yukon Territory
+69,CA,6,Saskatchewan
+63,CA,6,Quebec
+60,CA,6,Prince Edward Island
+57,CA,6,Ontario
+51,CA,6,Northwest Territories
+49,CA,6,Nova Scotia
+45,CA,6,Newfoundland
+41,CA,6,Brunswick
+31,CA,6,Manitoba
+29,CA,6,Labrador
+7,CA,6,British Columbia
+1,CA,6,Alberta
+86,DE,8,Saxony
+85,DE,8,Brandenburg
+70,DE,8,Saarland
+53,DE,8,Nordrhein-Westfalen
+20,DE,8,Hamburg
+19,DE,8,Hessen
+8,DE,8,Bayern
+16,FM,9,Micronesia
+181,FR,7,Val d'Oise
+180,FR,7,Val de Marne
+179,FR,7,Seine Saint Denis
+178,FR,7,Hauts de Seine
+177,FR,7,Essonne
+176,FR,7,Belford (Territoire de)
+175,FR,7,Yonne
+174,FR,7,Vosges
+173,FR,7,Vienne (Haute)
+172,FR,7,Vienne
+171,FR,7,La Vendée
+170,FR,7,Vaucluse
+169,FR,7,Var
+168,FR,7,Tarne et Garonne
+167,FR,7,Tarne
+166,FR,7,Somme
+165,FR,7,Sèvres (Deux)
+164,FR,7,Yveline
+163,FR,7,Seine et Marne
+162,FR,7,Seine Maritime
+161,FR,7,Seine (Paris)
+160,FR,7,Savoie Haute
+159,FR,7,Savoie
+158,FR,7,Sarthe
+157,FR,7,Saône et Loire
+156,FR,7,Saône (Haute)
+155,FR,7,Rhône
+154,FR,7,Rhin (Haut)
+153,FR,7,Rhin (Bas)
+152,FR,7,Pyrénées Orientales
+151,FR,7,Pyrénées (Hautes)
+150,FR,7,Pyrénées Atlantiques
+149,FR,7,Puy de Dôme
+148,FR,7,Pas de Calais
+147,FR,7,Orne
+146,FR,7,Oise
+145,FR,7,Nord
+144,FR,7,Nièvre
+143,FR,7,Moselle
+142,FR,7,Morbihan
+141,FR,7,Meuse
+140,FR,7,Meurthe et Moselle
+139,FR,7,Mayenne
+138,FR,7,Marne (Haute)
+137,FR,7,Marne
+136,FR,7,Manche
+135,FR,7,Maine et Loire
+134,FR,7,Lozère
+133,FR,7,Lot et Garonne
+132,FR,7,Lot
+131,FR,7,Loiret
+130,FR,7,Loire Atlantique
+129,FR,7,Loire (Haute)
+128,FR,7,Loire
+127,FR,7,Loir et Cher
+126,FR,7,Landes
+125,FR,7,Jura
+124,FR,7,Isère
+123,FR,7,Indre et Loire
+122,FR,7,Indre
+121,FR,7,Ille et Vilaine
+120,FR,7,Hérault
+119,FR,7,Gironde
+118,FR,7,Gers
+117,FR,7,Garonne (Haute)
+116,FR,7,Gard
+115,FR,7,Finistère
+114,FR,7,Eure et Loir
+113,FR,7,Eure
+112,FR,7,Drôme
+111,FR,7,Toubs
+110,FR,7,Dordogne
+109,FR,7,Creuse
+108,FR,7,Côtes-d'Armor
+107,FR,7,Côte d'Or
+106,FR,7,Corse
+105,FR,7,Corrèze
+104,FR,7,Cher
+103,FR,7,Charente-Maritime
+102,FR,7,Charente
+101,FR,7,Cantal
+100,FR,7,Calvados
+99,FR,7,Bouches du Rhône
+98,FR,7,Aveyron
+97,FR,7,Aude
+96,FR,7,Aube
+95,FR,7,Ariège
+94,FR,7,Ardennes
+93,FR,7,Ardèche
+92,FR,7,Alpes-Maritimes
+91,FR,7,Alpes (Haute)
+90,FR,7,Alpes-de-Haute Provence
+89,FR,7,Allier
+88,FR,7,Aisne
+87,FR,7,Ain
+84,FR,7,France
+14,GB,10,England
+34,MH,9,Marshall Islands
+38,MP,9,Northern Mariana Islands
+62,PW,9,Palau
+82,US,1,Wyoming
+81,US,5,West Virginia
+80,US,3,Wisconsin
+79,US,1,Washington
+78,US,2,Vermont
+75,US,5,Virginia
+74,US,1,Utah
+73,US,4,Texas
+72,US,5,Tennessee
+68,US,3,South Dakota
+67,US,5,South Carolina
+65,US,2,Rhode Island
+61,US,5,Puerto Rico
+59,US,2,Pennsylvania
+58,US,1,Oregon
+56,US,3,Oklahoma
+55,US,2,Ohio
+54,US,2,New York
+52,US,1,Nevada
+48,US,4,New Mexico
+47,US,2,New Jersey
+46,US,2,New Hampshire
+44,US,3,Nebraska
+43,US,3,North Dakota
+42,US,5,North Carolina
+40,US,1,Montana
+39,US,5,Mississippi
+37,US,3,Missouri
+36,US,3,Minnesota
+35,US,3,Michigan
+33,US,2,Maine
+32,US,2,Maryland
+30,US,2,Massachusetts
+28,US,3,Louisiana
+27,US,5,Kentucky
+26,US,3,Kansas
+25,US,2,Indiana
+24,US,3,Illinois
+23,US,1,Idaho
+22,US,3,Iowa
+21,US,1,Hawaii
+18,US,4,Guam
+17,US,5,Georgia
+15,US,5,Florida
+13,US,2,Delaware
+12,US,2,District of Columbia
+11,US,2,Connecticut
+10,US,3,Colorado
+9,US,4,California
+6,US,4,Arizona
+4,US,3,Arkansas
+3,US,5,Alabama
+2,US,1,Alaska
+76,VI,5,Virgin Islands
