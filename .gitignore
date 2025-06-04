@@ -5,7 +5,7 @@ obj/
 *.user
 *.log
 *.tmp
-*.bak
+
 
 # Ignore deployment packages
 *.ispac
