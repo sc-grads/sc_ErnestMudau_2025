@@ -5,6 +5,9 @@ obj/
 *.user
 *.log
 *.tmp
+*.param
+*.sln
+*.database
 
 
 # Ignore deployment packages
