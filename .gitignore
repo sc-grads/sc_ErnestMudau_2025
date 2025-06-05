@@ -19,3 +19,5 @@ obj/
 
 # Ignore user-specific project settings
 *.dtproj.user
+*.param
+*.sln
