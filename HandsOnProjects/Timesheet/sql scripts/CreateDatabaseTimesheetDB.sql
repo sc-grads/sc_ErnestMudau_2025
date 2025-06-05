@@ -1,4 +1,4 @@
- Create Database
+
 CREATE DATABASE TimesheetDB;
 GO
 

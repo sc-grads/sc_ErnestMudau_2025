@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{9AAF7ABD-3263-41F5-BBF8-F3608C936658}">
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{892F8FF8-AED6-4337-8EAD-1045E4B176D6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -31,13 +31,13 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{F3FDDE3F-816B-4AE3-94D3-CAA648B06E5F}"
+      DTS:DTSID="{1E5E7AB3-8567-41B3-BD78-CF3A9423F8B1}"
       DTS:ObjectName="LAPTOP-7LSAQSR0.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{F3FDDE3F-816B-4AE3-94D3-CAA648B06E5F}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{1E5E7AB3-8567-41B3-BD78-CF3A9423F8B1}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -136,12 +136,12 @@
                   synchronousInputId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Date]"
-                      dataType="date"
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[WorkDate]"
+                      dataType="dbDate"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Date]"
-                      name="Copy of Date"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[WorkDate]"
+                      name="WorkDate"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -156,13 +156,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of D of Week]"
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Day of Week]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="255"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of D of Week]"
-                      name="Copy of D of Week"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Day of Week]"
+                      name="Day of Week"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -177,13 +177,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Client]"
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[ClientID]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="255"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Client]"
-                      name="Copy of Client"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[ClientID]"
+                      name="ClientID"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -198,13 +198,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Client Project Name]"
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[ClientProjectName]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="255"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Client Project Name]"
-                      name="Copy of Client Project Name"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[ClientProjectName]"
+                      name="ClientProjectName"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -219,13 +219,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Description]"
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Description]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="255"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Description]"
-                      name="Copy of Description"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Description]"
+                      name="Description"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -240,13 +240,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Billable or Non Billable]"
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[BillableStatus]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="255"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Billable or Non Billable]"
-                      name="Copy of Billable or Non Billable"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[BillableStatus]"
+                      name="BillableStatus"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -261,13 +261,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Comments]"
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Comments]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="4000"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Comments]"
-                      name="Copy of Comments"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Comments]"
+                      name="Comments"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -282,12 +282,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Start Time]"
-                      dataType="dbTime"
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[StartTime]"
+                      dataType="r4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Start Time]"
-                      name="Copy of Start Time"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[StartTime]"
+                      name="StartTime"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -302,12 +302,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Time]"
-                      dataType="dbTime"
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[EndTime]"
+                      dataType="r4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Time]"
-                      name="Copy of End Time"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[EndTime]"
+                      name="EndTime"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -322,12 +322,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Total Hours]"
-                      dataType="dbTime"
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[TotalHours]"
+                      dataType="r4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Total Hours]"
-                      name="Copy of Total Hours"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[TotalHours]"
+                      name="TotalHours"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -382,12 +382,12 @@
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Total Hours]"
-                      cachedDataType="date"
-                      cachedName="Total Hours"
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[StartTime]"
+                      cachedDataType="r4"
+                      cachedName="StartTime"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Total Hours]"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[StartTime]"
                       truncationRowDisposition="FailComponent"
                       usageType="readWrite">
                       <properties>
@@ -395,25 +395,73 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_NUMERIC,4,2)(([DATEDIFF]("ss",#{Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Start Time]},#{Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Time]}) / 3600.0))</property>
+                          name="Expression">[ISNULL](#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Start Time]}) ? (DT_R8)0 : (DT_R8)(([DATEPART]("hh",#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Start Time]}) * 3600 + [DATEPART]("mi",#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Start Time]}) * 60 + [DATEPART]("ss",#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Start Time]})) / 3600.0)</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(DT_NUMERIC,4,2)((DATEDIFF("ss",[Copy of Start Time],[Copy of End Time]) / 3600.0))</property>
+                          name="FriendlyExpression">ISNULL([Start Time]) ? (DT_R8)0 : (DT_R8)((DATEPART("hh",[Start Time]) * 3600 + DATEPART("mi",[Start Time]) * 60 + DATEPART("ss",[Start Time])) / 3600.0)</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Copy of Start Time]"
-                      cachedDataType="dbTime"
-                      cachedName="Copy of Start Time"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Start Time]" />
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[TotalHours]"
+                      cachedDataType="date"
+                      cachedName="Total Hours"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Total Hours]"
+                      name="TotalHours"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Total Hours]}) ? (DT_NUMERIC,10,4)0 : (DT_NUMERIC,10,4)(([DATEPART]("hh",#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Total Hours]}) * 3600 + [DATEPART]("mi",#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Total Hours]}) * 60 + [DATEPART]("ss",#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Total Hours]})) / 3600.0)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL([Derived Column].TotalHours) ? (DT_NUMERIC,10,4)0 : (DT_NUMERIC,10,4)((DATEPART("hh",[Derived Column].TotalHours) * 3600 + DATEPART("mi",[Derived Column].TotalHours) * 60 + DATEPART("ss",[Derived Column].TotalHours)) / 3600.0)</property>
+                      </properties>
+                    </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Copy of End Time]"
-                      cachedDataType="dbTime"
-                      cachedName="Copy of End Time"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Time]" />
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Start Time]"
+                      cachedDataType="date"
+                      cachedName="Start Time"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Start Time]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[EndTime]"
+                      cachedDataType="date"
+                      cachedName="End Time"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[End Time]"
+                      name="EndTime"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[End Time]}) ? (DT_NUMERIC,10,4)0 : (DT_NUMERIC,10,4)(([DATEPART]("hh",#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[End Time]}) * 3600 + [DATEPART]("mi",#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[End Time]}) * 60 + [DATEPART]("ss",#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[End Time]})) / 3600.0)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL([Derived Column].EndTime) ? (DT_NUMERIC,10,4)0 : (DT_NUMERIC,10,4)((DATEPART("hh",[Derived Column].EndTime) * 3600 + DATEPART("mi",[Derived Column].EndTime) * 60 + DATEPART("ss",[Derived Column].EndTime)) / 3600.0)</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Date]"
+                      cachedDataType="date"
+                      cachedName="Date"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Date]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -425,6 +473,30 @@
                   exclusionGroup="1"
                   name="Derived Column Output"
                   synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 1]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 1]"
+                      name="Derived Column 1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)((DT_WSTR,50)#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Date]} == "DATE NOT NULL" ? "1900-01-01" : (DT_WSTR,50)#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Date]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)((DT_WSTR,50)Date == "DATE NOT NULL" ? "1900-01-01" : (DT_WSTR,50)Date)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
@@ -728,6 +800,164 @@
               </outputs>
             </component>
             <component
+              refId="Package\Data Flow Task\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Clients]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Clients]) [refTable]
+where [refTable].[ClientName] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ClientID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ClientName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Client]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input].Columns[Client]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Client"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Client]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ClientName</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[ClientID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[ClientID]"
+                      name="ClientID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ClientID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Data Flow Task\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -800,50 +1030,64 @@
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WorkDate]"
+                      cachedDataType="dbDate"
+                      cachedName="WorkDate"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WorkDate]"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[WorkDate]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Day of Week]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Day of Week"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeek]"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Day of Week]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ClientProjectName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ClientProjectName"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClientProjectName]"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[ClientProjectName]" />
+                    <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Description"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Description]" />
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Description]" />
                     <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Comments]"
-                      cachedDataType="nText"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
                       cachedName="Comments"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Comments]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Comments]" />
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Comments]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Date]"
-                      cachedDataType="date"
-                      cachedName="Date"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WorkDate]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Date]" />
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StartTime]"
+                      cachedDataType="r4"
+                      cachedName="StartTime"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StartTime]"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[StartTime]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[D of Week]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BillableStatus]"
                       cachedDataType="wstr"
                       cachedLength="255"
-                      cachedName="D of Week"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeek]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[D of Week]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Billable or Non Billable]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="Billable or Non Billable"
+                      cachedName="BillableStatus"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BillableStatus]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Billable or Non Billable]" />
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[BillableStatus]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Total Hours]"
-                      cachedDataType="date"
-                      cachedName="Total Hours"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TotalHours]"
+                      cachedDataType="r4"
+                      cachedName="TotalHours"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalHours]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Total Hours]" />
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[TotalHours]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[End Time]"
-                      cachedDataType="date"
-                      cachedName="End Time"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EndTime]"
+                      cachedDataType="r4"
+                      cachedName="EndTime"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndTime]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[End Time]" />
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[EndTime]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -860,10 +1104,6 @@
                       dataType="i4"
                       name="ClientID" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProjectID]"
-                      dataType="i4"
-                      name="ProjectID" />
-                    <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WorkDate]"
                       dataType="wstr"
                       length="10"
@@ -873,6 +1113,11 @@
                       dataType="wstr"
                       length="10"
                       name="DayOfWeek" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClientProjectName]"
+                      dataType="wstr"
+                      length="255"
+                      name="ClientProjectName" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
                       dataType="wstr"
@@ -891,8 +1136,8 @@
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalHours]"
                       dataType="numeric"
                       name="TotalHours"
-                      precision="5"
-                      scale="2" />
+                      precision="10"
+                      scale="4" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StartTime]"
                       dataType="numeric"
@@ -942,7 +1187,7 @@
           <paths>
             <path
               refId="Package\Data Flow Task.Paths[Data Conversion Output]"
-              endId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+              endId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]"
               name="Data Conversion Output"
               startId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]" />
             <path
@@ -955,6 +1200,11 @@
               endId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
               name="Excel Source Output"
               startId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup Match Output]"
+              endId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -983,7 +1233,7 @@
     design-time-name="Package\Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="140,41.6"
           Id="Package\Data Flow Task\Excel Source"
@@ -991,33 +1241,33 @@
         <NodeLayout
           Size="156,41.6"
           Id="Package\Data Flow Task\Data Conversion"
-          TopLeft="229.999987433355,155.133332254556" />
+          TopLeft="513.333305286038,110.933332561917" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Excel Source Output]"
           TopLeft="272.999989209076,80.0333331043191">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="34.9999982242786,75.0999991502364"
+              EndConnector="318.333316076962,30.8999994575977"
               Start="0,0"
-              End="34.9999982242786,67.5999991502364">
+              End="318.333316076962,23.3999994575977">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.5499995751182" />
+                    End="0,11.4499997287989" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,33.5499995751182"
-                    Point2="0,37.5499995751182"
-                    Point3="4,37.5499995751182" />
+                    Point1="0,11.4499997287989"
+                    Point2="0,15.4499997287989"
+                    Point3="4,15.4499997287989" />
                   <mssgle:LineSegment
-                    End="30.9999982242786,37.5499995751182" />
+                    End="314.333316076962,15.4499997287989" />
                   <mssgle:CubicBezierSegment
-                    Point1="30.9999982242786,37.5499995751182"
-                    Point2="34.9999982242786,37.5499995751182"
-                    Point3="34.9999982242786,41.5499995751182" />
+                    Point1="314.333316076962,15.4499997287989"
+                    Point2="318.333316076962,15.4499997287989"
+                    Point3="318.333316076962,19.4499997287989" />
                   <mssgle:LineSegment
-                    End="34.9999982242786,67.5999991502364" />
+                    End="318.333316076962,23.3999994575977" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1029,33 +1279,37 @@
         <NodeLayout
           Size="152.8,41.6"
           Id="Package\Data Flow Task\Derived Column"
-          TopLeft="296.666650457515,243.533331639833" />
+          TopLeft="614.166633110081,262.599998173912" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Data Flow Task\Lookup"
+          TopLeft="224.16665441874,197.599998625914" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Data Conversion Output]"
-          TopLeft="307.999987433355,196.733332254556">
+          TopLeft="591.333305286038,152.533332561917">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="65.0666630241608,46.7999993852774"
+              EndConnector="-310.766650867297,45.0666660639976"
               Start="0,0"
-              End="65.0666630241608,39.2999993852774">
+              End="-310.766650867297,37.5666660639976">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.3999996926387" />
+                    End="0,18.5333330319988" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.3999996926387"
-                    Point2="0,23.3999996926387"
-                    Point3="4,23.3999996926387" />
+                    Point1="0,18.5333330319988"
+                    Point2="0,22.5333330319988"
+                    Point3="-4,22.5333330319988" />
                   <mssgle:LineSegment
-                    End="61.0666630241608,23.3999996926387" />
+                    End="-306.766650867297,22.5333330319988" />
                   <mssgle:CubicBezierSegment
-                    Point1="61.0666630241608,23.3999996926387"
-                    Point2="65.0666630241608,23.3999996926387"
-                    Point3="65.0666630241608,27.3999996926387" />
+                    Point1="-306.766650867297,22.5333330319988"
+                    Point2="-310.766650867297,22.5333330319988"
+                    Point3="-310.766650867297,26.5333330319988" />
                   <mssgle:LineSegment
-                    End="65.0666630241608,39.2999993852774" />
+                    End="-310.766650867297,37.5666660639976" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1067,39 +1321,77 @@
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="348.33331430124,337.13333098895" />
+          TopLeft="237.499987023572,337.13333098895" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="373.066650457515,285.133331639833">
+          TopLeft="690.566633110081,304.199998173912">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="60.8666638437245,51.9999993491173"
+              EndConnector="-367.466646086508,32.9333328150379"
               Start="0,0"
-              End="60.8666638437245,44.4999993491173">
+              End="-367.466646086508,25.4333328150379">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.9999996745586" />
+                    End="0,12.466666407519" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21.9999996745586"
-                    Point2="0,25.9999996745586"
-                    Point3="4,25.9999996745586" />
+                    Point1="0,12.466666407519"
+                    Point2="0,16.466666407519"
+                    Point3="-4,16.466666407519" />
                   <mssgle:LineSegment
-                    End="56.8666638437245,25.9999996745586" />
+                    End="-363.466646086508,16.466666407519" />
                   <mssgle:CubicBezierSegment
-                    Point1="56.8666638437245,25.9999996745586"
-                    Point2="60.8666638437245,25.9999996745586"
-                    Point3="60.8666638437245,29.9999996745586" />
+                    Point1="-363.466646086508,16.466666407519"
+                    Point2="-367.466646086508,16.466666407519"
+                    Point3="-367.466646086508,20.466666407519" />
                   <mssgle:LineSegment
-                    End="60.8666638437245,44.4999993491173" />
+                    End="-367.466646086508,25.4333328150379" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-191.733323043254,21.466666407519,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
+          TopLeft="280.56665441874,239.199998625914">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="409.99997869134,23.399999547998"
+              Start="0,0"
+              End="409.99997869134,15.899999547998">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.699999773999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.699999773999"
+                    Point2="0,11.699999773999"
+                    Point3="4,11.699999773999" />
+                  <mssgle:LineSegment
+                    End="405.99997869134,11.699999773999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="405.99997869134,11.699999773999"
+                    Point2="409.99997869134,11.699999773999"
+                    Point3="409.99997869134,15.699999773999" />
+                  <mssgle:LineSegment
+                    End="409.99997869134,15.899999547998" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="156.80860262692,16.699999773999,96.3827734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -1115,6 +1407,29 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Clients]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
