@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="Package3"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{3F4643E2-3247-4357-850F-27271D3414E0}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{0CDDEDFA-5388-4894-ACFC-0FD797071957}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -25,7 +25,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="0"
           DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\ErnestMudau\OneDrive - Northern Data (Pty) Ltd\Documents\TimeSheets\ErnestMudau\Ronewa Ernest Mudau may Final week (1).xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\ErnestMudau\OneDrive - Northern Data (Pty) Ltd\Documents\TimeSheets\ErnestMudau\Ronewa Ernest Mudau may Final week (1).xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -265,12 +265,12 @@
                           synchronousInputId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Inputs[Data Conversion Input]">
                           <outputColumns>
                             <outputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Date]"
-                              dataType="date"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[WorkDate]"
+                              dataType="dbDate"
                               errorOrTruncationOperation="Conversion"
                               errorRowDisposition="FailComponent"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Date]"
-                              name="Copy of Date"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[WorkDate]"
+                              name="WorkDate"
                               truncationRowDisposition="FailComponent">
                               <properties>
                                 <property
@@ -285,13 +285,13 @@
                               </properties>
                             </outputColumn>
                             <outputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of D of Week]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Day of Week]"
                               dataType="wstr"
                               errorOrTruncationOperation="Conversion"
                               errorRowDisposition="FailComponent"
                               length="255"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of D of Week]"
-                              name="Copy of D of Week"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Day of Week]"
+                              name="Day of Week"
                               truncationRowDisposition="FailComponent">
                               <properties>
                                 <property
@@ -306,13 +306,13 @@
                               </properties>
                             </outputColumn>
                             <outputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Client]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[ClientID]"
                               dataType="wstr"
                               errorOrTruncationOperation="Conversion"
                               errorRowDisposition="FailComponent"
                               length="255"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Client]"
-                              name="Copy of Client"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[ClientID]"
+                              name="ClientID"
                               truncationRowDisposition="FailComponent">
                               <properties>
                                 <property
@@ -327,13 +327,13 @@
                               </properties>
                             </outputColumn>
                             <outputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Client Project Name]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[ClientProjectName]"
                               dataType="wstr"
                               errorOrTruncationOperation="Conversion"
                               errorRowDisposition="FailComponent"
                               length="255"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Client Project Name]"
-                              name="Copy of Client Project Name"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[ClientProjectName]"
+                              name="ClientProjectName"
                               truncationRowDisposition="FailComponent">
                               <properties>
                                 <property
@@ -348,13 +348,13 @@
                               </properties>
                             </outputColumn>
                             <outputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Description]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Description]"
                               dataType="wstr"
                               errorOrTruncationOperation="Conversion"
                               errorRowDisposition="FailComponent"
                               length="255"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Description]"
-                              name="Copy of Description"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Description]"
+                              name="Description"
                               truncationRowDisposition="FailComponent">
                               <properties>
                                 <property
@@ -369,13 +369,13 @@
                               </properties>
                             </outputColumn>
                             <outputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Billable or Non Billable]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[BillableStatus]"
                               dataType="wstr"
                               errorOrTruncationOperation="Conversion"
                               errorRowDisposition="FailComponent"
                               length="255"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Billable or Non Billable]"
-                              name="Copy of Billable or Non Billable"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[BillableStatus]"
+                              name="BillableStatus"
                               truncationRowDisposition="FailComponent">
                               <properties>
                                 <property
@@ -390,13 +390,13 @@
                               </properties>
                             </outputColumn>
                             <outputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Comments]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Comments]"
                               dataType="wstr"
                               errorOrTruncationOperation="Conversion"
                               errorRowDisposition="FailComponent"
                               length="4000"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Comments]"
-                              name="Copy of Comments"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Comments]"
+                              name="Comments"
                               truncationRowDisposition="FailComponent">
                               <properties>
                                 <property
@@ -411,12 +411,12 @@
                               </properties>
                             </outputColumn>
                             <outputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Start Time]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[StartTime]"
                               dataType="r4"
                               errorOrTruncationOperation="Conversion"
                               errorRowDisposition="FailComponent"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Start Time]"
-                              name="Copy of Start Time"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[StartTime]"
+                              name="StartTime"
                               truncationRowDisposition="FailComponent">
                               <properties>
                                 <property
@@ -431,12 +431,12 @@
                               </properties>
                             </outputColumn>
                             <outputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Time]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[EndTime]"
                               dataType="r4"
                               errorOrTruncationOperation="Conversion"
                               errorRowDisposition="FailComponent"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Time]"
-                              name="Copy of End Time"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[EndTime]"
+                              name="EndTime"
                               truncationRowDisposition="FailComponent">
                               <properties>
                                 <property
@@ -451,12 +451,12 @@
                               </properties>
                             </outputColumn>
                             <outputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Total Hours]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[TotalHours]"
                               dataType="r4"
                               errorOrTruncationOperation="Conversion"
                               errorRowDisposition="FailComponent"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Total Hours]"
-                              name="Copy of Total Hours"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[TotalHours]"
+                              name="TotalHours"
                               truncationRowDisposition="FailComponent">
                               <properties>
                                 <property
@@ -511,12 +511,12 @@
                           name="Derived Column Input">
                           <inputColumns>
                             <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Inputs[Derived Column Input].Columns[Copy of Start Time]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Inputs[Derived Column Input].Columns[StartTime]"
                               cachedDataType="r4"
-                              cachedName="Copy of Start Time"
+                              cachedName="StartTime"
                               errorOrTruncationOperation="Computation"
                               errorRowDisposition="FailComponent"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Start Time]"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[StartTime]"
                               truncationRowDisposition="FailComponent"
                               usageType="readWrite">
                               <properties>
@@ -534,12 +534,13 @@
                               </properties>
                             </inputColumn>
                             <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Inputs[Derived Column Input].Columns[Total Hours]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Inputs[Derived Column Input].Columns[TotalHours]"
                               cachedDataType="date"
                               cachedName="Total Hours"
                               errorOrTruncationOperation="Computation"
                               errorRowDisposition="FailComponent"
                               lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Excel Source.Outputs[Excel Source Output].Columns[Total Hours]"
+                              name="TotalHours"
                               truncationRowDisposition="FailComponent"
                               usageType="readWrite">
                               <properties>
@@ -553,7 +554,7 @@
                                   dataType="System.String"
                                   description="Derived Column Friendly Expression"
                                   expressionType="Notify"
-                                  name="FriendlyExpression">ISNULL([Total Hours]) ? (DT_NUMERIC,10,4)0 : (DT_NUMERIC,10,4)((DATEPART("hh",[Total Hours]) * 3600 + DATEPART("mi",[Total Hours]) * 60 + DATEPART("ss",[Total Hours])) / 3600.0)</property>
+                                  name="FriendlyExpression">ISNULL([Derived Column].TotalHours) ? (DT_NUMERIC,10,4)0 : (DT_NUMERIC,10,4)((DATEPART("hh",[Derived Column].TotalHours) * 3600 + DATEPART("mi",[Derived Column].TotalHours) * 60 + DATEPART("ss",[Derived Column].TotalHours)) / 3600.0)</property>
                               </properties>
                             </inputColumn>
                             <inputColumn
@@ -562,12 +563,13 @@
                               cachedName="Start Time"
                               lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Excel Source.Outputs[Excel Source Output].Columns[Start Time]" />
                             <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Inputs[Derived Column Input].Columns[End Time]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Inputs[Derived Column Input].Columns[EndTime]"
                               cachedDataType="date"
                               cachedName="End Time"
                               errorOrTruncationOperation="Computation"
                               errorRowDisposition="FailComponent"
                               lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Excel Source.Outputs[Excel Source Output].Columns[End Time]"
+                              name="EndTime"
                               truncationRowDisposition="FailComponent"
                               usageType="readWrite">
                               <properties>
@@ -581,9 +583,14 @@
                                   dataType="System.String"
                                   description="Derived Column Friendly Expression"
                                   expressionType="Notify"
-                                  name="FriendlyExpression">ISNULL([End Time]) ? (DT_NUMERIC,10,4)0 : (DT_NUMERIC,10,4)((DATEPART("hh",[End Time]) * 3600 + DATEPART("mi",[End Time]) * 60 + DATEPART("ss",[End Time])) / 3600.0)</property>
+                                  name="FriendlyExpression">ISNULL([Derived Column].EndTime) ? (DT_NUMERIC,10,4)0 : (DT_NUMERIC,10,4)((DATEPART("hh",[Derived Column].EndTime) * 3600 + DATEPART("mi",[Derived Column].EndTime) * 60 + DATEPART("ss",[Derived Column].EndTime)) / 3600.0)</property>
                               </properties>
                             </inputColumn>
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Inputs[Derived Column Input].Columns[Date]"
+                              cachedDataType="date"
+                              cachedName="Date"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Excel Source.Outputs[Excel Source Output].Columns[Date]" />
                           </inputColumns>
                           <externalMetadataColumns />
                         </input>
@@ -595,6 +602,52 @@
                           exclusionGroup="1"
                           name="Derived Column Output"
                           synchronousInputId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Inputs[Derived Column Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 1]"
+                              dataType="dbTimeStamp"
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 1]"
+                              name="Derived Column 1"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">(DT_DBTIMESTAMP)((DT_WSTR,50)#{Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Excel Source.Outputs[Excel Source Output].Columns[Date]} == "DATE NOT NULL" ? "1900-01-01" : (DT_WSTR,50)#{Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Excel Source.Outputs[Excel Source Output].Columns[Date]})</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">(DT_DBTIMESTAMP)((DT_WSTR,50)Date == "DATE NOT NULL" ? "1900-01-01" : (DT_WSTR,50)Date)</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Outputs[Derived Column Output].Columns[ConsultantID]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column.Outputs[Derived Column Output].Columns[ConsultantID]"
+                              name="ConsultantID"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">(DT_I4)20</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">(DT_I4)20</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
                           <externalMetadataColumns />
                         </output>
                         <output
@@ -1005,6 +1058,22 @@ where [refTable].[ClientName] = ?</property>
                           exclusionGroup="1"
                           name="Lookup Match Output"
                           synchronousInputId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Lookup.Inputs[Lookup Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Lookup.Outputs[Lookup Match Output].Columns[ClientID]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Copy Column"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Lookup.Outputs[Lookup Match Output].Columns[ClientID]"
+                              name="ClientID"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  dataType="System.String"
+                                  description="Specifies the column in the reference table from which a column is copied."
+                                  name="CopyFromReferenceColumn">ClientID</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
                           <externalMetadataColumns />
                         </output>
                         <output
@@ -1112,64 +1181,64 @@ where [refTable].[ClientName] = ?</property>
                           name="OLE DB Destination Input">
                           <inputColumns>
                             <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Date]"
-                              cachedDataType="date"
-                              cachedName="Copy of Date"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WorkDate]"
+                              cachedDataType="dbDate"
+                              cachedName="WorkDate"
                               externalMetadataColumnId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WorkDate]"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Date]" />
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[WorkDate]" />
                             <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of D of Week]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Day of Week]"
                               cachedDataType="wstr"
                               cachedLength="255"
-                              cachedName="Copy of D of Week"
+                              cachedName="Day of Week"
                               externalMetadataColumnId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeek]"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of D of Week]" />
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Day of Week]" />
                             <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Client Project Name]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ClientProjectName]"
                               cachedDataType="wstr"
                               cachedLength="255"
-                              cachedName="Copy of Client Project Name"
+                              cachedName="ClientProjectName"
                               externalMetadataColumnId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClientProjectName]"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Client Project Name]" />
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[ClientProjectName]" />
                             <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Description]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description]"
                               cachedDataType="wstr"
                               cachedLength="255"
-                              cachedName="Copy of Description"
+                              cachedName="Description"
                               externalMetadataColumnId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Description]" />
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Description]" />
                             <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Billable or Non Billable]"
-                              cachedDataType="wstr"
-                              cachedLength="255"
-                              cachedName="Copy of Billable or Non Billable"
-                              externalMetadataColumnId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BillableStatus]"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Billable or Non Billable]" />
-                            <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Comments]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Comments]"
                               cachedDataType="wstr"
                               cachedLength="4000"
-                              cachedName="Copy of Comments"
+                              cachedName="Comments"
                               externalMetadataColumnId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Comments]"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Comments]" />
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Comments]" />
                             <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Start Time]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StartTime]"
                               cachedDataType="r4"
-                              cachedName="Copy of Start Time"
+                              cachedName="StartTime"
                               externalMetadataColumnId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StartTime]"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Start Time]" />
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[StartTime]" />
                             <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Total Hours]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BillableStatus]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="BillableStatus"
+                              externalMetadataColumnId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BillableStatus]"
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[BillableStatus]" />
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TotalHours]"
                               cachedDataType="r4"
-                              cachedName="Copy of Total Hours"
+                              cachedName="TotalHours"
                               externalMetadataColumnId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalHours]"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Total Hours]" />
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[TotalHours]" />
                             <inputColumn
-                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of End Time]"
+                              refId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EndTime]"
                               cachedDataType="r4"
-                              cachedName="Copy of End Time"
+                              cachedName="EndTime"
                               externalMetadataColumnId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndTime]"
-                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Time]" />
+                              lineageId="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion.Outputs[Data Conversion Output].Columns[EndTime]" />
                           </inputColumns>
                           <externalMetadataColumns
                             isUsed="True">
@@ -1351,28 +1420,64 @@ where [refTable].[ClientName] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="140,41.6"
-          Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Excel Source"
-          TopLeft="221.999996691942,63.9999990463257" />
-        <NodeLayout
-          Size="156,41.6"
-          Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion"
-          TopLeft="532.333312768904,136.499998503923" />
-        <NodeLayout
           Size="152.8,41.6"
           Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Derived Column"
-          TopLeft="633.166640592947,288.166664115919" />
+          TopLeft="646.999964348974,297.833331223991" />
         <NodeLayout
           Size="112.8,41.6"
           Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Lookup"
-          TopLeft="243.166661901607,223.166664567921" />
+          TopLeft="271.999984838069,218.099998445113" />
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\OLE DB Destination"
-          TopLeft="256.499994506438,362.699996930957" />
+          TopLeft="285.333317442901,357.633330808149" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Excel Source"
+          TopLeft="250.833319628405,58.9333329235183" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Data Conversion"
+          TopLeft="561.166635705367,131.433332381116" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet.Paths[Lookup Match Output]"
+          TopLeft="328.399984838069,259.699998445113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="394.999979510905,38.1333327788775"
+              Start="0,0"
+              End="394.999979510905,30.6333327788775">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.0666663894388" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.0666663894388"
+                    Point2="0,19.0666663894388"
+                    Point3="4,19.0666663894388" />
+                  <mssgle:LineSegment
+                    End="390.999979510905,19.0666663894388" />
+                  <mssgle:CubicBezierSegment
+                    Point1="390.999979510905,19.0666663894388"
+                    Point2="394.999979510905,19.0666663894388"
+                    Point3="394.999979510905,23.0666663894388" />
+                  <mssgle:LineSegment
+                    End="394.999979510905,30.6333327788775" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="149.308603036702,24.0666663894388,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet.Paths[Excel Source Output]"
-          TopLeft="291.999996691942,105.599999046326">
+          TopLeft="320.833319628405,100.533332923518">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1405,8 +1510,42 @@ where [refTable].[ClientName] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet.Paths[Derived Column Output]"
+          TopLeft="646.999964348974,318.633331223991">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-190.466646906073,59.7999995841585"
+              Start="0,0"
+              End="-182.966646906073,59.7999995841585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-91.2333234530364,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-91.2333234530364,0"
+                    Point2="-95.2333234530364,0"
+                    Point3="-95.2333234530364,4" />
+                  <mssgle:LineSegment
+                    End="-95.2333234530364,55.7999995841585" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-95.2333234530364,55.7999995841585"
+                    Point2="-95.2333234530364,59.7999995841585"
+                    Point3="-99.2333234530364,59.7999995841585" />
+                  <mssgle:LineSegment
+                    End="-182.966646906073,59.7999995841585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet.Paths[Data Conversion Output]"
-          TopLeft="610.333312768904,178.099998503924">
+          TopLeft="639.166635705367,173.033332381116">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1435,93 +1574,11 @@ where [refTable].[ClientName] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-170.836919183649,27.5333330319988,30.9071875,9.568359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet.Paths[Derived Column Output]"
-          TopLeft="709.566640592947,329.766664115919">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-367.466646086508,32.9333328150379"
-              Start="0,0"
-              End="-367.466646086508,25.4333328150379">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12.466666407519" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.466666407519"
-                    Point2="0,16.466666407519"
-                    Point3="-4,16.466666407519" />
-                  <mssgle:LineSegment
-                    End="-363.466646086508,16.466666407519" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-363.466646086508,16.466666407519"
-                    Point2="-367.466646086508,16.466666407519"
-                    Point3="-367.466646086508,20.466666407519" />
-                  <mssgle:LineSegment
-                    End="-367.466646086508,25.4333328150379" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet.Paths[Lookup Match Output]"
-          TopLeft="299.566661901607,264.766664567921">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="409.99997869134,23.399999547998"
-              Start="0,0"
-              End="409.99997869134,15.899999547998">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,7.699999773999" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,7.699999773999"
-                    Point2="0,11.699999773999"
-                    Point3="4,11.699999773999" />
-                  <mssgle:LineSegment
-                    End="405.99997869134,11.699999773999" />
-                  <mssgle:CubicBezierSegment
-                    Point1="405.99997869134,11.699999773999"
-                    Point2="409.99997869134,11.699999773999"
-                    Point3="409.99997869134,15.699999773999" />
-                  <mssgle:LineSegment
-                    End="409.99997869134,15.899999547998" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="156.80860262692,16.699999773999,96.3827734375,11.609375"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container\Foreach Loop Container\Load Timesheet\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
