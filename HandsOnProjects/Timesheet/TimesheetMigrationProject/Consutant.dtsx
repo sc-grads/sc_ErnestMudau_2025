@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="Consutant"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{A7446B27-D7F3-4D03-B473-FFB3C88E67A4}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{CB0D0B42-B8AA-4B7F-9442-A67E2E087F2C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -283,7 +283,7 @@
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ConsultantName]"
                       dataType="wstr"
-                      length="100"
+                      length="255"
                       name="ConsultantName" />
                   </externalMetadataColumns>
                 </input>
@@ -395,7 +395,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    design-time-name="Package\Data Flow Task\Consultant">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -408,7 +408,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\Consultant">
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
