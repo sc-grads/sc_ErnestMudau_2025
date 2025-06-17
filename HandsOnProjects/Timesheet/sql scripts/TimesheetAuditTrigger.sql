@@ -1,5 +1,5 @@
 CREATE TRIGGER TR_Timesheets_Audit
-ON Timesheets
+ON Timesheet
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN

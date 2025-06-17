@@ -1,5 +1,5 @@
 CREATE TRIGGER TR_Consultants_Audit
-ON Consultants
+ON Consultant
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
