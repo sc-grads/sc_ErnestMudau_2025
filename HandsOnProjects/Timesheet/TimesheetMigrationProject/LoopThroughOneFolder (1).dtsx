@@ -5,14 +5,14 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="LAPTOP-7LSAQSR0"
   DTS:CreatorName="LAPTOP-7LSAQSR0\ErnestMudau"
-  DTS:DTSID="{ADB36492-3F68-477A-9CC2-6145A12096F1}"
+  DTS:DTSID="{525AA1F4-4081-4E9F-8C69-B0026A41F562}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="7177"
   DTS:ObjectName="Package3"
   DTS:PackageType="5"
-  DTS:VersionBuild="112"
-  DTS:VersionGUID="{1835B21E-E699-4EAF-A0FB-6D1CD32D7A80}">
+  DTS:VersionBuild="153"
+  DTS:VersionGUID="{C44AC9D5-09B5-4C17-A9BD-AFEB7792B2A2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -20,7 +20,7 @@
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
       DTS:CreationName="EXCEL"
       DTS:DelayValidation="True"
-      DTS:DTSID="{FA360B33-9D67-4D2E-89F3-10F118A0C822}"
+      DTS:DTSID="{383CC6D0-916C-42E0-A60A-451BD4CB9746}"
       DTS:ObjectName="Excel Connection Manager">
       <DTS:PropertyExpression
         DTS:Name="ConnectionString">@[User::ExcelConnectionString]</DTS:PropertyExpression>
@@ -34,7 +34,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{1BAE1D1F-E082-4790-9986-D5ED3FF81A65}"
+      DTS:DTSID="{2FBE61A4-E966-44F3-B5D2-44E8939FC1FA}"
       DTS:ObjectName="Excel Connection Manager 1">
       <DTS:PropertyExpression
         DTS:Name="ExcelFilePath">@[User::CurrentExcelFile]</DTS:PropertyExpression>
@@ -48,31 +48,31 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{7463E4E7-036B-4763-8380-D8C69069ED59}"
+      DTS:DTSID="{1DBF7235-5467-40AF-AE1B-0D9A0B6DFD99}"
       DTS:ObjectName="LAPTOP-7LSAQSR0.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{7463E4E7-036B-4763-8380-D8C69069ED59}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{1DBF7235-5467-40AF-AE1B-0D9A0B6DFD99}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB 1]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{0B8041F4-D47E-4EB5-8DB4-B671CC4E3466}"
+      DTS:DTSID="{02CC4093-0EC7-458A-941D-142C7499FD6E}"
       DTS:ObjectName="LAPTOP-7LSAQSR0.TimesheetDB 1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package2-{0B8041F4-D47E-4EB5-8DB4-B671CC4E3466}LAPTOP-7LSAQSR0.TimesheetDB 1;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package2-{02CC4093-0EC7-458A-941D-142C7499FD6E}LAPTOP-7LSAQSR0.TimesheetDB 1;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Log Successful Processin]"
       DTS:CreationName="ADO.NET:SQL"
-      DTS:DTSID="{17A30951-7995-4B3A-9664-36FF6CFF3107}"
+      DTS:DTSID="{A97609FB-56D8-46DE-B9BA-027AB7305BA4}"
       DTS:ObjectName="Log Successful Processin">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -82,7 +82,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[UniqueData]"
       DTS:CreationName="ADO.NET:SQL"
-      DTS:DTSID="{D9F20FEF-FE5D-4712-87E7-CC23336F4A65}"
+      DTS:DTSID="{01244530-B1B8-44AA-A199-22747590B3F2}"
       DTS:ObjectName="UniqueData">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -93,7 +93,7 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{88A4D1D5-8675-4FAC-8527-1D7F4C53977E}"
+      DTS:DTSID="{10F4FF3F-AB1E-481E-A71B-DE26346B1213}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="SUBSTRING(@[User::ExcelFile], FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 2) + 1, FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 3) - FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 2) - 1)"
       DTS:IncludeInDebugDump="2345"
@@ -104,7 +104,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{FDA28091-DBEE-4BE9-8253-34F6EC29823A}"
+      DTS:DTSID="{34D70827-2EA4-4A1F-A6BD-427CD590114A}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="CurrentExcelFile">
@@ -114,7 +114,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{C77A6C3C-2ED8-44EB-92C5-868E71F7F8C5}"
+      DTS:DTSID="{03AC90AD-5324-42A3-8E56-08292EA0E53C}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="Details">
@@ -124,7 +124,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{9E9627E4-6AD3-441A-A43A-ABE894544E5C}"
+      DTS:DTSID="{BBA18297-9F6E-4CBE-9FF6-1AFB4FB4490A}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ErnestFolder">
@@ -133,7 +133,40 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{FADD556A-4FD2-4179-B3BC-BA791D79F125}"
+      DTS:DTSID="{616F4A61-E470-4840-B44F-6D9A16C602EE}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Failed to load timesheet data&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorDetails">
+      <DTS:VariableValue
+        DTS:DataType="8">Failed to load timesheet data</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9A8DB0E8-14F6-4710-84A4-F7B8CDB9107F}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Error associated with ConsultantName &quot; + (SUBSTRING(@[User::ExcelFile], FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 2) + 1, FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 3) - FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 2) - 1))"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorMessage">
+      <DTS:VariableValue
+        DTS:DataType="8">Error associated with ConsultantName Ernest</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{955347F9-58F2-47DC-ABE7-57920D454D0D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[System::PackageName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorSource">
+      <DTS:VariableValue
+        DTS:DataType="8">Package3</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C6E5FB2D-EA78-4078-A56C-5F400D454540}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ExcelConnectionString">
@@ -142,7 +175,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{6E8CEC73-6549-4295-92EF-49D1053F3822}"
+      DTS:DTSID="{70C9774D-1F8D-43D3-A731-D5E5B5BB9C36}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ExcelFile">
@@ -151,7 +184,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{D88767BD-D850-45E2-AB74-261364D63501}"
+      DTS:DTSID="{4F3C87A1-797B-410C-99D8-38265EEC1BAF}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SheetName">
@@ -160,7 +193,16 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{CD2AB2B1-E2AC-45D6-824E-E683FA444559}"
+      DTS:DTSID="{0B0CE42C-EC8D-44D9-82EA-7D6093416F36}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableName">
+      <DTS:VariableValue
+        DTS:DataType="8">Timesheets</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{676D1AC1-E06E-4DEB-83AC-918D76F67268}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="TimesheetFileName">
@@ -174,14 +216,14 @@
       DTS:refId="Package\LoopErnestTimesheets"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
-      DTS:DTSID="{E8CE00A0-1500-4D18-8C38-C7B863FF5FA4}"
+      DTS:DTSID="{3952C728-91CB-4B54-8CA4-58DB047463B9}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
       DTS:ObjectName="LoopErnestTimesheets">
       <DTS:ForEachEnumerator
         DTS:CreationName="Microsoft.ForEachFileEnumerator"
-        DTS:DTSID="{75001D1B-2F05-4D3E-9DE7-EA42F5D4D8A6}"
-        DTS:ObjectName="{75001D1B-2F05-4D3E-9DE7-EA42F5D4D8A6}">
+        DTS:DTSID="{0C1E4C46-5A4F-49BB-80AA-31282CBEEFF1}"
+        DTS:ObjectName="{0C1E4C46-5A4F-49BB-80AA-31282CBEEFF1}">
         <DTS:PropertyExpression
           DTS:Name="Directory">@[User::ErnestFolder]</DTS:PropertyExpression>
         <DTS:ObjectData>
@@ -203,7 +245,7 @@
           DTS:refId="Package\LoopErnestTimesheets\Data Flow Task"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{DEDDF60B-8AC5-4647-BCA0-38BE5F76B405}"
+          DTS:DTSID="{188A36FD-FA04-404F-97F9-910571F47D31}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Data Flow Task"
@@ -241,7 +283,7 @@
                       refId="Package\LoopErnestTimesheets\Data Flow Task\Conditional Split.Outputs[non-holidays]"
                       description="Output 1 of the Conditional Split Transformation"
                       errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
+                      errorRowDisposition="RedirectRow"
                       exclusionGroup="1"
                       name="non-holidays"
                       synchronousInputId="Package\LoopErnestTimesheets\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
@@ -635,7 +677,7 @@
                           cachedDataType="date"
                           cachedName="Total Hours"
                           errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
+                          errorRowDisposition="RedirectRow"
                           lineageId="Package\LoopErnestTimesheets\Data Flow Task\Excel Source 1.Outputs[Excel Source Output].Columns[Total Hours]"
                           name="TotalHours"
                           truncationRowDisposition="FailComponent"
@@ -659,7 +701,7 @@
                           cachedDataType="date"
                           cachedName="End Time"
                           errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
+                          errorRowDisposition="RedirectRow"
                           lineageId="Package\LoopErnestTimesheets\Data Flow Task\Excel Source 1.Outputs[Excel Source Output].Columns[End Time]"
                           name="EndTime"
                           truncationRowDisposition="FailComponent"
@@ -757,6 +799,149 @@
                           refId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                           dataType="i4"
                           lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column 1"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[ErrorSource]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[ErrorSource]"
+                          name="ErrorSource"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,50)@[User::ErrorSource]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,50)@[User::ErrorSource]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[TableName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[TableName]"
+                          name="TableName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,50)@[User::TableName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,50)@[User::TableName]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[ErrorDetailes]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[ErrorDetailes]"
+                          name="ErrorDetailes"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,50)@[User::ErrorDetails]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,50)@[User::ErrorDetails]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[errormessage]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[errormessage]"
+                          name="errormessage"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,50)@[User::ErrorMessage]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,50)@[User::ErrorMessage]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -1041,6 +1226,163 @@
                   </outputs>
                 </component>
                 <component
+                  refId="Package\LoopErnestTimesheets\Data Flow Task\Lookup"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="Lookup"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Timesheet]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Timesheet]) [refTable]
+where [refTable].[ConsultantID] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="TimesheetID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ConsultantID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ClientID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="WorkDate" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayOfWeek" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ClientProjectName" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BillableStatus" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Comments" dataType="DT_NTEXT" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TotalHours" dataType="DT_WSTR" length="16" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StartTime" dataType="DT_WSTR" length="16" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EndTime" dataType="DT_WSTR" length="16" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TimesheetFileName" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\LoopErnestTimesheets\Data Flow Task\LookupConsultant.Outputs[Lookup Match Output].Columns[ConsultantID]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
+                      connectionManagerRefId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Inputs[Lookup Input].Columns[ConsultantID]"
+                          cachedDataType="i4"
+                          cachedName="ConsultantID"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\LookupConsultant.Outputs[Lookup Match Output].Columns[ConsultantID]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">ConsultantID</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[lllConsultantID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[lllConsultantID]"
+                          name="lllConsultantID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">ConsultantID</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\LoopErnestTimesheets\Data Flow Task\LookupClient"
                   componentClassID="Microsoft.Lookup"
                   contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
@@ -1054,13 +1396,13 @@
                       description="Specifies the SQL statement that generates the lookup table."
                       expressionType="Notify"
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Clients]</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Client]</property>
                     <property
                       dataType="System.String"
                       description="Specifies a SQL statement that uses parameters to generate the lookup table."
                       expressionType="Notify"
                       name="SqlCommandParam"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Clients]) [refTable]
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Client]) [refTable]
 where [refTable].[ClientName] = ?</property>
                     <property
                       dataType="System.Int32"
@@ -1212,13 +1554,13 @@ where [refTable].[ClientName] = ?</property>
                       description="Specifies the SQL statement that generates the lookup table."
                       expressionType="Notify"
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Consultants]</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Consultant]</property>
                     <property
                       dataType="System.String"
                       description="Specifies a SQL statement that uses parameters to generate the lookup table."
                       expressionType="Notify"
                       name="SqlCommandParam"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Consultants]) [refTable]
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Consultant]) [refTable]
 where [refTable].[ConsultantName] = ?</property>
                     <property
                       dataType="System.Int32"
@@ -1250,7 +1592,7 @@ where [refTable].[ConsultantName] = ?</property>
                     <property
                       dataType="System.String"
                       description="Indicates whether to reference metadata in an XML format."
-                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ConsultantID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ConsultantName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ConsultantID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ConsultantName" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -1313,7 +1655,7 @@ where [refTable].[ConsultantName] = ?</property>
                           errorOrTruncationOperation="Copy Column"
                           lineageId="Package\LoopErnestTimesheets\Data Flow Task\LookupConsultant.Outputs[Lookup Match Output].Columns[ConsultantID]"
                           name="ConsultantID"
-                          truncationRowDisposition="FailComponent">
+                          truncationRowDisposition="RedirectRow">
                           <properties>
                             <property
                               dataType="System.String"
@@ -1372,7 +1714,7 @@ where [refTable].[ConsultantName] = ?</property>
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[Timesheets]</property>
+                      name="OpenRowset">[dbo].[Timesheet]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -1599,6 +1941,185 @@ where [refTable].[ConsultantName] = ?</property>
                     </output>
                   </outputs>
                 </component>
+                <component
+                  refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination 1"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[ErrorLog]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
+                      connectionManagerRefId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[TimesheetFileName]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="TimesheetFileName"
+                          externalMetadataColumnId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TimesheetFileName]"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[TimesheetFileName]" />
+                        <inputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[ConsultantID]"
+                          cachedDataType="i4"
+                          cachedName="ConsultantID"
+                          externalMetadataColumnId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ConsultantID]"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\LookupConsultant.Outputs[Lookup Match Output].Columns[ConsultantID]" />
+                        <inputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[ErrorSource]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="ErrorSource"
+                          externalMetadataColumnId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorSource]"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[ErrorSource]" />
+                        <inputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[TableName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="TableName"
+                          externalMetadataColumnId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TableName]"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[TableName]" />
+                        <inputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[ErrorDetailes]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="ErrorDetailes"
+                          externalMetadataColumnId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDetails]"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[ErrorDetailes]" />
+                        <inputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[errormessage]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="errormessage"
+                          externalMetadataColumnId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorMessage]"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[errormessage]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorID]"
+                          dataType="i4"
+                          name="ErrorID" />
+                        <externalMetadataColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorTimestamp]"
+                          dataType="dbTimeStamp"
+                          name="ErrorTimestamp" />
+                        <externalMetadataColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorMessage]"
+                          dataType="nText"
+                          name="ErrorMessage" />
+                        <externalMetadataColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorSource]"
+                          dataType="wstr"
+                          length="255"
+                          name="ErrorSource" />
+                        <externalMetadataColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TableName]"
+                          dataType="wstr"
+                          length="255"
+                          name="TableName" />
+                        <externalMetadataColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ConsultantID]"
+                          dataType="i4"
+                          name="ConsultantID" />
+                        <externalMetadataColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TimesheetFileName]"
+                          dataType="wstr"
+                          length="255"
+                          name="TimesheetFileName" />
+                        <externalMetadataColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDetails]"
+                          dataType="nText"
+                          name="ErrorDetails" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
               </components>
               <paths>
                 <path
@@ -1611,6 +2132,11 @@ where [refTable].[ConsultantName] = ?</property>
                   endId="Package\LoopErnestTimesheets\Data Flow Task\LookupClient.Inputs[Lookup Input]"
                   name="Derived Column Output"
                   startId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\LoopErnestTimesheets\Data Flow Task.Paths[Derived Column Output1]"
+                  endId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Inputs[Lookup Input]"
+                  name="Derived Column Output"
+                  startId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\LoopErnestTimesheets\Data Flow Task.Paths[Excel Source Output]"
                   endId="Package\LoopErnestTimesheets\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
@@ -1627,10 +2153,20 @@ where [refTable].[ConsultantName] = ?</property>
                   name="Lookup Match Output"
                   startId="Package\LoopErnestTimesheets\Data Flow Task\LookupConsultant.Outputs[Lookup Match Output]" />
                 <path
+                  refId="Package\LoopErnestTimesheets\Data Flow Task.Paths[Lookup Match Output2]"
+                  endId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  name="Lookup Match Output"
+                  startId="Package\LoopErnestTimesheets\Data Flow Task\Lookup.Outputs[Lookup Match Output]" />
+                <path
                   refId="Package\LoopErnestTimesheets\Data Flow Task.Paths[non-holidays]"
                   endId="Package\LoopErnestTimesheets\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
                   name="non-holidays"
                   startId="Package\LoopErnestTimesheets\Data Flow Task\Conditional Split.Outputs[non-holidays]" />
+                <path
+                  refId="Package\LoopErnestTimesheets\Data Flow Task.Paths[OLE DB Destination Error Output]"
+                  endId="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1.Inputs[Derived Column Input]"
+                  name="OLE DB Destination Error Output"
+                  startId="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -1639,7 +2175,7 @@ where [refTable].[ConsultantName] = ?</property>
           DTS:refId="Package\LoopErnestTimesheets\Execute AuditLogPackage"
           DTS:CreationName="Microsoft.ExecutePackageTask"
           DTS:Description="Runs AuditLogPackage to audit database changes"
-          DTS:DTSID="{C0786498-4E05-43B7-A042-81B182B26414}"
+          DTS:DTSID="{76CAD7D7-8887-40C9-8BF1-85C91DBC400E}"
           DTS:ExecutableType="Microsoft.ExecutePackageTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute AuditLogPackage"
@@ -1656,7 +2192,7 @@ where [refTable].[ConsultantName] = ?</property>
           DTS:refId="Package\LoopErnestTimesheets\Log Successful Processing"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Logs successful file processing to AuditLog"
-          DTS:DTSID="{80252473-B645-4F1F-9FA7-3A024A72914E}"
+          DTS:DTSID="{9F631084-CFE6-40D4-AF34-C3F380F52B4A}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Log Successful Processing"
@@ -1665,8 +2201,8 @@ where [refTable].[ConsultantName] = ?</property>
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{0B8041F4-D47E-4EB5-8DB4-B671CC4E3466}"
-              SQLTask:SqlStatementSource="INSERT INTO AuditLog (OperationType, TableName, RecordID, Details, TimesheetFileName)&#xA;VALUES ('INSERT', 'FileProcessing', 0, 'File processed successfully: ' + ?, ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:Connection="{02CC4093-0EC7-458A-941D-142C7499FD6E}"
+              SQLTask:SqlStatementSource="INSERT INTO AuditLog (OperationType, TableName, RecordID, Details, TimesheetFileName)&#xA;VALUES ('INSERT', 'Timesheet', 0, 'File processed successfully: ' + ?, ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="NewParameterName"
                 SQLTask:DtsVariableName="User::ExcelFile"
@@ -1686,7 +2222,7 @@ where [refTable].[ConsultantName] = ?</property>
           DTS:refId="Package\LoopErnestTimesheets\Script Task"
           DTS:CreationName="Microsoft.ScriptTask"
           DTS:Description="Script Task"
-          DTS:DTSID="{AE114202-BB91-4227-B55D-7F1CFC4CC756}"
+          DTS:DTSID="{F046176E-635D-4807-A9D2-8AC812819CF2}"
           DTS:ExecutableType="Microsoft.ScriptTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Script Task"
@@ -1701,14 +2237,35 @@ where [refTable].[ConsultantName] = ?</property>
               ReadOnlyVariables="User::CurrentExcelFile,User::SheetName"
               ReadWriteVariables="User::ExcelConnectionString">
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_00ae4d2f01e248d293972c68977ac89c")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("HP")]
+[assembly: AssemblyProduct("ST_00ae4d2f01e248d293972c68977ac89c")]
+[assembly: AssemblyCopyright("Copyright @ HP 2025")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1829,6 +2386,35 @@ where [refTable].[ConsultantName] = ?</property>
   </resheader>
 </root>]]></ProjectItem>
               <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_00ae4d2f01e248d293972c68977ac89c.Properties.Settings.get_Default():ST_00ae4d2f01e248d293972c68977ac89c.Properties.Sett" +
+    "ings")]
+
+namespace ST_00ae4d2f01e248d293972c68977ac89c.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
@@ -1887,7 +2473,7 @@ namespace ST_00ae4d2f01e248d293972c68977ac89c
 
                 // Log the processing
                 Dts.Events.FireInformation(0, "Debug", $"Processing file: {currentFile}, Sheet: {sheetName}", "", 0, ref fireAgain);
-                MessageBox.Show(currentFile);
+                
 
                 Dts.TaskResult = (int)ScriptResults.Success;
             }
@@ -1907,6 +2493,26 @@ namespace ST_00ae4d2f01e248d293972c68977ac89c
         #endregion
     }
 }]]></ProjectItem>
+              <ProjectItem
+                Name="Project"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>ST_00ae4d2f01e248d293972c68977ac89c</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>ST_00ae4d2f01e248d293972c68977ac89c</msb:DisplayName>
+    <msb:ProjectId>{85274C2B-28C0-465A-A93B-80A13B302AFB}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_00ae4d2f01e248d293972c68977ac89c.csproj" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="ScriptMain.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></ProjectItem>
               <ProjectItem
                 Name="ST_00ae4d2f01e248d293972c68977ac89c.csproj"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1994,84 +2600,14 @@ namespace ST_00ae4d2f01e248d293972c68977ac89c
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
-                Name="Project"
-                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-  <msb:PropertyGroup>
-    <msb:CodeName>ST_00ae4d2f01e248d293972c68977ac89c</msb:CodeName>
-    <msb:Language>msBuild</msb:Language>
-    <msb:DisplayName>ST_00ae4d2f01e248d293972c68977ac89c</msb:DisplayName>
-    <msb:ProjectId>{A9E55B8D-F50A-4A7E-90A3-1807E5D99955}</msb:ProjectId>
-  </msb:PropertyGroup>
-  <msb:ItemGroup>
-    <msb:Project Include="ST_00ae4d2f01e248d293972c68977ac89c.csproj" />
-    <msb:File Include="Properties\Settings.settings" />
-    <msb:File Include="Properties\AssemblyInfo.cs" />
-    <msb:File Include="Properties\Resources.resx" />
-    <msb:File Include="Properties\Resources.Designer.cs" />
-    <msb:File Include="Properties\Settings.Designer.cs" />
-    <msb:File Include="ScriptMain.cs" />
-  </msb:ItemGroup>
-</c:Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_00ae4d2f01e248d293972c68977ac89c.Properties.Settings.get_Default():ST_00ae4d2f01e248d293972c68977ac89c.Properties.Sett" +
-    "ings")]
-
-namespace ST_00ae4d2f01e248d293972c68977ac89c.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_00ae4d2f01e248d293972c68977ac89c")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP")]
-[assembly: AssemblyProduct("ST_00ae4d2f01e248d293972c68977ac89c")]
-[assembly: AssemblyCopyright("Copyright @ HP 2025")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -2143,95 +2679,121 @@ namespace ST_00ae4d2f01e248d293972c68977ac89c.Properties {
               <BinaryItem
                 Name="ST_00ae4d2f01e248d293972c68977ac89c.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMQESGgAAAAAAAAAAOAAIiALATAAABQAAAAIAAAAAAAAGjIA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAG7BTWgAAAAAAAAAAOAAIiALATAAABIAAAAIAAAAAAAArjEA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAMgxAABPAAAAAEAAAIAEAAAAAAAAAAAAAAAAAAAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAFwxAABPAAAAAEAAAIAEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAIBIAAAAgAAAAFAAAAAIA
-AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAIAEAAAAQAAAAAYAAAAWAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAGAAAAACAAAAHAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAD8
-MQAAAAAAAEgAAAACAAUA+CEAABgPAAABAAAAAAAAABAxAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAABswBwAVAQAAAQAAEQIoEAAACm8RAAAKcgEAAHBvEgAACm8T
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAtBEAAAAgAAAAEgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAIAEAAAAQAAAAAYAAAAUAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACQ
+MQAAAAAAAEgAAAACAAUA8CEAALQOAAABAAAAAAAAAKQwAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABswBwAOAQAAAQAAEQIoEAAACm8RAAAKcgEAAHBvEgAACm8T
 AAAKbxQAAAoKAigQAAAKbxEAAApyLwAAcG8SAAAKbxMAAApvFAAACgsWDHJPAABwBnKtAABwKBUA
 AAoNAigQAAAKbxEAAApyGQEAcG8SAAAKCW8WAAAKCXMXAAAKEwQRBG8YAAAKEQRvGQAACt4MEQQs
-BxEEbxoAAArcAigQAAAKbxsAAAoWclEBAHByXQEAcAZygQEAcAcoHAAACnKVAQBwFhICbx0AAAoG
-KB4AAAomAigQAAAKFm8fAAAK3j4TBQIoEAAACm8bAAAKFnKXAQBwcq8BAHARBW8gAAAKKCEAAApy
-lQEAcBZvIgAACiYCKBAAAAoXbx8AAAreACoAAAABHAAAAgB2ABCGAAwAAAAAAAAAANbWAD4QAAAB
-HgIoIwAACioeAigkAAAKKq5+AQAABC0ecr8BAHDQAwAAAiglAAAKbyYAAApzJwAACoABAAAEfgEA
-AAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKh4CKCgAAAoqLnMIAAAGgAMAAAQqAABCU0pCAQABAAAA
-AAAMAAAAdjQuMC4zMDMxOQAAAAAFAGwAAABkBAAAI34AANAEAABQBgAAI1N0cmluZ3MAAAAAIAsA
-ADQCAAAjVVMAVA0AABAAAAAjR1VJRAAAAGQNAAC0AQAAI0Jsb2IAAAAAAAAAAgAAAVcdogEJAwAA
-APoBMwAWAAABAAAAJQAAAAUAAAAGAAAACQAAAAEAAAAoAAAAAgAAABAAAAABAAAAAgAAAAMAAAAE
-AAAAAQAAAAYAAAABAAAAAQAAAAAAwwMBAAAAAAAGAGkC8wQGAPgC8wQGALUB4AQPAGcFAAAGAOIB
-VgQGAEwCVgQGAC0CVgQGAN8CVgQGAIkCVgQGAKICVgQGAPkBVgQGABQCMAMKAL0CcgMKACYBcgMO
-AGgEPQAGAHgE9AMGAPsD9AMGAJgB4AQGAAEG9AMGAKUEEwUGAJUEQQQSAGgBrQMSAMkBrQMSAEIB
-LAQGAH0B8wQKAJsDcgMWAKkF0QAWAJgA0QAGAEwD9AMOAGsEggQGAKEA9AMKALUEcgMaADUGvAUa
-ABQGvAUGAPEA9AMGAK0A9AMGAEQGVgQAAAAAAQAAAAAAAQABAAEAEAARBFgAOQABAAEAAAAQABoF
-dgVNAAEAAwAAARAAswV2BWEAAwAHAAMBAADhBQAARQAEAAoAEQAABKwAEQAWAbAAEQB8ALQABgYp
-ALgAVoDRBbsAVoD2ALsAUCAAAAAAhgAXBAYAAQCQIQAAAACGGNMEBgABAJghAAAAAIMY0wQGAAEA
-oCEAAAAAkwihBL8AAQDMIQAAAACTCP4AxAABANMhAAAAAJMICgHJAAEA2yEAAAAAlggIBs8AAgDi
-IQAAAACGGNMEBgACAOohAAAAAJEY2QTUAAIAAAABACoDCQDTBAEAEQDTBAYAGQDTBAoAKQDTBBAA
-MQDTBBAAOQDTBBAAQQDTBBAASQDTBBAAUQDTBBAAWQDTBBAAYQDTBBAAaQDTBAYAkQDTBAYAuQDT
-BBUAyQDTBAYAcQDZBSYA0QClBSsA2QDrAzAA4QAWAzYAmQBKAzoA6QD6BT4A4QAgA0UAeQDTBBAA
-8QAMBAYA8QBaAQYA+QBgAQYA0QDvBUoA6QD6BVAAAQEcBFgACQEwBmMA0QAhBgEAgQCMADoA6QD6
-BWoAAQHJBHAAcQDTBAYAmQDTBAYAGQG/AHkAGQFABoIAoQDTBIgAwQDTBAYACAAUAKIACAAYAKcA
-KQBzAA8BLgALAOcALgATAPAALgAbAA8BLgAjABgBLgArAEEBLgAzAEEBLgA7AEcBLgBDABgBLgBL
-AE8BLgBTAEEBLgBbAGgBQwBjAKcASQBzAA8BYQB7AKcAYwBrAKcAGwADAAEABAADAAAApQTYAAAA
-HgHdAAAADAbiAAIABAADAAIABQAFAAEABgAFAAIABwAHAASAAAABAAAATCSyVQAAAAAAAFgAAAAE
-AAAAAAAAAAAAAACQAE8AAAAAABAAAAAAAAAAAAAAAJkAUwMAAAAABAAAAAAAAAAAAAAAkAAxAAAA
-AAAEAAAAAAAAAAAAAACQAPQDAAAAABAAAAAAAAAAAAAAAJkACgAAAAAABAAAAAAAAAAAAAAAkAC8
-BQAAAAAAAAAAAQAAACQFAAAFAAIAAAAAAAA8TW9kdWxlPgBNaWNyb3NvZnQuU3FsU2VydmVyLk1h
-bmFnZWREVFMAdmFsdWVfXwBTeXN0ZW0uRGF0YQBTeXN0ZW0uRGF0YS5PbGVEYgBtc2NvcmxpYgBT
-VF8wMGFlNGQyZjAxZTI0OGQyOTM5NzJjNjg5NzdhYzg5YwBkZWZhdWx0SW5zdGFuY2UAZ2V0X01l
-c3NhZ2UAVmFyaWFibGUASURpc3Bvc2FibGUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21I
-YW5kbGUATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuUnVudGltZQBUeXBlAEZhaWx1cmUAZ2V0X0N1
-bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0dXJlAFZTVEFSVFNjcmlwdE9iamVjdE1vZGVs
-QmFzZQBBcHBsaWNhdGlvblNldHRpbmdzQmFzZQBDbG9zZQBEaXNwb3NlAEVkaXRvckJyb3dzYWJs
-ZVN0YXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNlckNvZGVBdHRy
-aWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUAQXNzZW1i
-bHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJnZXRGcmFtZXdv
-cmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5RGVzY3Jp
-cHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBBc3NlbWJseVBy
-b2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1NjcmlwdFRhc2tF
-bnRyeVBvaW50QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBSdW50aW1lQ29tcGF0
-aWJpbGl0eUF0dHJpYnV0ZQBnZXRfVmFsdWUAc2V0X1ZhbHVlAHZhbHVlAFN5c3RlbS5SdW50aW1l
-LlZlcnNpb25pbmcAVG9TdHJpbmcATWljcm9zb2Z0LlNxbFNlcnZlci5TY3JpcHRUYXNrAE1pY3Jv
-c29mdC5TcWxTZXJ2ZXIuRHRzLlRhc2tzLlNjcmlwdFRhc2sAU2NyaXB0T2JqZWN0TW9kZWwAU3lz
-dGVtLkNvbXBvbmVudE1vZGVsAFNUXzAwYWU0ZDJmMDFlMjQ4ZDI5Mzk3MmM2ODk3N2FjODljLmRs
-bABnZXRfSXRlbQBTeXN0ZW0ARW51bQByZXNvdXJjZU1hbgBPcGVuAFNjcmlwdE1haW4ARmlyZUlu
-Zm9ybWF0aW9uAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0aW9uAFN5c3Rl
-bS5SZWZsZWN0aW9uAE9sZURiQ29ubmVjdGlvbgBFeGNlcHRpb24AU3lzdGVtLkRhdGEuQ29tbW9u
-AEN1bHR1cmVJbmZvAGdldF9SZXNvdXJjZU1hbmFnZXIARXZlbnRzT2JqZWN0V3JhcHBlcgBGaXJl
-RXJyb3IALmN0b3IALmNjdG9yAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5Db21w
-aWxlclNlcnZpY2VzAFN5c3RlbS5SZXNvdXJjZXMAU1RfMDBhZTRkMmYwMWUyNDhkMjkzOTcyYzY4
-OTc3YWM4OWMuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNU
-XzAwYWU0ZDJmMDFlMjQ4ZDI5Mzk3MmM2ODk3N2FjODljLlByb3BlcnRpZXMAZ2V0X1ZhcmlhYmxl
-cwBTZXR0aW5ncwBTeXN0ZW0uV2luZG93cy5Gb3JtcwBTdWNjZXNzAGdldF9EdHMAU2NyaXB0UmVz
-dWx0cwBnZXRfRXZlbnRzAENvbmNhdABPYmplY3QAZ2V0X0RlZmF1bHQARGlhbG9nUmVzdWx0AHNl
-dF9UYXNrUmVzdWx0AFNob3cATWVzc2FnZUJveABnZXRfQXNzZW1ibHkAAAAAAC1VAHMAZQByADoA
-OgBDAHUAcgByAGUAbgB0AEUAeABjAGUAbABGAGkAbABlAAAfVQBzAGUAcgA6ADoAUwBoAGUAZQB0
-AE4AYQBtAGUAAF1QAHIAbwB2AGkAZABlAHIAPQBNAGkAYwByAG8AcwBvAGYAdAAuAEEAQwBFAC4A
-TwBMAEUARABCAC4AMQAyAC4AMAA7AEQAYQB0AGEAIABTAG8AdQByAGMAZQA9AABrOwBFAHgAdABl
-AG4AZABlAGQAIABQAHIAbwBwAGUAcgB0AGkAZQBzAD0AIgBFAHgAYwBlAGwAIAAxADIALgAwACAA
-WABtAGwAOwBIAEQAUgA9AFkARQBTADsASQBNAEUAWAA9ADEAIgA7AAA3VQBzAGUAcgA6ADoARQB4
-AGMAZQBsAEMAbwBuAG4AZQBjAHQAaQBvAG4AUwB0AHIAaQBuAGcAAAtEAGUAYgB1AGcAACNQAHIA
-bwBjAGUAcwBzAGkAbgBnACAAZgBpAGwAZQA6ACAAABMsACAAUwBoAGUAZQB0ADoAIAAAAQAXUwBj
-AHIAaQBwAHQAIABUAGEAcwBrAAAPRQByAHIAbwByADoAIAAAcVMAVABfADAAMABhAGUANABkADIA
-ZgAwADEAZQAyADQAOABkADIAOQAzADkANwAyAGMANgA4ADkANwA3AGEAYwA4ADkAYwAuAFAAcgBv
-AHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAAAAvz736hYMdU631iab50b60QAE
-IAEBCAMgAAEFIAEBEREEIAEBDgUgAQERWQoHBg4OAg4SPRJBBCAAEmkEIAASbQUgARJxHAMgABwD
-IAAOBgADDg4ODgQgAQEcBSAAEoCBBwAEDg4ODg4KIAYBCA4ODggQAgYAARGAiQ4FAAIODg4IIAUC
-CA4ODggIAAESgI0RgJEFIAASgJUHIAIBDhKAlQi3elxWGTTgiQiJhF3NgIDMkQQAAAAABAEAAAAD
-BhJRAwYSVQMGEhACBggDBhEUBAAAElEEAAASVQUAAQESVQQAABIQAwAAAQQIABJRBAgAElUECAAS
-EAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwEIAQACAAAAAAAoAQAjU1Rf
-MDBhZTRkMmYwMWUyNDhkMjkzOTcyYzY4OTc3YWM4OWMAAAUBAAAAAAcBAAJIUAAAGAEAE0NvcHly
-aWdodCBAIEhQIDIwMjUAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNwEAVA4URnJhbWV3
-b3JrRGlzcGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC43AAC0AAAAzsrvvgEAAACRAAAAbFN5c3Rl
-bS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1
-bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVz
-b3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAA8DEAAAAAAAAA
-AAAACjIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwxAAAAAAAAAAAAAAAAX0NvckRsbE1haW4A
-bXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+BxEEbxoAAArcAigQAAAKbxsAAAoWclEBAHByXQEAcAZygQEAcAcoHAAACnKVAQBwFhICbx0AAAoC
+KBAAAAoWbx4AAArePhMFAigQAAAKbxsAAAoWcpcBAHByrwEAcBEFbx8AAAooIAAACnKVAQBwFm8h
+AAAKJgIoEAAAChdvHgAACt4AKgAAARwAAAIAdgAQhgAMAAAAAAAAAADPzwA+EAAAAR4CKCIAAAoq
+HgIoIwAACiqufgEAAAQtHnK/AQBw0AMAAAIoJAAACm8lAAAKcyYAAAqAAQAABH4BAAAEKhp+AgAA
+BCoeAoACAAAEKhp+AwAABCoeAignAAAKKi5zCAAABoADAAAEKgAAQlNKQgEAAQAAAAAADAAAAHY0
+LjAuMzAzMTkAAAAABQBsAAAAPAQAACN+AACoBAAAHAYAACNTdHJpbmdzAAAAAMQKAAA0AgAAI1VT
+APgMAAAQAAAAI0dVSUQAAAAIDQAArAEAACNCbG9iAAAAAAAAAAIAAAFXHaIBCQMAAAD6ATMAFgAA
+AQAAACMAAAAFAAAABgAAAAkAAAABAAAAJwAAAAIAAAAQAAAAAQAAAAIAAAADAAAABAAAAAEAAAAF
+AAAAAQAAAAEAAAAAAMMDAQAAAAAABgBpAvMEBgD4AvMEBgC1AeAEDwBnBQAABgDiAVYEBgBMAlYE
+BgAtAlYEBgDfAlYEBgCJAlYEBgCiAlYEBgD5AVYEBgAUAjADCgC9AnIDCgAmAXIDDgBoBD0ABgB4
+BPQDBgD7A/QDBgCYAeAEBgDsBfQDBgClBBMFBgCVBEEEEgBoAa0DEgDJAa0DEgBCASwEBgB9AfME
+CgCbA3IDFgCpBdEAFgCYANEABgBMA/QDDgBrBIIEBgChAPQDCgC1BHIDBgDxAPQDBgCtAPQDBgAS
+BlYEAAAAAAEAAAAAAAEAAQABABAAEQRYADkAAQABAAAAEAAaBXYFTQABAAMAAAEQALMFdgVhAAMA
+BwADAQAAzAUAAEUABAAKABEAAASlABEAFgGpABEAfACtAAYGKQCxAFaAvAW0AFaA9gC0AFAgAAAA
+AIYAFwQGAAEAiCEAAAAAhhjTBAYAAQCQIQAAAACDGNMEBgABAJghAAAAAJMIoQS4AAEAxCEAAAAA
+kwj+AL0AAQDLIQAAAACTCAoBwgABANMhAAAAAJYI8wXIAAIA2iEAAAAAhhjTBAYAAgDiIQAAAACR
+GNkEzQACAAAAAQAqAwkA0wQBABEA0wQGABkA0wQKACkA0wQQADEA0wQQADkA0wQQAEEA0wQQAEkA
+0wQQAFEA0wQQAFkA0wQQAGEA0wQQAGkA0wQGAJEA0wQGALkA0wQVAMkA0wQGAHEAxAUmANEApQUr
+ANkA6wMwAOEAFgM2AJkASgM6AOkA5QU+AOEAIANFAHkA0wQQAPEADAQGAPEAWgEGAPkAYAEGANEA
+2gVKAOkA5QVQAAEBHARYANEA/wUBAIEAjAA6AOkA5QVjAAEByQRpAHEA0wQGAJkA0wQGAAkBvwBy
+AAkBDgZ7AKEA0wSBAMEA0wQGAAgAFACbAAgAGACgACkAcwAIAS4ACwDgAC4AEwDpAC4AGwAIAS4A
+IwARAS4AKwA6AS4AMwA6AS4AOwBAAS4AQwARAS4ASwBIAS4AUwA6AS4AWwBhAUMAYwCgAEkAcwAI
+AWEAewCgAGMAawCgABsAAwABAAQAAwAAAKUE0QAAAB4B1gAAAPcF2wACAAQAAwACAAUABQABAAYA
+BQACAAcABwAEgAAAAQAAAFAkB5EAAAAAAABYAAAABAAAAAAAAAAAAAAAiQBPAAAAAAAQAAAAAAAA
+AAAAAACSAFMDAAAAAAQAAAAAAAAAAAAAAIkAMQAAAAAABAAAAAAAAAAAAAAAiQD0AwAAAAAQAAAA
+AAAAAAAAAACSAAoAAAAAAAAAAAABAAAAJAUAAAUAAgAAAAA8TW9kdWxlPgBNaWNyb3NvZnQuU3Fs
+U2VydmVyLk1hbmFnZWREVFMAdmFsdWVfXwBTeXN0ZW0uRGF0YQBTeXN0ZW0uRGF0YS5PbGVEYgBt
+c2NvcmxpYgBTVF8wMGFlNGQyZjAxZTI0OGQyOTM5NzJjNjg5NzdhYzg5YwBkZWZhdWx0SW5zdGFu
+Y2UAZ2V0X01lc3NhZ2UAVmFyaWFibGUASURpc3Bvc2FibGUAUnVudGltZVR5cGVIYW5kbGUAR2V0
+VHlwZUZyb21IYW5kbGUATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuUnVudGltZQBUeXBlAEZhaWx1
+cmUAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0dXJlAFZTVEFSVFNjcmlwdE9i
+amVjdE1vZGVsQmFzZQBBcHBsaWNhdGlvblNldHRpbmdzQmFzZQBDbG9zZQBEaXNwb3NlAEVkaXRv
+ckJyb3dzYWJsZVN0YXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNl
+ckNvZGVBdHRyaWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1
+dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJn
+ZXRGcmFtZXdvcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2Vt
+Ymx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBB
+c3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1Nj
+cmlwdFRhc2tFbnRyeVBvaW50QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBSdW50
+aW1lQ29tcGF0aWJpbGl0eUF0dHJpYnV0ZQBnZXRfVmFsdWUAc2V0X1ZhbHVlAHZhbHVlAFN5c3Rl
+bS5SdW50aW1lLlZlcnNpb25pbmcAVG9TdHJpbmcATWljcm9zb2Z0LlNxbFNlcnZlci5TY3JpcHRU
+YXNrAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlRhc2tzLlNjcmlwdFRhc2sAU2NyaXB0T2JqZWN0
+TW9kZWwAU3lzdGVtLkNvbXBvbmVudE1vZGVsAFNUXzAwYWU0ZDJmMDFlMjQ4ZDI5Mzk3MmM2ODk3
+N2FjODljLmRsbABnZXRfSXRlbQBTeXN0ZW0ARW51bQByZXNvdXJjZU1hbgBPcGVuAFNjcmlwdE1h
+aW4ARmlyZUluZm9ybWF0aW9uAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0
+aW9uAFN5c3RlbS5SZWZsZWN0aW9uAE9sZURiQ29ubmVjdGlvbgBFeGNlcHRpb24AU3lzdGVtLkRh
+dGEuQ29tbW9uAEN1bHR1cmVJbmZvAGdldF9SZXNvdXJjZU1hbmFnZXIARXZlbnRzT2JqZWN0V3Jh
+cHBlcgBGaXJlRXJyb3IALmN0b3IALmNjdG9yAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVu
+dGltZS5Db21waWxlclNlcnZpY2VzAFN5c3RlbS5SZXNvdXJjZXMAU1RfMDBhZTRkMmYwMWUyNDhk
+MjkzOTcyYzY4OTc3YWM4OWMuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2lu
+Z01vZGVzAFNUXzAwYWU0ZDJmMDFlMjQ4ZDI5Mzk3MmM2ODk3N2FjODljLlByb3BlcnRpZXMAZ2V0
+X1ZhcmlhYmxlcwBTZXR0aW5ncwBTdWNjZXNzAGdldF9EdHMAU2NyaXB0UmVzdWx0cwBnZXRfRXZl
+bnRzAENvbmNhdABPYmplY3QAZ2V0X0RlZmF1bHQAc2V0X1Rhc2tSZXN1bHQAZ2V0X0Fzc2VtYmx5
+AAAALVUAcwBlAHIAOgA6AEMAdQByAHIAZQBuAHQARQB4AGMAZQBsAEYAaQBsAGUAAB9VAHMAZQBy
+ADoAOgBTAGgAZQBlAHQATgBhAG0AZQAAXVAAcgBvAHYAaQBkAGUAcgA9AE0AaQBjAHIAbwBzAG8A
+ZgB0AC4AQQBDAEUALgBPAEwARQBEAEIALgAxADIALgAwADsARABhAHQAYQAgAFMAbwB1AHIAYwBl
+AD0AAGs7AEUAeAB0AGUAbgBkAGUAZAAgAFAAcgBvAHAAZQByAHQAaQBlAHMAPQAiAEUAeABjAGUA
+bAAgADEAMgAuADAAIABYAG0AbAA7AEgARABSAD0AWQBFAFMAOwBJAE0ARQBYAD0AMQAiADsAADdV
+AHMAZQByADoAOgBFAHgAYwBlAGwAQwBvAG4AbgBlAGMAdABpAG8AbgBTAHQAcgBpAG4AZwAAC0QA
+ZQBiAHUAZwAAI1AAcgBvAGMAZQBzAHMAaQBuAGcAIABmAGkAbABlADoAIAAAEywAIABTAGgAZQBl
+AHQAOgAgAAABABdTAGMAcgBpAHAAdAAgAFQAYQBzAGsAAA9FAHIAcgBvAHIAOgAgAABxUwBUAF8A
+MAAwAGEAZQA0AGQAMgBmADAAMQBlADIANAA4AGQAMgA5ADMAOQA3ADIAYwA2ADgAOQA3ADcAYQBj
+ADgAOQBjAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAAAADiDg2B
+SOWDSo0u7jfIvuwxAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFZCgcGDg4CDhI9EkEEIAASaQQg
+ABJtBSABEnEcAyAAHAMgAA4GAAMODg4OBCABARwFIAASgIEHAAQODg4ODgogBgEIDg4OCBACBQAC
+Dg4OCCAFAggODg4ICAABEoCFEYCJBSAAEoCNByACAQ4SgI0It3pcVhk04IkIiYRdzYCAzJEEAAAA
+AAQBAAAAAwYSUQMGElUDBhIQAgYIAwYRFAQAABJRBAAAElUFAAEBElUEAAASEAMAAAEECAASUQQI
+ABJVBAgAEhAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBCAEAAgAAAAAA
+KAEAI1NUXzAwYWU0ZDJmMDFlMjQ4ZDI5Mzk3MmM2ODk3N2FjODljAAAFAQAAAAAHAQACSFAAABgB
+ABNDb3B5cmlnaHQgQCBIUCAyMDI1AABJAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjcBAFQO
+FEZyYW1ld29ya0Rpc3BsYXlOYW1lEi5ORVQgRnJhbWV3b3JrIDQuNwC0AAAAzsrvvgEAAACRAAAA
+bFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4w
+LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0
+ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAhDEA
+AAAAAAAAAAAAnjEAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJAxAAAAAAAAAAAAAAAAX0NvckRs
+bE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAA
+AEgAAABYQAAAIgQAAAAAAAAAAAAAIgQ0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8A
+AAAAAL0E7/4AAAEAAAABAAeRUCQAAAEAB5FQJD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
+AAAAAQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8A
+bgAAAAAAAACwBIIDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAF4DAAABADAAMAAw
+ADAAMAA0AGIAMAAAABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAmAAMAAQBDAG8AbQBwAGEA
+bgB5AE4AYQBtAGUAAAAAAEgAUAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBv
+AG4AAAAAAFMAVABfADAAMABhAGUANABkADIAZgAwADEAZQAyADQAOABkADIAOQAzADkANwAyAGMA
+NgA4ADkANwA3AGEAYwA4ADkAYwAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAu
+ADAALgA5ADIAOQA2AC4AMwA3ADEAMgA3AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0A
+ZQAAAFMAVABfADAAMABhAGUANABkADIAZgAwADEAZQAyADQAOABkADIAOQAzADkANwAyAGMANgA4
+ADkANwA3AGEAYwA4ADkAYwAuAGQAbABsAAAATAAUAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcA
+aAB0AAAAQwBvAHAAeQByAGkAZwBoAHQAIABAACAASABQACAAMgAwADIANQAAACoAAQABAEwAZQBn
+AGEAbABUAHIAYQBkAGUAbQBhAHIAawBzAAAAAAAAAAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYA
+aQBsAGUAbgBhAG0AZQAAAFMAVABfADAAMABhAGUANABkADIAZgAwADEAZQAyADQAOABkADIAOQAz
+ADkANwAyAGMANgA4ADkANwA3AGEAYwA4ADkAYwAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMA
+dABOAGEAbQBlAAAAAABTAFQAXwAwADAAYQBlADQAZAAyAGYAMAAxAGUAMgA0ADgAZAAyADkAMwA5
+ADcAMgBjADYAOAA5ADcANwBhAGMAOAA5AGMAAABCAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMA
+aQBvAG4AAAAxAC4AMAAuADkAMgA5ADYALgAzADcAMQAyADcAAAAAAEYADwABAEEAcwBzAGUAbQBi
+AGwAeQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADkAMgA5ADYALgAzADcAMQAyADcAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAALAxAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2240,42 +2802,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAA
-SAAAAFhAAAAiBAAAAAAAAAAAAAAiBDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAA
-AAAAvQTv/gAAAQAAAAEAslVMJAAAAQCyVUwkPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
-AAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBu
-AAAAAAAAALAEggMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAXgMAAAEAMAAwADAA
-MAAwADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACYAAwABAEMAbwBtAHAAYQBu
-AHkATgBhAG0AZQAAAAAASABQAAAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8A
-bgAAAAAAUwBUAF8AMAAwAGEAZQA0AGQAMgBmADAAMQBlADIANAA4AGQAMgA5ADMAOQA3ADIAYwA2
-ADgAOQA3ADcAYQBjADgAOQBjAAAAPgAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4A
-MAAuADkAMgA5ADIALgAyADEAOQAzADgAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBl
-AAAAUwBUAF8AMAAwAGEAZQA0AGQAMgBmADAAMQBlADIANAA4AGQAMgA5ADMAOQA3ADIAYwA2ADgA
-OQA3ADcAYQBjADgAOQBjAC4AZABsAGwAAABMABQAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBo
-AHQAAABDAG8AcAB5AHIAaQBnAGgAdAAgAEAAIABIAFAAIAAyADAAMgA1AAAAKgABAAEATABlAGcA
-YQBsAFQAcgBhAGQAZQBtAGEAcgBrAHMAAAAAAAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
-AGwAZQBuAGEAbQBlAAAAUwBUAF8AMAAwAGEAZQA0AGQAMgBmADAAMQBlADIANAA4AGQAMgA5ADMA
-OQA3ADIAYwA2ADgAOQA3ADcAYQBjADgAOQBjAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
-AE4AYQBtAGUAAAAAAFMAVABfADAAMABhAGUANABkADIAZgAwADEAZQAyADQAOABkADIAOQAzADkA
-NwAyAGMANgA4ADkANwA3AGEAYwA4ADkAYwAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
-AG8AbgAAADEALgAwAC4AOQAyADkAMgAuADIAMQA5ADMAOAAAAAAARgAPAAEAQQBzAHMAZQBtAGIA
-bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AOQAyADkAMgAuADIAMQA5ADMAOAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAAHDIAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </ScriptProject>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -2284,7 +2811,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\LoopErnestTimesheets.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{1D2D3A91-FA23-4B19-AE13-732C645D5659}"
+          DTS:DTSID="{233A84B7-DACB-4B26-B989-3206812FB3E6}"
           DTS:From="Package\LoopErnestTimesheets\Script Task"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
@@ -2292,7 +2819,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\LoopErnestTimesheets.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
-          DTS:DTSID="{A253D840-7FE0-405A-BBDE-6E251B36974D}"
+          DTS:DTSID="{849346D0-6631-4885-A3FE-56CA0EE060BE}"
           DTS:From="Package\LoopErnestTimesheets\Data Flow Task"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
@@ -2300,7 +2827,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\LoopErnestTimesheets.PrecedenceConstraints[Constraint 2]"
           DTS:CreationName=""
-          DTS:DTSID="{E757E877-BAAB-495A-B5B8-687796089717}"
+          DTS:DTSID="{B9CF5A81-553E-4C29-9D8F-2DC9F5C0C3FF}"
           DTS:From="Package\LoopErnestTimesheets\Log Successful Processing"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 2"
@@ -2309,14 +2836,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{06EF9B5C-B3E5-47D7-95B0-30169DD8A987}"
-          DTS:ObjectName="{06EF9B5C-B3E5-47D7-95B0-30169DD8A987}"
+          DTS:DTSID="{C120D7E3-01CF-4257-A9CB-C032338C13DD}"
+          DTS:ObjectName="{C120D7E3-01CF-4257-A9CB-C032338C13DD}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::ExcelFile" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{CDC4B436-32CD-4310-9D83-F74916F25CDB}"
-          DTS:ObjectName="{CDC4B436-32CD-4310-9D83-F74916F25CDB}"
+          DTS:DTSID="{8AD79CFF-4ED8-4020-B410-DFAF91A19BDD}"
+          DTS:ObjectName="{8AD79CFF-4ED8-4020-B410-DFAF91A19BDD}"
           DTS:ValueIndex="1"
           DTS:VariableName="User::CurrentExcelFile" />
       </DTS:ForEachVariableMappings>
@@ -2374,18 +2901,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\LoopErnestTimesheets.PrecedenceConstraints[Constraint 1]"
-          TopLeft="144.399990165234,120.466664961113">
+          TopLeft="140.999989892046,120.466664961113">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,63.6666666244798"
+              EndConnector="26.0000005463758,63.6666666244801"
               Start="0,0"
-              End="0,56.1666666244798">
+              End="26.0000005463758,56.1666666244801">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,56.1666666244798" />
+                    End="0,27.83333331224" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.83333331224"
+                    Point2="0,31.83333331224"
+                    Point3="4,31.83333331224" />
+                  <mssgle:LineSegment
+                    End="22.0000005463758,31.83333331224" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.0000005463758,31.83333331224"
+                    Point2="26.0000005463758,31.83333331224"
+                    Point3="26.0000005463758,35.83333331224" />
+                  <mssgle:LineSegment
+                    End="26.0000005463758,56.1666666244801" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2442,7 +2981,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
     design-time-name="Package\LoopErnestTimesheets\Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="139.2,41.6"
           Id="Package\LoopErnestTimesheets\Data Flow Task\LookupClient"
@@ -2513,33 +3052,33 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-179.099998937052,71.8999995833634"
+              EndConnector="-179.099998937052,71.899999583364"
               Start="0,0"
-              End="-179.099998937052,64.3999995833634">
+              End="-179.099998937052,64.399999583364">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.9499997916817" />
+                    End="0,31.949999791682" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,31.9499997916817"
-                    Point2="0,35.9499997916817"
-                    Point3="-4,35.9499997916817" />
+                    Point1="0,31.949999791682"
+                    Point2="0,35.949999791682"
+                    Point3="-4,35.949999791682" />
                   <mssgle:LineSegment
-                    End="-175.099998937052,35.9499997916817" />
+                    End="-175.099998937052,35.949999791682" />
                   <mssgle:CubicBezierSegment
-                    Point1="-175.099998937052,35.9499997916817"
-                    Point2="-179.099998937052,35.9499997916817"
-                    Point3="-179.099998937052,39.9499997916817" />
+                    Point1="-175.099998937052,35.949999791682"
+                    Point2="-179.099998937052,35.949999791682"
+                    Point3="-179.099998937052,39.949999791682" />
                   <mssgle:LineSegment
-                    End="-179.099998937052,64.3999995833634" />
+                    End="-179.099998937052,64.399999583364" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-137.741386187276,40.9499997916817,96.3827734375,11.609375"
+              BoundingBox="-137.741386187276,40.949999791682,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2681,6 +3220,124 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="180,41.6"
+          Id="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1"
+          TopLeft="766.666655374898,756.733329940306" />
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1"
+          TopLeft="493.19999726812,589.93333098895" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\LoopErnestTimesheets\Data Flow Task\Lookup"
+          TopLeft="663.3332970904,675.666664816472" />
+        <EdgeLayout
+          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Derived Column Output1]"
+          TopLeft="573.99999726812,631.53333098895">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="145.733299822279,44.1333338275219"
+              Start="0,0"
+              End="145.733299822279,36.6333338275219">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.066666913761" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.066666913761"
+                    Point2="0,22.066666913761"
+                    Point3="4,22.066666913761" />
+                  <mssgle:LineSegment
+                    End="141.733299822279,22.066666913761" />
+                  <mssgle:CubicBezierSegment
+                    Point1="141.733299822279,22.066666913761"
+                    Point2="145.733299822279,22.066666913761"
+                    Point3="145.733299822279,26.066666913761" />
+                  <mssgle:LineSegment
+                    End="145.733299822279,36.6333338275219" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Lookup Match Output2]"
+          TopLeft="719.7332970904,717.266664816472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="136.933358284499,39.4666651238336"
+              Start="0,0"
+              End="136.933358284499,31.9666651238336">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.7333325619168" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.7333325619168"
+                    Point2="0,19.7333325619168"
+                    Point3="4,19.7333325619168" />
+                  <mssgle:LineSegment
+                    End="132.933358284499,19.7333325619168" />
+                  <mssgle:CubicBezierSegment
+                    Point1="132.933358284499,19.7333325619168"
+                    Point2="136.933358284499,19.7333325619168"
+                    Point3="136.933358284499,23.7333325619168" />
+                  <mssgle:LineSegment
+                    End="136.933358284499,31.9666651238336" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="20.2752924234993,24.7333325619168,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[OLE DB Destination Error Output]"
+          TopLeft="529.09999171992,541.299994889498">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44.9000055482003,48.6333360994523"
+              Start="0,0"
+              End="44.9000055482003,41.1333360994523">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3166680497262" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3166680497262"
+                    Point2="0,24.3166680497262"
+                    Point3="4,24.3166680497262" />
+                  <mssgle:LineSegment
+                    End="40.9000055482003,24.3166680497262" />
+                  <mssgle:CubicBezierSegment
+                    Point1="40.9000055482003,24.3166680497262"
+                    Point2="44.9000055482003,24.3166680497262"
+                    Point3="44.9000055482003,28.3166680497262" />
+                  <mssgle:LineSegment
+                    End="44.9000055482003,41.1333360994523" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-50.7589034758999,29.3166680497262,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -2690,17 +3347,17 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[Clients]</Value>
+          type="q3:string">[dbo].[Client]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2713,7 +3370,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Consultant]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -2727,6 +3397,42 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LoopErnestTimesheets\Data Flow Task\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Timesheet]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

@@ -5,21 +5,21 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="LAPTOP-7LSAQSR0"
   DTS:CreatorName="LAPTOP-7LSAQSR0\ErnestMudau"
-  DTS:DTSID="{853AA931-34AF-4AB7-93C2-15C7BD6A65B7}"
+  DTS:DTSID="{0A2CEC5D-972D-42FE-B153-06F96E16FD82}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="7177"
   DTS:ObjectName="Consutant"
   DTS:PackageType="5"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{CB0D0B42-B8AA-4B7F-9442-A67E2E087F2C}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{101F0681-4782-47F2-99DF-E08961651A03}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{3CBBC237-EDEA-4BC4-8576-99FAA8AF3D02}"
+      DTS:DTSID="{94CF432D-FC87-4F91-AE30-AC3514B016E4}"
       DTS:ObjectName="Excel Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -31,7 +31,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{5B8288BD-3A6F-4DE8-A9AB-612A5F799B9B}"
+      DTS:DTSID="{E45B7A6F-23E7-455A-85EC-DB315CA33260}"
       DTS:ObjectName="Excel Connection Manager 1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -43,7 +43,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager 2]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{56ED475B-B3C4-4F1B-9725-A7B6CD563E4A}"
+      DTS:DTSID="{F9FF766F-79C9-4F53-A015-67791895EBB4}"
       DTS:ObjectName="Excel Connection Manager 2">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -55,7 +55,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager 3]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{97ACAAA0-99DC-415F-BEFE-A239CC9CECF5}"
+      DTS:DTSID="{313BA104-E631-4C42-9FD2-FFAD79EAAFD2}"
       DTS:ObjectName="Excel Connection Manager 3">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -67,13 +67,13 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{2A132465-821E-477B-93BE-FEAE1C75A650}"
+      DTS:DTSID="{D5735C72-2E8B-4BEA-854C-B4C9E1968376}"
       DTS:ObjectName="LAPTOP-7LSAQSR0.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{2A132465-821E-477B-93BE-FEAE1C75A650}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{D5735C72-2E8B-4BEA-854C-B4C9E1968376}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -83,7 +83,7 @@
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{DE6099B1-46BE-40F4-A94D-D6A31C33800E}"
+      DTS:DTSID="{B2C2243F-C9D5-4293-97D6-DB65D81F60C2}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task"
@@ -210,7 +210,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[Consultants]</property>
+                  name="OpenRowset">[dbo].[Consultant]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -262,7 +262,7 @@
                 <input
                   refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
+                  errorRowDisposition="RedirectRow"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
