@@ -1,0 +1,58 @@
+name: Reset TimesheetDB and Deploy SSIS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  reset-database:
+    runs-on: windows-latest # Windows runner for sqlcmd and SSIS tools
+    steps:
+      # Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Install SQL Server command-line tools (sqlcmd)
+      - name: Install sqlcmd
+        run: |
+          choco install sqlserver-cmdlineutils -y
+        shell: powershell
+
+      # Check SQL Server version
+      - name: Check SQL Server Version
+        env:
+          SQL_SERVER: ${{ secrets.TimesheetDB_SQL_SERVER_PUBLIC_URL }}
+          SQL_USER: ${{ secrets.TimesheetDB_SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.TimesheetDB_SQL_PASSWORD }}
+        run: |
+          sqlcmd -S $env:SQL_SERVER -U $env:SQL_USER -P $env:SQL_PASSWORD -Q "SELECT @@VERSION;" -o sql_version.txt
+          Get-Content sql_version.txt
+        shell: powershell
+
+      # Execute SQL script to reset TimesheetDB
+      - name: Reset Database
+        env:
+          SQL_SERVER: ${{ secrets.TimesheetDB_SQL_SERVER_PUBLIC_URL }}
+          SQL_USER: ${{ secrets.TimesheetDB_SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.TimesheetDB_SQL_PASSWORD }}
+        run: |
+          sqlcmd -S $env:SQL_SERVER -U $env:SQL_USER -P $env:SQL_PASSWORD -d master -i sql/reset_timesheetdb.sql
+        shell: powershell
+
+      # Optional: Deploy SSIS Packages
+      - name: Deploy SSIS Packages
+        env:
+          SQL_SERVER: ${{ secrets.TimesheetDB_SQL_SERVER_PUBLIC_URL }}
+          SQL_USER: ${{ secrets.TimesheetDB_SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.TimesheetDB_SQL_PASSWORD }}
+          SSIS_CATALOG_PATH: /SSISDB/Timesheet/TimesheetSSIS
+        run: |
+          # Install SSIS DevOps Tools
+          Invoke-WebRequest -Uri "https://aka.ms/SSISDevOpsTools" -OutFile "SSISDevOpsTools.zip"
+          Expand-Archive -Path SSISDevOpsTools.zip -DestinationPath SSISDevOpsTools
+          # Deploy ISPAC file
+          .\SSISDevOpsTools\SSISDeploy.exe -sourcePath:"ssis/TimesheetSSIS.ispac" -destinationServer:$env:SQL_SERVER -destinationPath:$env:SSIS_CATALOG_PATH -authType:SqlAuth -sqlUser:$env:SQL_USER -sqlPassword:$env:SQL_PASSWORD
+        shell: powershell
+        if: success() # Run only if previous steps succeed
