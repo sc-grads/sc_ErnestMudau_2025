@@ -10,6 +10,12 @@ jobs:
   deploy-ssis:
     runs-on: self-hosted
     steps:
+      - name: Cleanup Previous Run
+        run: |
+          if (Test-Path C:\actions-runner\_work\sc_ErnestMudau_2025\sc_ErnestMudau_2025\.git) {
+            Remove-Item -Path C:\actions-runner\_work\sc_ErnestMudau_2025\sc_ErnestMudau_2025\.git -Recurse -Force -ErrorAction SilentlyContinue
+          }
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
