@@ -16,19 +16,17 @@ GO
 USE TimesheetDB;
 GO
 
--- Consultants Table
+-- Create Tables
 CREATE TABLE Consultant (
     ConsultantID INT IDENTITY(1,1) PRIMARY KEY,
     ConsultantName NVARCHAR(255) NOT NULL UNIQUE
 );
 
--- Clients Table
 CREATE TABLE Client (
     ClientID INT IDENTITY(1,1) PRIMARY KEY,
     ClientName NVARCHAR(255) NOT NULL UNIQUE
 );
 
--- Timesheets Table
 CREATE TABLE Timesheet (
     TimesheetID INT IDENTITY(1,1) PRIMARY KEY,
     ConsultantID INT NOT NULL FOREIGN KEY REFERENCES Consultant(ConsultantID),
@@ -46,7 +44,6 @@ CREATE TABLE Timesheet (
     CONSTRAINT UQ_Timesheets_ConsultantDateStartTimeFile UNIQUE (ConsultantID, WorkDate, StartTime, TimesheetFileName)
 );
 
--- Leaves Table
 CREATE TABLE Leave (
     LeaveID INT IDENTITY(1,1) PRIMARY KEY,
     ConsultantID INT NOT NULL FOREIGN KEY REFERENCES Consultant(ConsultantID),
@@ -59,7 +56,6 @@ CREATE TABLE Leave (
     TimesheetFileName NVARCHAR(255) NOT NULL
 );
 
--- AuditLog Table
 CREATE TABLE AuditLog (
     LogID INT IDENTITY(1,1) PRIMARY KEY,
     OperationType NVARCHAR(255) NOT NULL CHECK (OperationType IN ('INSERT', 'UPDATE', 'DELETE')),
@@ -70,7 +66,6 @@ CREATE TABLE AuditLog (
     TimesheetFileName NVARCHAR(255) NOT NULL
 );
 
--- ErrorLog Table
 CREATE TABLE ErrorLog (
     ErrorID INT IDENTITY(1,1) PRIMARY KEY,
     ErrorTimestamp DATETIME NOT NULL DEFAULT GETDATE(),
@@ -95,7 +90,7 @@ ADD CONSTRAINT UQ_Leave_ConsultantStartDate UNIQUE (ConsultantID, StartDate);
 ALTER TABLE Leave
 ADD CONSTRAINT DF_Leave_SickNote DEFAULT 'No' FOR SickNote;
 
--- Trigger for Clients
+-- Create Triggers
 CREATE TRIGGER TR_Clients_Audit
 ON Client
 AFTER INSERT, UPDATE, DELETE
@@ -118,7 +113,6 @@ BEGIN
 END;
 GO
 
--- Trigger for Consultants
 CREATE TRIGGER TR_Consultants_Audit
 ON Consultant
 AFTER INSERT, UPDATE, DELETE
@@ -141,7 +135,6 @@ BEGIN
 END;
 GO
 
--- Trigger for ErrorLog
 CREATE TRIGGER TR_ErrorLog_Audit
 ON ErrorLog
 AFTER INSERT, UPDATE, DELETE
@@ -167,7 +160,6 @@ BEGIN
 END;
 GO
 
--- Trigger for Leaves
 CREATE TRIGGER TR_Leaves_Audit
 ON Leave
 AFTER INSERT, UPDATE, DELETE
@@ -191,7 +183,6 @@ BEGIN
 END;
 GO
 
--- Trigger for Timesheets
 CREATE TRIGGER TR_Timesheets_Audit
 ON Timesheet
 AFTER INSERT, UPDATE, DELETE
