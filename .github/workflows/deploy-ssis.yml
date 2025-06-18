@@ -1,0 +1,47 @@
+name: Deploy SSIS Packages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'HandsOnProjects/Timesheet/TimesheetMigrationProject/{Client.dtsx,Consultant.dtsx,Leave.dtsx,LoopThroughOneFolder(1).dtsx}' # Trigger on specific .dtsx changes
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  deploy-ssis:
+    runs-on: [self-hosted, ssis] # Use self-hosted runner with 'ssis' label
+    steps:
+      # Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Deploy specific .dtsx files to SSIS Catalog
+      - name: Deploy to SSIS Catalog
+        env:
+          SQL_SERVER: ${{ secrets.TimesheetDB_SQL_SERVER_PUBLIC_URL }}
+          SQL_USER: ${{ secrets.TimesheetDB_SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.TimesheetDB_SQL_PASSWORD }}
+          CATALOG_SERVER: ${{ secrets.TimesheetDBSSIS_CATALOG_SERVER }} # Updated secret name
+          CATALOG_DB: SSISDB
+          FOLDER_NAME: TimesheetFolder
+          PACKAGE_PATH: HandsOnProjects/Timesheet/TimesheetMigrationProject
+        run: |
+          $packages = @("Client.dtsx", "Consultant.dtsx", "Leave.dtsx", "LoopThroughOneFolder(1).dtsx")
+          foreach ($package in $packages) {
+            $fullPath = Join-Path -Path $env:PACKAGE_PATH -ChildPath $package
+            if (Test-Path $fullPath) {
+              $deployCommand = "dtutil /FILE `"$fullPath`" /DestServer `$env:CATALOG_SERVER /COPY SQL;`"$env:FOLDER_NAME\$package`" /User `$env:SQL_USER /Password `$env:SQL_PASSWORD /Quiet"
+              Invoke-Expression $deployCommand
+              if ($LASTEXITCODE -ne 0) {
+                Write-Error "Failed to deploy package $package"
+                exit 1
+              } else {
+                Write-Host "Successfully deployed package $package"
+              }
+            } else {
+              Write-Error "Package $package not found at $fullPath"
+              exit 1
+            }
+          }
+        shell: powershell
