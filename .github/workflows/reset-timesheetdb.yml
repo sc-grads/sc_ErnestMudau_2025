@@ -31,12 +31,22 @@ jobs:
           Get-Content sql_version.txt
         shell: powershell
 
-      # Execute SQL script to reset TimesheetDB
+      # Execute SQL script to reset TimesheetDB with error logging
       - name: Reset Database
         env:
           SQL_SERVER: ${{ secrets.TimesheetDB_SQL_SERVER_PUBLIC_URL }}
           SQL_USER: ${{ secrets.TimesheetDB_SQL_USER }}
           SQL_PASSWORD: ${{ secrets.TimesheetDB_SQL_PASSWORD }}
         run: |
-          sqlcmd -S $env:SQL_SERVER -U $env:SQL_USER -P $env:SQL_PASSWORD -d master -i sql/reset_timesheetdb.sql
+          # Run the script and capture output
+          sqlcmd -S $env:SQL_SERVER -U $env:SQL_USER -P $env:SQL_PASSWORD -d master -i sql/reset_timesheetdb.sql -o script_output.txt
+          # Check if the script executed successfully
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "SQL script execution failed. Check script_output.txt for details."
+            Get-Content script_output.txt
+            exit 1
+          } else {
+            Write-Host "SQL script executed successfully."
+            Get-Content script_output.txt
+          }
         shell: powershell
