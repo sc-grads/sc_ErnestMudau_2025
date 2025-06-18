@@ -49,9 +49,22 @@ jobs:
           SQL_PASSWORD: ${{ secrets.TimesheetDB_SQL_PASSWORD }}
           SSIS_CATALOG_PATH: /SSISDB/Timesheet/TimesheetSSIS
         run: |
-          # Install SSIS DevOps Tools
-          Invoke-WebRequest -Uri "https://aka.ms/SSISDevOpsTools" -OutFile "SSISDevOpsTools.zip"
-          Expand-Archive -Path SSISDevOpsTools.zip -DestinationPath SSISDevOpsTools
+          # Try to download and extract SSIS DevOps Tools
+          try {
+            Invoke-WebRequest -Uri "https://aka.ms/SSISDevOpsTools" -OutFile "SSISDevOpsTools.zip"
+            if (Test-Path "SSISDevOpsTools.zip") {
+              Expand-Archive -Path SSISDevOpsTools.zip -DestinationPath SSISDevOpsTools
+            } else {
+              throw "Failed to download SSISDevOpsTools.zip"
+            }
+          } catch {
+            Write-Host "Download failed, using local copy if available..."
+            if (Test-Path "ssis/SSISDevOpsTools.zip") {
+              Expand-Archive -Path ssis/SSISDevOpsTools.zip -DestinationPath SSISDevOpsTools
+            } else {
+              throw "No local SSISDevOpsTools.zip found and download failed."
+            }
+          }
           # Deploy ISPAC file
           .\SSISDevOpsTools\SSISDeploy.exe -sourcePath:"ssis/TimesheetSSIS.ispac" -destinationServer:$env:SQL_SERVER -destinationPath:$env:SSIS_CATALOG_PATH -authType:SqlAuth -sqlUser:$env:SQL_USER -sqlPassword:$env:SQL_PASSWORD
         shell: powershell
