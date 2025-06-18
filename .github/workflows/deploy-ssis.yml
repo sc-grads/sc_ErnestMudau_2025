@@ -22,7 +22,7 @@ jobs:
           SQL_SERVER: ${{ secrets.TimesheetDB_SQL_SERVER_PUBLIC_URL }}
           SQL_USER: ${{ secrets.TimesheetDB_SQL_USER }}
           SQL_PASSWORD: ${{ secrets.TimesheetDB_SQL_PASSWORD }}
-          CATALOG_SERVER: ${{ secrets.TimesheetDBSSIS_CATALOG_SERVER }} # Updated secret name
+          CATALOG_SERVER: ${{ secrets.TimesheetDBSSIS_CATALOG_SERVER }}
           CATALOG_DB: SSISDB
           FOLDER_NAME: TimesheetFolder
           PACKAGE_PATH: HandsOnProjects/Timesheet/TimesheetMigrationProject
@@ -30,11 +30,13 @@ jobs:
           $packages = @("Client.dtsx", "Consultant.dtsx", "Leave.dtsx", "LoopThroughOneFolder(1).dtsx")
           foreach ($package in $packages) {
             $fullPath = Join-Path -Path $env:PACKAGE_PATH -ChildPath $package
+            Write-Host "Checking package: $fullPath"
             if (Test-Path $fullPath) {
-              $deployCommand = "dtutil /FILE `"$fullPath`" /DestServer `$env:CATALOG_SERVER /COPY SQL;`"$env:FOLDER_NAME\$package`" /User `$env:SQL_USER /Password `$env:SQL_PASSWORD /Quiet"
+              Write-Host "Deploying package: $package"
+              $deployCommand = "dtutil /FILE `"$fullPath`" /DestServer `$env:CATALOG_SERVER /COPY SQL;`"$env:FOLDER_NAME\$package`" /User `$env:SQL_USER /Password `$env:SQL_PASSWORD"
               Invoke-Expression $deployCommand
               if ($LASTEXITCODE -ne 0) {
-                Write-Error "Failed to deploy package $package"
+                Write-Error "Failed to deploy package $package. Exit code: $LASTEXITCODE"
                 exit 1
               } else {
                 Write-Host "Successfully deployed package $package"
