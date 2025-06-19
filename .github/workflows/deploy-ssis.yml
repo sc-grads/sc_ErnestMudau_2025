@@ -22,7 +22,7 @@ jobs:
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
             $fullPath = $_.FullName
             $package = $_.BaseName
-            $deployCommand = "C:\Program Files\Microsoft SQL Server\140\DTS\Binn\dtutil.exe /FILE `"$fullPath`" /DestServer `"$catalogServer`" /COPY SQL;\\\"\\SSISDB\\$folderName\\$package\\\""
+            $deployCommand = ""C:\Program Files\Microsoft SQL Server\160\DTS\Binn\dtutil.exe" /FILE `"$fullPath`" /DestServer `"$catalogServer`" /COPY SQL;\\\"\\SSISDB\\$folderName\\$package\\\""
             Write-Host "Executing: $deployCommand"
             cmd.exe /c $deployCommand
             if ($LASTEXITCODE -ne 0) {
