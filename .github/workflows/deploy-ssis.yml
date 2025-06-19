@@ -72,7 +72,7 @@ jobs:
               $packageName = $_.BaseName
               Write-Host "Deploying package '$packageName' to SSISDB catalog..."
               try {
-                  & "$ssisDeployExe" -s "$($_.FullName)" -d "catalog;/SSISDB/$folderName/$packageName;Trusted_Connection=True;Server=$catalogServer"
+                  & "$ssisDeployExe" -s "$($_.FullName)" -d "catalog;/SSISDB/$folderName/$packageName" -at "WIN" -server "$catalogServer"
                   if ($LASTEXITCODE -ne 0) {
                       Write-Error "Failed to deploy package '$packageName' to SSISDB catalog"
                       exit $LASTEXITCODE
