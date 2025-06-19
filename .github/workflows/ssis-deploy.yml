@@ -11,7 +11,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: self-hosted
-    environment: production
+    environment: mine
 
     steps:
       - name: Checkout repository
@@ -20,15 +20,15 @@ jobs:
       - name: Build SSIS Project
         run: |
           & "C:\SSISDevOpsTools\SSISBuild.exe" `
-          -p:${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject\Integration Services Project1\Integration Services Project1.dtproj `
-          -o:${{ github.workspace }}\output `
+          -p:"${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject\Integration Services Project1\Integration Services Project1.dtproj" `
+          -o:"${{ github.workspace }}\output" `
           -c:Release
         shell: powershell
 
       - name: Deploy SSIS Packages
         run: |
           & "C:\SSISDevOpsTools\SSISDeploy.exe" `
-          -s:${{ github.workspace }}\output\Integration Services Project1.ispac `
+          -s:"${{ github.workspace }}\output\Integration Services Project1.ispac" `
           -d:"catalog;/SSISDB/TimesheetMigration;LAPTOP-7LSAQSR0" `
           -at:win
         shell: powershell
