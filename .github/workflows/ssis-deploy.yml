@@ -1,0 +1,33 @@
+name: Build and Deploy SSIS Packages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Integration Services Project1/**'  # Trigger on changes to your SSIS project folder
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted  # Use your self-hosted runner
+    environment: production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build SSIS Project
+        run: |
+          & "C:\SSISDevOpsTools\SSISBuild.exe" `
+          -p:${{ github.workspace }}\Integration Services Project1\Integration Services Project1.dtproj `
+          -o:${{ github.workspace }}\output `
+          -c:Release
+        shell: powershell
+
+      - name: Deploy SSIS Packages
+        run: |
+          & "C:\SSISDevOpsTools\SSISDeploy.exe" `
+          -s:${{ github.workspace }}\output\Integration Services Project1.ispac `
+          -d:"catalog;/SSISDB/TimesheetFolder;LAPTOP-7LSAQSR0" `
+          -at:win
+        shell: powershell
