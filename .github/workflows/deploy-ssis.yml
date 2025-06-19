@@ -16,8 +16,6 @@ jobs:
         shell: powershell
         run: |
           $sqlServer = "LAPTOP-7LSAQSR0"
-          
-          # Test connection to SSISDB catalog
           try {
               $result = sqlcmd -S $sqlServer -d "SSISDB" -Q "SELECT 1 FROM catalog.folders" -E -h -1 -W
               if ($LASTEXITCODE -ne 0) {
@@ -27,9 +25,9 @@ jobs:
           } catch {
               Write-Error "SSISDB catalog access failed: $_"
               Write-Host "Troubleshooting Steps:"
-              Write-Host "1. Verify SQL Server is running and accessible"
-              Write-Host "2. Confirm the runner service account has permissions to SSISDB"
-              Write-Host "3. Check if Windows Authentication is enabled on SQL Server"
+              Write-Host "1. Verify the runner service is running as WORKGROUP\ErnestMudau"
+              Write-Host "2. Confirm ErnestMudau has ssis_admin role (already sysadmin)"
+              Write-Host "3. Restart the runner service if changes were made"
               exit 1
           }
 
@@ -38,11 +36,8 @@ jobs:
         run: |
           $sqlServer = "LAPTOP-7LSAQSR0"
           $folderName = "TimesheetFolder"
-          
           try {
-              # Check if folder exists in SSISDB catalog
               $exists = sqlcmd -S $sqlServer -d "SSISDB" -Q "IF EXISTS (SELECT 1 FROM catalog.folders WHERE name = '$folderName') SELECT 1 ELSE SELECT 0" -E -h -1 -W
-              
               if ($exists -eq "0") {
                   Write-Host "Creating folder '$folderName' in SSISDB catalog..."
                   sqlcmd -S $sqlServer -d "SSISDB" -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -E
@@ -67,22 +62,14 @@ jobs:
               exit 1
           }
           
-          # Deploy each package to SSISDB catalog
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
               $packageName = $_.BaseName
               Write-Host "Deploying package '$packageName' to SSISDB catalog..."
-              
-              & "C:\SSISDevOpsTools\SSISDeploy.exe" `
-                  -source:"$($_.FullName)" `
-                  -destination:"catalog;/SSISDB/$folderName/$packageName;$catalogServer" `
-                  -authType:"winAuth" `
-                  -log:"DIAG;$env:GITHUB_WORKSPACE\ssis-deploy-$packageName.log"
-              
+              $destination = "\SSISDB\$folderName\$packageName"
+              & "C:\Program Files\Microsoft SQL Server\160\DTS\Binn\dtutil.exe" /FILE "$($_.FullName)" /DestServer "$catalogServer" /COPY SQL;"$destination"
               if ($LASTEXITCODE -ne 0) {
                   Write-Error "Failed to deploy package '$packageName' to SSISDB catalog"
-                  Get-Content "$env:GITHUB_WORKSPACE\ssis-deploy-$packageName.log" | Write-Host
                   exit $LASTEXITCODE
               }
-              
               Write-Host "Successfully deployed package '$packageName' to SSISDB catalog"
           }
