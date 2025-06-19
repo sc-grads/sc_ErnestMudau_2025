@@ -9,6 +9,7 @@ on:
 jobs:
   deploy-ssis:
     runs-on: self-hosted
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -26,16 +27,17 @@ jobs:
       - name: Deploy .dtsx Packages to File System
         run: |
           $packagePath = "HandsOnProjects/Timesheet/TimesheetMigrationProject"
-          $catalogServer = $env:CATALOG_SERVER
+          $catalogServer = $env:CATALOG_SERVER  # still available if you need for UNC paths
           $folderName = "TimesheetFolder"
           $targetPath = "C:\SSISPackages\$folderName"
 
-          # Ensure target folder exists
+          # Ensure the target directory exists
           if (-not (Test-Path $targetPath)) {
-            New-Item -Path $targetPath -ItemType Directory -Force
+            New-Item -Path $targetPath -ItemType Directory -Force | Out-Null
+            Write-Host "Created directory: $targetPath"
           }
 
-          Write-Host "Deploying packages from '$packagePath' to file system path '$targetPath'"
+          Write-Host "Deploying .dtsx packages from '$packagePath' to file system path '$targetPath'"
 
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
             $fullPath = $_.FullName
@@ -43,13 +45,13 @@ jobs:
             $destination = "file;$targetPath"
 
             Write-Host "Deploying $fullPath to $destination"
-            & "C:\SSISDevOpsTools\SSISDeploy.exe" -source "$fullPath" -destination "$destination" -authType winAuth
+            & "C:\SSISDevOpsTools\SSISDeploy.exe" -source "$fullPath" -destination "$destination"
 
             if ($LASTEXITCODE -ne 0) {
-              Write-Error "Failed to deploy package $package. Exit code: $LASTEXITCODE"
+              Write-Error "❌ Failed to deploy package '$package'. Exit code: $LASTEXITCODE"
               exit 1
             } else {
-              Write-Host "Successfully deployed package $package"
+              Write-Host "✅ Successfully deployed package '$package'"
             }
           }
         env:
