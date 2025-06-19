@@ -31,9 +31,9 @@ jobs:
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
             $fullPath = $_.FullName
             $package = $_.BaseName
-            $destination = "catalog;/SSISDB/$folderName/$package;$catalogServer"
-            Write-Host "Deploying $fullPath to $destination"
-            & "C:\SSISDevOpsTools\SSISDeploy.exe" -source "$fullPath" -destination "$destination" -authType winAuth
+            $destination = "/SSISDB/$folderName/$package;$catalogServer"
+            Write-Host "Deploying $fullPath to catalog;$destination"
+            & "C:\SSISDevOpsTools\SSISDeploy.exe" -source "`"$fullPath`"" -destination "catalog;$destination" -authType winAuth
             if ($LASTEXITCODE -ne 0) {
               Write-Error "Failed to deploy package $package. Exit code: $LASTEXITCODE"
               exit 1
