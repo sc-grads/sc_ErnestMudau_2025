@@ -1,4 +1,4 @@
-name: Deploy SSIS Packages
+name: Deploy SSIS Packages with SSIS DevOps Tools
 
 on:
   push:
@@ -13,18 +13,35 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Set Up SSIS DevOps Tools
+        run: |
+          # Assume tools are extracted to C:\SSISDevOpsTools
+          $env:Path += ";C:\SSISDevOpsTools"
+          Write-Host "SSIS DevOps Tools added to PATH"
+
+      - name: Build SSIS Project (if .dtproj exists)
+        run: |
+          $projectPath = "HandsOnProjects/Timesheet/TimesheetMigrationProject/YourProject.dtproj"
+          if (Test-Path $projectPath) {
+            SSISBuild.exe -project $projectPath -output ".\output\SSISBuild" -quiet
+            if ($LASTEXITCODE -ne 0) {
+              Write-Error "SSIS Build failed"
+              exit 1
+            }
+          } else {
+            Write-Host "No .dtproj found, skipping build"
+          }
+
       - name: Deploy to SSIS Catalog
         run: |
           $packagePath = "HandsOnProjects/Timesheet/TimesheetMigrationProject"
-          $folderName = "TimesheetFolder"
           $catalogServer = $env:CATALOG_SERVER
-          Write-Host "Deploying packages from $packagePath to \SSISDB\$folderName on $catalogServer"
+          $folderName = "TimesheetFolder"
+          Write-Host "Deploying packages to \SSISDB\$folderName on $catalogServer"
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
             $fullPath = $_.FullName
             $package = $_.BaseName
-            $deployCommand = "C:\Program Files\Microsoft SQL Server\160\DTS\Binn\dtutil.exe /FILE `"$fullPath`" /DestServer `"$catalogServer`" /COPY SQL;\\\"\\SSISDB\\$folderName\\$package\\\""
-            Write-Host "Executing: $deployCommand"
-            cmd.exe /c $deployCommand
+            SSISDeploy.exe -source $fullPath -destination "catalog;/SSISDB/$folderName/$package;$catalogServer" -authType winAuth
             if ($LASTEXITCODE -ne 0) {
               Write-Error "Failed to deploy package $package. Exit code: $LASTEXITCODE"
               exit 1
