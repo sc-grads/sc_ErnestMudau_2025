@@ -1,7 +1,7 @@
 name: Deploy SSIS Packages to SQL Server
 
 on:
-  workflow_call:
+  workflow_dispatch:
 
 jobs:
   deploy-ssis:
