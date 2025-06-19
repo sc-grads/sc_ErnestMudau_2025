@@ -65,7 +65,7 @@ jobs:
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
               $packageName = $_.BaseName
               Write-Host "Deploying package '$packageName' to SSISDB catalog..."
-              $destination = "\SSISDB\$folderName\$packageName"
+              $destination = "/SQL/$catalogServer/SSISDB/$folderName/$packageName"  # Corrected destination path
               & "C:\Program Files\Microsoft SQL Server\160\DTS\Binn\dtutil.exe" /FILE "$($_.FullName)" /DestServer "$catalogServer" /COPY SQL;"$destination"
               if ($LASTEXITCODE -ne 0) {
                   Write-Error "Failed to deploy package '$packageName' to SSISDB catalog"
