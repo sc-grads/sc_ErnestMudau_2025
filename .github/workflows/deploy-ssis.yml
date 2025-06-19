@@ -52,3 +52,4 @@ jobs:
         }
         
         Write-Output "SSIS package deployed successfully to $serverName/$catalogName/$folderName/$projectName"
+        
