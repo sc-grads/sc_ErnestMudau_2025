@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'Integration Services Project1/**'  # Trigger on changes to your SSIS project folder
+      - 'HandsOnProjects/Timesheet/TimesheetMigrationProject/Integration Services Project1/**'  # Trigger on changes to your SSIS project folder
 
 jobs:
   build-and-deploy:
@@ -19,7 +19,7 @@ jobs:
       - name: Build SSIS Project
         run: |
           & "C:\SSISDevOpsTools\SSISBuild.exe" `
-          -p:${{ github.workspace }}\Integration Services Project1\Integration Services Project1.dtproj `
+          -p:${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject\Integration Services Project1\Integration Services Project1.dtproj `
           -o:${{ github.workspace }}\output `
           -c:Release
         shell: powershell
@@ -28,6 +28,6 @@ jobs:
         run: |
           & "C:\SSISDevOpsTools\SSISDeploy.exe" `
           -s:${{ github.workspace }}\output\Integration Services Project1.ispac `
-          -d:"catalog;/SSISDB/TimesheetFolder;LAPTOP-7LSAQSR0" `
+          -d:"catalog;/SSISDB/TimesheetMigration;LAPTOP-7LSAQSR0" `
           -at:win
         shell: powershell
