@@ -23,22 +23,39 @@ jobs:
           }
           Write-Host "SSISDeploy.exe verified at C:\SSISDevOpsTools"
 
+      - name: Verify SSISDB Access
+        shell: powershell
+        run: |
+          $sqlServer = "LAPTOP-7LSAQSR0"
+          # Test connection with Windows Authentication
+          $testQuery = "SELECT name FROM sys.databases WHERE name = 'SSISDB'"
+          try {
+            $result = sqlcmd -S $sqlServer -Q $testQuery -E -h -1 -W
+            if ($result -ne "SSISDB") {
+              Write-Error "Cannot access SSISDB database"
+              exit 1
+            }
+            Write-Host "Successfully connected to SSISDB using Windows Authentication"
+          } catch {
+            Write-Error "Failed to connect to SQL Server: $_"
+            exit 1
+          }
+
       - name: Create SSIS Catalog Folder if missing
         shell: powershell
         run: |
           $sqlServer = "LAPTOP-7LSAQSR0"
-          $catalogDB = "SSISDB"
           $folderName = "TimesheetFolder"
           
-          # Using Windows Authentication instead of SQL Auth for sqlcmd
-          $folderExists = sqlcmd -S $sqlServer -d $catalogDB -Q "SELECT CASE WHEN EXISTS (SELECT 1 FROM catalog.folders WHERE name = '$folderName') THEN 1 ELSE 0 END" -h -1 -W
+          # Check if folder exists using Windows Authentication
+          $folderCheck = sqlcmd -S $sqlServer -d "SSISDB" -Q "SELECT COUNT(*) FROM catalog.folders WHERE name = '$folderName'" -E -h -1 -W
           
-          if ($folderExists -eq "0") {
-            Write-Output "Folder '$folderName' does not exist. Creating..."
-            sqlcmd -S $sqlServer -d $catalogDB -Q "EXEC catalog.create_folder @folder_name = '$folderName'"
-            Write-Output "Folder '$folderName' created successfully"
+          if ([int]$folderCheck -eq 0) {
+            Write-Host "Creating folder '$folderName'..."
+            sqlcmd -S $sqlServer -d "SSISDB" -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -E
+            Write-Host "Folder created successfully"
           } else {
-            Write-Output "Folder '$folderName' exists."
+            Write-Host "Folder '$folderName' already exists"
           }
 
       - name: Deploy All Packages to SSIS Catalog
@@ -53,16 +70,13 @@ jobs:
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
             $fullPath = $_.FullName
             $package = $_.BaseName
-            $destination = "catalog;/SSISDB/$folderName/$package;$catalogServer"
             
             Write-Host "Deploying package $package..."
             
             & "C:\SSISDevOpsTools\SSISDeploy.exe" `
               -source:"$fullPath" `
-              -destination:"$destination" `
-              -authType:"sql" `
-              -username:"$env:SQL_USERNAME" `
-              -password:"$env:SQL_PASSWORD" `
+              -destination:"catalog;/SSISDB/$folderName/$package;$catalogServer" `
+              -authType:"winAuth" `
               -log:"DIAG;C:\SSISDeployLogs\$package.log"
             
             if ($LASTEXITCODE -ne 0) {
@@ -72,6 +86,3 @@ jobs:
             
             Write-Host "Successfully deployed package $package"
           }
-        env:
-          SQL_USERNAME: ${{ secrets.SQL_USERNAME }}
-          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
