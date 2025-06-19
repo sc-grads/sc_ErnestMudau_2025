@@ -16,27 +16,29 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          path: sc-ErnestMudau_2025  # Explicitly set the checkout path
 
       - name: Debug Permissions
         run: |
           echo "Workspace: ${{ github.workspace }}"
-          dir "${{ github.workspace }}"
-          $acl = Get-Acl "${{ github.workspace }}"
+          dir "${{ github.workspace }}\sc-ErnestMudau_2025"
+          $acl = Get-Acl "${{ github.workspace }}\sc-ErnestMudau_2025"
           echo "Permissions: $acl.Access"
         shell: powershell
 
       - name: Build SSIS Project
         run: |
           & "C:\SSISDevOpsTools\SSISBuild.exe" `
-          -p:"${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject\Integration Services Project1\Integration Services Project1.dtproj" `
-          -o:"${{ github.workspace }}\output" `
+          -p:"${{ github.workspace }}\sc-ErnestMudau_2025\HandsOnProjects\Timesheet\TimesheetMigrationProject\Integration Services Project1\Integration Services Project1.dtproj" `
+          -o:"${{ github.workspace }}\sc-ErnestMudau_2025\output" `
           -c:Release
         shell: powershell
 
       - name: Deploy SSIS Packages
         run: |
           & "C:\SSISDevOpsTools\SSISDeploy.exe" `
-          -s:"${{ github.workspace }}\output\Integration Services Project1.ispac" `
+          -s:"${{ github.workspace }}\sc-ErnestMudau_2025\output\Integration Services Project1.ispac" `
           -d:"catalog;/SSISDB/TimesheetMigration;LAPTOP-7LSAQSR0" `
           -at:win
         shell: powershell
