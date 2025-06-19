@@ -1,4 +1,4 @@
-name: Deploy All SSIS Packages with dtutil
+name: Deploy All SSIS Packages with SSIS DevOps Tools
 
 on:
   push:
@@ -13,16 +13,28 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Set Up SSIS DevOps Tools
+        shell: powershell
+        run: |
+          Write-Host "Verifying SSIS DevOps Tools at C:\SSISDevOpsTools"
+          if (-not (Test-Path "C:\SSISDevOpsTools\SSISDeploy.exe")) {
+            Write-Error "SSISDeploy.exe not found in C:\SSISDevOpsTools"
+            exit 1
+          }
+          Write-Host "SSISDeploy.exe verified at C:\SSISDevOpsTools"
+
       - name: Create SSIS Catalog Folder if missing
         shell: powershell
         run: |
           $sqlServer = "LAPTOP-7LSAQSR0"
           $catalogDB = "SSISDB"
           $folderName = "TimesheetFolder"
-          $folderExists = sqlcmd -S $sqlServer -d $catalogDB -Q "SELECT 1 FROM catalog.folders WHERE name = '$folderName'" -E -h -1
+          $username = $env:SQL_USERNAME
+          $password = $env:SQL_PASSWORD
+          $folderExists = sqlcmd -S $sqlServer -d $catalogDB -Q "SELECT 1 FROM catalog.folders WHERE name = '$folderName'" -U $username -P $password -h -1
           if ([string]::IsNullOrEmpty($folderExists)) {
             Write-Output "Folder '$folderName' does not exist. Creating..."
-            sqlcmd -S $sqlServer -d $catalogDB -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -E
+            sqlcmd -S $sqlServer -d $catalogDB -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -U $username -P $password
           } else {
             Write-Output "Folder '$folderName' exists."
           }
@@ -31,14 +43,14 @@ jobs:
         shell: powershell
         run: |
           $packagePath = "C:\actions-runner\_work\sc_ErnestMudau_2025\sc_ErnestMudau_2025\HandsOnProjects\Timesheet\TimesheetMigrationProject"
-          $sqlServer = "LAPTOP-7LSAQSR0"
+          $catalogServer = "LAPTOP-7LSAQSR0"
           $folderName = "TimesheetFolder"
-          Write-Host "Deploying packages from $packagePath to \SSISDB\$folderName on $sqlServer"
+          Write-Host "Deploying packages from $packagePath to \SSISDB\$folderName on $catalogServer"
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
             $fullPath = $_.FullName
             $package = $_.BaseName
-            $destination = "\SSISDB\$folderName\$package"
-            $command = """C:\Program Files\Microsoft SQL Server\160\DTS\Binn\dtutil.exe"" /FILE ""$fullPath"" /DestServer ""$sqlServer"" /COPY SQL;""$destination"""
+            $destination = "catalog;/SSISDB/$folderName/$package;$catalogServer"
+            $command = """C:\SSISDevOpsTools\SSISDeploy.exe"" -source ""$fullPath"" -destination ""$destination"" -authType sql -username ""$env:SQL_USERNAME"" -password ""$env:SQL_PASSWORD"""
             Write-Host "Executing: $command"
             cmd.exe /c $command
             if ($LASTEXITCODE -ne 0) {
@@ -48,3 +60,6 @@ jobs:
               Write-Host "Successfully deployed package $package"
             }
           }
+        env:
+          SQL_USERNAME: ${{ secrets.SQL_USERNAME }}
+          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
