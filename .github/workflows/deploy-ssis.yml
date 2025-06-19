@@ -1,45 +1,41 @@
-name: SSIS Deployment Pipeline
+name: Deploy Client.dtsx with SSIS DevOps Tools
 
 on:
   push:
-    branches: [ main ]
-    paths:
-      - 'HandsOnProjects/Timesheet/TimesheetMigrationProject/**'
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy-ssis:
     runs-on: self-hosted
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Restore NuGet packages
-      run: nuget restore HandsOnProjects/Timesheet/TimesheetMigrationProject/TimesheetMigrationProject.sln
+      - name: Set Up SSIS DevOps Tools
+        run: |
+          Write-Host "Verifying SSIS DevOps Tools at C:\SSISDevOpsTools"
+          if (-not (Test-Path "C:\SSISDevOpsTools\SSISDeploy.exe")) {
+            Write-Error "SSISDeploy.exe not found in C:\SSISDevOpsTools"
+            exit 1
+          }
+          Write-Host "SSISDeploy.exe verified at C:\SSISDevOpsTools"
 
-    - name: Build SSIS project
-      run: msbuild HandsOnProjects/Timesheet/TimesheetMigrationProject/TimesheetMigrationProject.sln /p:Configuration=Release /p:Platform="Any CPU"
-
-    - name: Deploy SSIS packages
-      run: |
-        $packagePath = "HandsOnProjects/Timesheet/TimesheetMigrationProject"
-        $serverName = "${{ secrets.SQL_SERVER_NAME }}"
-        $folderName = "${{ secrets.SSIS_FOLDER_NAME || 'TimesheetFolder' }}"
-        
-        # Deploy each DTSX package found in the project
-        Get-ChildItem -Path $packagePath -Filter *.dtsx -Recurse | ForEach-Object {
-            $packageName = $_.BaseName
-            Write-Output "Deploying package $packageName to \SSISDB\$folderName on $serverName"
-            
-            & "C:\SSISDevOpsTools\SSISDeploy.exe" `
-              -source:$_.FullName `
-              -destination:"CATALOG;/SSISDB/$folderName/$packageName;$serverName" `
-              -authType:"winAuth" `
-              -log:"DIAG;C:\SSISDeployLogs\$packageName.log"
-            
-            if ($LASTEXITCODE -ne 0) {
-                Write-Error "Failed to deploy package $packageName. Exit code: $LASTEXITCODE"
-                exit $LASTEXITCODE
-            }
-            
-            Write-Output "Successfully deployed package $packageName"
-        }
+      - name: Deploy Client.dtsx to SSIS Catalog
+        run: |
+          $sourcePath = "C:\actions-runner\_work\sc_ErnestMudau_2025\sc_ErnestMudau_2025\HandsOnProjects\Timesheet\TimesheetMigrationProject\Client.dtsx"
+          $catalogServer = $env:CATALOG_SERVER
+          $folderName = "TimesheetFolder"
+          $destination = "catalog;/SSISDB/$folderName/Client;$catalogServer"
+          $command = """C:\SSISDevOpsTools\SSISDeploy.exe"" -source $sourcePath -destination ""$destination"" -authType winAuth"
+          Write-Host "Executing: $command"
+          cmd.exe /c $command
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Failed to deploy Client.dtsx. Exit code: $LASTEXITCODE"
+            exit 1
+          } else {
+            Write-Host "Successfully deployed Client.dtsx"
+          }
+        env:
+          CATALOG_SERVER: ${{ secrets.TimesheetDBSSIS_CATALOG_SERVER }}
