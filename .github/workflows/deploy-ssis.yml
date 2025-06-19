@@ -1,46 +1,54 @@
-name: Deploy SSIS Packages with SSIS DevOps Tools
+name: SSIS Deployment Pipeline
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [ main ]
+    paths:
+      - 'HandsOnProjects/Timesheet/TimesheetMigrationProject/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'HandsOnProjects/Timesheet/TimesheetMigrationProject/**'
 
 jobs:
   deploy-ssis:
     runs-on: self-hosted
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set Up SSIS DevOps Tools
-        run: |
-          Write-Host "Verifying SSIS DevOps Tools at C:\SSISDevOpsTools"
-          if (-not (Test-Path "C:\SSISDevOpsTools\SSISDeploy.exe")) {
-            Write-Error "SSISDeploy.exe not found in C:\SSISDevOpsTools"
+    - name: Restore NuGet packages
+      run: nuget restore HandsOnProjects/Timesheet/TimesheetMigrationProject/TimesheetMigrationProject.sln
+
+    - name: Build SSIS project
+      run: msbuild HandsOnProjects/Timesheet/TimesheetMigrationProject/TimesheetMigrationProject.sln /p:Configuration=Release /p:Platform="Any CPU"
+
+    - name: Deploy SSIS project to SQL Server
+      run: |
+        $ispacPath = "HandsOnProjects/Timesheet/TimesheetMigrationProject/bin/Release/TimesheetMigrationProject.ispac"
+        $serverName = "${{ secrets.SQL_SERVER_NAME }}"
+        $catalogName = "SSISDB"
+        $folderName = "${{ secrets.SSIS_FOLDER_NAME || 'Timesheet' }}"
+        $projectName = "TimesheetMigration"
+        
+        # Check if ISPAC file exists
+        if (-not (Test-Path $ispacPath)) {
+            Write-Error "ISPAC file not found at $ispacPath"
             exit 1
-          }
-          Write-Host "SSISDeploy.exe verified at C:\SSISDevOpsTools"
-
-      - name: Deploy to SSIS Catalog
-        run: |
-          $packagePath = "HandsOnProjects/Timesheet/TimesheetMigrationProject"
-          $catalogServer = $env:CATALOG_SERVER
-          $folderName = "TimesheetFolder"
-          Write-Host "Deploying packages to \SSISDB\$folderName on $catalogServer"
-          Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
-            $fullPath = $_.FullName
-            $package = $_.BaseName
-            $destination = "catalog;/SSISDB/$folderName/$package;$catalogServer"
-            $command = """C:\SSISDevOpsTools\SSISDeploy.exe"" -source ""$fullPath"" -destination ""$destination"" -authType winAuth"
-            Write-Host "Executing: $command"
-            cmd.exe /c $command
-            if ($LASTEXITCODE -ne 0) {
-              Write-Error "Failed to deploy package $package. Exit code: $LASTEXITCODE"
-              exit 1
-            } else {
-              Write-Host "Successfully deployed package $package"
-            }
-          }
-        env:
-          CATALOG_SERVER: ${{ secrets.TimesheetDBSSIS_CATALOG_SERVER }}
+        }
+        
+        # Deploy using ISDeploymentWizard
+        & "C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\ISDeploymentWizard.exe" `
+          /Silent `
+          /ModelType:Project `
+          /SourcePath:$ispacPath `
+          /DestinationServer:$serverName `
+          /DestinationPath:"/$catalogName/$folderName/$projectName"
+        
+        # Verify deployment
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "SSIS deployment failed with exit code $LASTEXITCODE"
+            exit $LASTEXITCODE
+        }
+        
+        Write-Output "SSIS package deployed successfully to $serverName/$catalogName/$folderName/$projectName"
