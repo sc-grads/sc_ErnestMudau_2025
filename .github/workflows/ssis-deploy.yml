@@ -26,7 +26,7 @@ jobs:
       - name: Build SSIS Project
         run: |
           & "C:\SSISDevOpsTools\SSISBuild.exe" `
-          -p:"${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject\Integration Services Project1\Integration Services Project1.dtproj" `
+          -p:"${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject" `
           -o:"${{ github.workspace }}\output" `
           -c:Release
         shell: powershell
