@@ -1,4 +1,4 @@
-name: SSIS Deployment with Windows Auth
+name: SSIS Deployment to SSISDB Catalog
 
 on:
   push:
@@ -12,63 +12,50 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Verify SQL Server Connection
+      - name: Verify SSISDB Access
         shell: powershell
         run: |
           $sqlServer = "LAPTOP-7LSAQSR0"
           
-          # Test basic SQL Server connectivity
+          # Test connection to SSISDB catalog
           try {
-              $result = Test-NetConnection -ComputerName $sqlServer -Port 1433
-              if (-not $result.TcpTestSucceeded) {
-                  Write-Error "Cannot connect to SQL Server on port 1433"
-                  exit 1
+              $result = sqlcmd -S $sqlServer -d "SSISDB" -Q "SELECT 1 FROM catalog.folders" -E -h -1 -W
+              if ($LASTEXITCODE -ne 0) {
+                  throw "Failed to query SSISDB catalog"
               }
-              Write-Host "Network connection to SQL Server successful"
+              Write-Host "Successfully connected to SSISDB catalog using Windows Authentication"
           } catch {
-              Write-Error "Network connection test failed: $_"
-              exit 1
-          }
-          
-          # Test Windows Authentication access
-          try {
-              $dbCheck = sqlcmd -S $sqlServer -Q "SELECT name FROM sys.databases WHERE name = 'SSISDB'" -E -h -1 -W
-              if ($dbCheck -ne "SSISDB") {
-                  Write-Error "SSISDB database not found or accessible"
-                  exit 1
-              }
-              Write-Host "Windows Authentication to SSISDB successful"
-          } catch {
-              Write-Error "Windows Authentication failed: $_"
-              Write-Host "Troubleshooting tips:"
-              Write-Host "1. Ensure the runner service account has SQL Server access"
-              Write-Host "2. Check SQL Server logs for login failures"
-              Write-Host "3. Verify SQL Server allows Windows Authentication"
+              Write-Error "SSISDB catalog access failed: $_"
+              Write-Host "Troubleshooting Steps:"
+              Write-Host "1. Verify SQL Server is running and accessible"
+              Write-Host "2. Confirm the runner service account has permissions to SSISDB"
+              Write-Host "3. Check if Windows Authentication is enabled on SQL Server"
               exit 1
           }
 
-      - name: Create SSIS Folder
+      - name: Ensure Timesheet Folder Exists
         shell: powershell
         run: |
           $sqlServer = "LAPTOP-7LSAQSR0"
           $folderName = "TimesheetFolder"
           
-          # Check and create folder with Windows Auth
           try {
-              $exists = sqlcmd -S $sqlServer -d "SSISDB" -Q "SELECT COUNT(*) FROM catalog.folders WHERE name = '$folderName'" -E -h -1 -W
-              if ([int]$exists -eq 0) {
-                  Write-Host "Creating folder '$folderName'..."
+              # Check if folder exists in SSISDB catalog
+              $exists = sqlcmd -S $sqlServer -d "SSISDB" -Q "IF EXISTS (SELECT 1 FROM catalog.folders WHERE name = '$folderName') SELECT 1 ELSE SELECT 0" -E -h -1 -W
+              
+              if ($exists -eq "0") {
+                  Write-Host "Creating folder '$folderName' in SSISDB catalog..."
                   sqlcmd -S $sqlServer -d "SSISDB" -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -E
-                  Write-Host "Folder created successfully"
+                  Write-Host "Folder created successfully in SSISDB catalog"
               } else {
-                  Write-Host "Folder already exists"
+                  Write-Host "Folder '$folderName' already exists in SSISDB catalog"
               }
           } catch {
-              Write-Error "Folder creation failed: $_"
+              Write-Error "Failed to create folder in SSISDB catalog: $_"
               exit 1
           }
 
-      - name: Deploy Packages
+      - name: Deploy Packages to SSISDB
         shell: powershell
         run: |
           $packagePath = "$env:GITHUB_WORKSPACE\HandsOnProjects\Timesheet\TimesheetMigrationProject"
@@ -76,24 +63,26 @@ jobs:
           $folderName = "TimesheetFolder"
           
           if (-not (Test-Path $packagePath)) {
-              Write-Error "Package path not found: $packagePath"
+              Write-Error "SSIS project path not found: $packagePath"
               exit 1
           }
           
+          # Deploy each package to SSISDB catalog
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
-              $package = $_.BaseName
-              Write-Host "Deploying $package..."
+              $packageName = $_.BaseName
+              Write-Host "Deploying package '$packageName' to SSISDB catalog..."
               
               & "C:\SSISDevOpsTools\SSISDeploy.exe" `
                   -source:"$($_.FullName)" `
-                  -destination:"catalog;/SSISDB/$folderName/$package;$catalogServer" `
+                  -destination:"catalog;/SSISDB/$folderName/$packageName;$catalogServer" `
                   -authType:"winAuth" `
-                  -log:"DIAG;$env:GITHUB_WORKSPACE\deploy-$package.log"
+                  -log:"DIAG;$env:GITHUB_WORKSPACE\ssis-deploy-$packageName.log"
               
               if ($LASTEXITCODE -ne 0) {
-                  Write-Error "Package $package deployment failed"
-                  Get-Content "$env:GITHUB_WORKSPACE\deploy-$package.log" | Write-Host
+                  Write-Error "Failed to deploy package '$packageName' to SSISDB catalog"
+                  Get-Content "$env:GITHUB_WORKSPACE\ssis-deploy-$packageName.log" | Write-Host
                   exit $LASTEXITCODE
               }
-              Write-Host "$package deployed successfully"
+              
+              Write-Host "Successfully deployed package '$packageName' to SSISDB catalog"
           }
