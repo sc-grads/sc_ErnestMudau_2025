@@ -17,16 +17,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Debug Workspace
+      - name: Debug Permissions
         run: |
           echo "Workspace: ${{ github.workspace }}"
           dir "${{ github.workspace }}"
+          $acl = Get-Acl "${{ github.workspace }}"
+          echo "Permissions: $acl.Access"
         shell: powershell
 
       - name: Build SSIS Project
         run: |
           & "C:\SSISDevOpsTools\SSISBuild.exe" `
-          -p:"${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject" `
+          -p:"${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject\Integration Services Project1\Integration Services Project1.dtproj" `
           -o:"${{ github.workspace }}\output" `
           -c:Release
         shell: powershell
@@ -35,6 +37,6 @@ jobs:
         run: |
           & "C:\SSISDevOpsTools\SSISDeploy.exe" `
           -s:"${{ github.workspace }}\output\Integration Services Project1.ispac" `
-          -d:"catalog;/SSISDB/TimesheetFolder;LAPTOP-7LSAQSR0" `
+          -d:"catalog;/SSISDB/TimesheetMigration;LAPTOP-7LSAQSR0" `
           -at:win
         shell: powershell
