@@ -1,4 +1,4 @@
-name: Deploy SSIS Packages with SSIS DevOps Tools
+name: Deploy SSIS Packages to File System
 
 on:
   push:
@@ -14,46 +14,41 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set Up SSIS DevOps Tools
+      - name: Verify SSISDeploy.exe Exists
         run: |
-          # Add tools to PATH and verify SSISDeploy.exe exists
-          $env:Path += ";C:\SSISDevOpsTools"
-          if (-not (Test-Path "C:\SSISDevOpsTools\SSISDeploy.exe")) {
-            Write-Error "SSISDeploy.exe not found in C:\SSISDevOpsTools"
+          $ssisDeployPath = "C:\SSISDevOpsTools\SSISDeploy.exe"
+          if (-not (Test-Path $ssisDeployPath)) {
+            Write-Error "❌ SSISDeploy.exe not found at $ssisDeployPath"
             exit 1
           }
-          Write-Host "SSISDeploy.exe verified at C:\SSISDevOpsTools\SSISDeploy.exe"
+          Write-Host "✅ SSISDeploy.exe found at $ssisDeployPath"
 
-      - name: Deploy .dtsx Packages to File System
+      - name: Deploy All .dtsx Packages from Folder to File System
         run: |
-          $packagePath = "HandsOnProjects/Timesheet/TimesheetMigrationProject"
-          $catalogServer = $env:CATALOG_SERVER  # still available if you need for UNC paths
-          $folderName = "TimesheetFolder"
-          $targetPath = "C:\SSISPackages\$folderName"
+          $packageFolder = "HandsOnProjects/Timesheet/TimesheetMigrationProject"
+          $targetFolder = "C:\SSISPackages\TimesheetFolder"
+          $ssisDeployExe = "C:\SSISDevOpsTools\SSISDeploy.exe"
 
-          # Ensure the target directory exists
-          if (-not (Test-Path $targetPath)) {
-            New-Item -Path $targetPath -ItemType Directory -Force | Out-Null
-            Write-Host "Created directory: $targetPath"
+          # Ensure target folder exists
+          if (-not (Test-Path $targetFolder)) {
+            Write-Host "Creating target folder: $targetFolder"
+            New-Item -Path $targetFolder -ItemType Directory -Force | Out-Null
           }
 
-          Write-Host "Deploying .dtsx packages from '$packagePath' to file system path '$targetPath'"
+          Write-Host "🔄 Deploying all .dtsx packages from '$packageFolder' to '$targetFolder'"
 
-          Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
+          Get-ChildItem -Path $packageFolder -Filter *.dtsx -Recurse | ForEach-Object {
             $fullPath = $_.FullName
-            $package = $_.BaseName
-            $destination = "file;$targetPath"
+            $packageName = $_.Name
+            $destination = "file;$targetFolder"
 
-            Write-Host "Deploying $fullPath to $destination"
-            & "C:\SSISDevOpsTools\SSISDeploy.exe" -source "$fullPath" -destination "$destination"
+            Write-Host "➡️ Deploying: $packageName"
+            & $ssisDeployExe -source "$fullPath" -destination "$destination"
 
             if ($LASTEXITCODE -ne 0) {
-              Write-Error "❌ Failed to deploy package '$package'. Exit code: $LASTEXITCODE"
+              Write-Error "❌ Failed to deploy $packageName. Exit code: $LASTEXITCODE"
               exit 1
             } else {
-              Write-Host "✅ Successfully deployed package '$package'"
+              Write-Host "✅ Successfully deployed $packageName"
             }
           }
-        env:
-          CATALOG_SERVER: ${{ secrets.TimesheetDBSSIS_CATALOG_SERVER }}
-
