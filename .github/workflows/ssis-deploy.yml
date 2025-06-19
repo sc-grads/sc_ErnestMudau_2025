@@ -39,6 +39,6 @@ jobs:
         run: |
           & "C:\SSISDevOpsTools\SSISDeploy.exe" `
           -s:"${{ github.workspace }}\sc-ErnestMudau_2025\output\Integration Services Project1.ispac" `
-          -d:"catalog;/SSISDB/TimesheetMigration;LAPTOP-7LSAQSR0" `
+          -d:"catalog;/SSISDB/TimesheetFolder;LAPTOP-7LSAQSR0" `
           -at:win
         shell: powershell
