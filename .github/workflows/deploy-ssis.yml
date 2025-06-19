@@ -15,13 +15,14 @@ jobs:
 
       - name: Set Up SSIS DevOps Tools
         run: |
+          # Add tools to PATH and verify
           $env:Path += ";C:\SSISDevOpsTools"
-          Write-Host "SSIS DevOps Tools path added: $env:Path"
           if (-not (Test-Path "C:\SSISDevOpsTools\SSISDeploy.exe")) {
             Write-Error "SSISDeploy.exe not found in C:\SSISDevOpsTools"
             exit 1
           }
-          Write-Host "SSIS DevOps Tools verified"
+          Write-Host "SSIS DevOps Tools path added: $env:Path"
+          Write-Host "SSISDeploy.exe verified at C:\SSISDevOpsTools\SSISDeploy.exe"
 
       - name: Deploy to SSIS Catalog
         run: |
@@ -34,7 +35,7 @@ jobs:
             $package = $_.BaseName
             $destination = "catalog;/SSISDB/$folderName/$package;$catalogServer"
             Write-Host "Deploying $fullPath to $destination"
-            SSISDeploy.exe -source "$fullPath" -destination "$destination" -authType winAuth
+            & "C:\SSISDevOpsTools\SSISDeploy.exe" -source "$fullPath" -destination "$destination" -authType winAuth
             if ($LASTEXITCODE -ne 0) {
               Write-Error "Failed to deploy package $package. Exit code: $LASTEXITCODE"
               exit 1
