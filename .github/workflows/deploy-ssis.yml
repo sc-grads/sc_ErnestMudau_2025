@@ -1,4 +1,4 @@
-name: Deploy All SSIS Packages with SSIS DevOps Tools
+name: Deploy SSIS Packages to SQL Server
 
 on:
   push:
@@ -10,37 +10,67 @@ jobs:
   deploy-ssis:
     runs-on: self-hosted
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set Up SSIS DevOps Tools
+      - name: Debug workspace and user
+        shell: powershell
         run: |
-          Write-Host "Verifying SSIS DevOps Tools at C:\SSISDevOpsTools"
-          if (-not (Test-Path "C:\SSISDevOpsTools\SSISDeploy.exe")) {
-            Write-Error "SSISDeploy.exe not found in C:\SSISDevOpsTools"
+          Write-Output "Workspace path: ${{ github.workspace }}"
+          Write-Output "Current user: $env:USERDOMAIN\$env:USERNAME"
+          Get-ChildItem -Path "${{ github.workspace }}" -Recurse
+
+      - name: Verify SSIS deployment tools exist
+        shell: powershell
+        run: |
+          if (-not (Test-Path "C:\Program Files\Microsoft SQL Server\160\DTS\Binn\ISDeploymentWizard.exe")) {
+            Write-Error "ISDeploymentWizard.exe not found"
             exit 1
           }
-          Write-Host "SSISDeploy.exe verified at C:\SSISDevOpsTools"
+          if (-not (Get-Command sqlcmd.exe -ErrorAction SilentlyContinue)) {
+            Write-Error "sqlcmd.exe not found"
+            exit 1
+          }
+          Write-Output "All required tools found."
 
-      - name: Deploy All Packages to SSIS Catalog
+      - name: Create SSIS Catalog Folder if missing
+        shell: powershell
         run: |
-          $packagePath = "C:\actions-runner\_work\sc_ErnestMudau_2025\sc_ErnestMudau_2025\HandsOnProjects\Timesheet\TimesheetMigrationProject"
-          $catalogServer = $env:CATALOG_SERVER
+          $sqlServer = "LAPTOP-62JJ49T4"
+          $catalogDB = "SSISDB"
           $folderName = "TimesheetFolder"
-          Write-Host "Deploying packages from $packagePath to \SSISDB\$folderName on $catalogServer"
+
+          $folderExists = sqlcmd -S $sqlServer -d $catalogDB -Q "SELECT 1 FROM catalog.folders WHERE name = '$folderName'" -E -h -1
+          if ([string]::IsNullOrEmpty($folderExists)) {
+            Write-Output "Folder '$folderName' does not exist. Creating..."
+            sqlcmd -S $sqlServer -d $catalogDB -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -E
+          } else {
+            Write-Output "Folder '$folderName' exists."
+          }
+
+      - name: Deploy All SSIS Packages
+        shell: powershell
+        run: |
+          $packagePath = "${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject"
+          $sqlServer = "LAPTOP-62JJ49T4"
+          $catalogDB = "SSISDB"
+          $folderName = "TimesheetFolder"
+          Write-Output "Deploying packages from $packagePath to \SSISDB\$folderName on $sqlServer"
+
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
             $fullPath = $_.FullName
-            $package = $_.BaseName
-            $destination = "catalog;/SSISDB/$folderName/$package;$catalogServer"
-            $command = """C:\SSISDevOpsTools\SSISDeploy.exe"" -source ""$fullPath"" -destination ""$destination"" -authType winAuth"
-            Write-Host "Executing: $command"
-            cmd.exe /c $command
+            $packageName = $_.BaseName
+            $destination = "/SSISDB/$folderName/$packageName"
+            Write-Output "Deploying $fullPath to $destination"
+
+            # Use ISDeploymentWizard.exe to deploy the package
+            $wizardArgs = "-Silent", "-SourcePath", "`"$fullPath`"", "-DestinationServer", "$sqlServer", "-DestinationPath", "`"$destination`""
+            & "C:\Program Files\Microsoft SQL Server\160\DTS\Binn\ISDeploymentWizard.exe" @wizardArgs
+
             if ($LASTEXITCODE -ne 0) {
-              Write-Error "Failed to deploy package $package. Exit code: $LASTEXITCODE"
+              Write-Error "Failed to deploy package $packageName. Exit code: $LASTEXITCODE"
               exit 1
             } else {
-              Write-Host "Successfully deployed package $package"
+              Write-Output "Successfully deployed package $packageName"
             }
           }
-        env:
-          CATALOG_SERVER: ${{ secrets.TimesheetDBSSIS_CATALOG_SERVER }}
