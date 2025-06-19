@@ -84,7 +84,7 @@ jobs:
           $sqlServer = "LAPTOP-7LSAQSR0"
           $catalogDB = "SSISDB"
           $folderName = "TimesheetFolder"
-          $projectName = "TimesheetMigrationProject"
+          $projectName = "Integration Services Project1"
 
           Add-Type -AssemblyName System.Data
           Write-Output "Reading .ispac file from $ispacPath"
