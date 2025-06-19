@@ -22,7 +22,7 @@ jobs:
         shell: powershell
         run: |
           $projectPath = "${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject"
-          if (-not (Test-Path "$projectPath\TimesheetMigrationProject.dtproj")) {
+          if (-not (Test-Path "$projectPath\Integration Services Project1.dtproj")) {
             Write-Error "SSIS project file not found at: $projectPath"
             exit 1
           }
@@ -48,7 +48,7 @@ jobs:
       - name: Build SSIS Project
         shell: powershell
         run: |
-          $projectFile = "${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject\TimesheetMigrationProject.dtproj"
+          $projectFile = "${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject\Integration Services Project1.dtproj"
           $outputDir = "${{ runner.temp }}\SSISOutput"
           $config = "Development"
           if (-not (Test-Path $outputDir)) {
@@ -80,7 +80,7 @@ jobs:
       - name: Deploy SSIS Project via stored procedure
         shell: powershell
         run: |
-          $ispacPath = "${{ runner.temp }}\SSISOutput\Development\TimesheetMigrationProject.ispac"
+          $ispacPath = "${{ runner.temp }}\SSISOutput\Development\Integration Services Project1.ispac"
           $sqlServer = "LAPTOP-7LSAQSR0"
           $catalogDB = "SSISDB"
           $folderName = "TimesheetFolder"
