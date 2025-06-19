@@ -5,10 +5,6 @@ on:
     branches: [ main ]
     paths:
       - 'HandsOnProjects/Timesheet/TimesheetMigrationProject/**'
-  pull_request:
-    branches: [ main ]
-    paths:
-      - 'HandsOnProjects/Timesheet/TimesheetMigrationProject/**'
 
 jobs:
   deploy-ssis:
@@ -23,33 +19,27 @@ jobs:
     - name: Build SSIS project
       run: msbuild HandsOnProjects/Timesheet/TimesheetMigrationProject/TimesheetMigrationProject.sln /p:Configuration=Release /p:Platform="Any CPU"
 
-    - name: Deploy SSIS project to SQL Server
+    - name: Deploy SSIS packages
       run: |
-        $ispacPath = "HandsOnProjects/Timesheet/TimesheetMigrationProject/bin/Release/TimesheetMigrationProject.ispac"
+        $packagePath = "HandsOnProjects/Timesheet/TimesheetMigrationProject"
         $serverName = "${{ secrets.SQL_SERVER_NAME }}"
-        $catalogName = "SSISDB"
-        $folderName = "${{ secrets.SSIS_FOLDER_NAME || 'Timesheet' }}"
-        $projectName = "TimesheetMigration"
+        $folderName = "${{ secrets.SSIS_FOLDER_NAME || 'TimesheetFolder' }}"
         
-        # Check if ISPAC file exists
-        if (-not (Test-Path $ispacPath)) {
-            Write-Error "ISPAC file not found at $ispacPath"
-            exit 1
+        # Deploy each DTSX package found in the project
+        Get-ChildItem -Path $packagePath -Filter *.dtsx -Recurse | ForEach-Object {
+            $packageName = $_.BaseName
+            Write-Output "Deploying package $packageName to \SSISDB\$folderName on $serverName"
+            
+            & "C:\SSISDevOpsTools\SSISDeploy.exe" `
+              -source:$_.FullName `
+              -destination:"CATALOG;/SSISDB/$folderName/$packageName;$serverName" `
+              -authType:"winAuth" `
+              -log:"DIAG;C:\SSISDeployLogs\$packageName.log"
+            
+            if ($LASTEXITCODE -ne 0) {
+                Write-Error "Failed to deploy package $packageName. Exit code: $LASTEXITCODE"
+                exit $LASTEXITCODE
+            }
+            
+            Write-Output "Successfully deployed package $packageName"
         }
-        
-        # Deploy using ISDeploymentWizard (SQL Server 2022 - version 160)
-        & "C:\Program Files (x86)\Microsoft SQL Server\160\DTS\Binn\ISDeploymentWizard.exe" `
-          /Silent `
-          /ModelType:Project `
-          /SourcePath:$ispacPath `
-          /DestinationServer:$serverName `
-          /DestinationPath:"/$catalogName/$folderName/$projectName"
-        
-        # Verify deployment
-        if ($LASTEXITCODE -ne 0) {
-            Write-Error "SSIS deployment failed with exit code $LASTEXITCODE"
-            exit $LASTEXITCODE
-        }
-        
-        Write-Output "SSIS package deployed successfully to $serverName/$catalogName/$folderName/$projectName"
-        
