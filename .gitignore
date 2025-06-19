@@ -6,7 +6,7 @@ obj/
 *.log
 *.tmp
 *.param
-*.sln
+
 *.database
 
 
