@@ -15,27 +15,36 @@ jobs:
 
       - name: Set Up SSIS DevOps Tools
         run: |
-          # Add tools to PATH and verify
+          # Add tools to PATH and verify SSISDeploy.exe exists
           $env:Path += ";C:\SSISDevOpsTools"
           if (-not (Test-Path "C:\SSISDevOpsTools\SSISDeploy.exe")) {
             Write-Error "SSISDeploy.exe not found in C:\SSISDevOpsTools"
             exit 1
           }
-          Write-Host "SSIS DevOps Tools path added: $env:Path"
           Write-Host "SSISDeploy.exe verified at C:\SSISDevOpsTools\SSISDeploy.exe"
 
-      - name: Deploy to SSIS Catalog
+      - name: Deploy .dtsx Packages to File System
         run: |
           $packagePath = "HandsOnProjects/Timesheet/TimesheetMigrationProject"
           $catalogServer = $env:CATALOG_SERVER
           $folderName = "TimesheetFolder"
-          Write-Host "Deploying packages to \SSISDB\$folderName on $catalogServer"
+          $targetPath = "C:\SSISPackages\$folderName"
+
+          # Ensure target folder exists
+          if (-not (Test-Path $targetPath)) {
+            New-Item -Path $targetPath -ItemType Directory -Force
+          }
+
+          Write-Host "Deploying packages from '$packagePath' to file system path '$targetPath'"
+
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
             $fullPath = $_.FullName
             $package = $_.BaseName
-            $destination = "catalog;/SSISDB/$folderName/$package;$catalogServer"
+            $destination = "file;$targetPath"
+
             Write-Host "Deploying $fullPath to $destination"
             & "C:\SSISDevOpsTools\SSISDeploy.exe" -source "$fullPath" -destination "$destination" -authType winAuth
+
             if ($LASTEXITCODE -ne 0) {
               Write-Error "Failed to deploy package $package. Exit code: $LASTEXITCODE"
               exit 1
@@ -45,3 +54,4 @@ jobs:
           }
         env:
           CATALOG_SERVER: ${{ secrets.TimesheetDBSSIS_CATALOG_SERVER }}
+
