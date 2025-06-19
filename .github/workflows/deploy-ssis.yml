@@ -1,4 +1,4 @@
-name: Deploy Client.dtsx with SSIS DevOps Tools
+name: Deploy All SSIS Packages with SSIS DevOps Tools
 
 on:
   push:
@@ -22,20 +22,25 @@ jobs:
           }
           Write-Host "SSISDeploy.exe verified at C:\SSISDevOpsTools"
 
-      - name: Deploy Client.dtsx to SSIS Catalog
+      - name: Deploy All Packages to SSIS Catalog
         run: |
-          $sourcePath = "C:\actions-runner\_work\sc_ErnestMudau_2025\sc_ErnestMudau_2025\HandsOnProjects\Timesheet\TimesheetMigrationProject\Client.dtsx"
+          $packagePath = "C:\actions-runner\_work\sc_ErnestMudau_2025\sc_ErnestMudau_2025\HandsOnProjects\Timesheet\TimesheetMigrationProject"
           $catalogServer = $env:CATALOG_SERVER
           $folderName = "TimesheetFolder"
-          $destination = "catalog;/SSISDB/$folderName/Client;$catalogServer"
-          $command = """C:\SSISDevOpsTools\SSISDeploy.exe"" -source $sourcePath -destination ""$destination"" -authType winAuth"
-          Write-Host "Executing: $command"
-          cmd.exe /c $command
-          if ($LASTEXITCODE -ne 0) {
-            Write-Error "Failed to deploy Client.dtsx. Exit code: $LASTEXITCODE"
-            exit 1
-          } else {
-            Write-Host "Successfully deployed Client.dtsx"
+          Write-Host "Deploying packages from $packagePath to \SSISDB\$folderName on $catalogServer"
+          Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
+            $fullPath = $_.FullName
+            $package = $_.BaseName
+            $destination = "catalog;/SSISDB/$folderName/$package;$catalogServer"
+            $command = """C:\SSISDevOpsTools\SSISDeploy.exe"" -source ""$fullPath"" -destination ""$destination"" -authType winAuth"
+            Write-Host "Executing: $command"
+            cmd.exe /c $command
+            if ($LASTEXITCODE -ne 0) {
+              Write-Error "Failed to deploy package $package. Exit code: $LASTEXITCODE"
+              exit 1
+            } else {
+              Write-Host "Successfully deployed package $package"
+            }
           }
         env:
           CATALOG_SERVER: ${{ secrets.TimesheetDBSSIS_CATALOG_SERVER }}
