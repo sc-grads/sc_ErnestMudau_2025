@@ -11,11 +11,11 @@ obj/
 
 
 # Ignore deployment packages
-*.ispac
+
 *.zip
 *.deploy*
 *.database
-*.dtproj
+
 
 # Ignore user-specific project settings
 *.dtproj.user
