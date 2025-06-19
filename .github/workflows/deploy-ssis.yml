@@ -18,16 +18,13 @@ jobs:
           $packagePath = "HandsOnProjects/Timesheet/TimesheetMigrationProject"
           $folderName = "TimesheetFolder"
           $catalogServer = $env:CATALOG_SERVER
-          $sqlUser = $env:SQL_USER
-          $sqlPassword = $env:SQL_PASSWORD
           Write-Host "Deploying packages from $packagePath to \SSISDB\$folderName on $catalogServer"
-          Write-Host "Using User: $sqlUser, Password: [masked for security]"
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
             $fullPath = $_.FullName
             $package = $_.BaseName
-            $deployCommand = "dtutil /FILE `"$fullPath`" /DestServer `"$catalogServer`" /COPY SQL;`"\SSISDB\$folderName\$package`" /User `"$sqlUser`" /Password `"$sqlPassword`""
+            $deployCommand = "C:\Program Files\Microsoft SQL Server\140\DTS\Binn\dtutil.exe /FILE `"$fullPath`" /DestServer `"$catalogServer`" /COPY SQL;\"\\SSISDB\\$folderName\\$package\""
             Write-Host "Executing: $deployCommand"
-            Invoke-Expression $deployCommand
+            cmd.exe /c $deployCommand
             if ($LASTEXITCODE -ne 0) {
               Write-Error "Failed to deploy package $package. Exit code: $LASTEXITCODE"
               exit 1
@@ -37,5 +34,3 @@ jobs:
           }
         env:
           CATALOG_SERVER: ${{ secrets.TimesheetDBSSIS_CATALOG_SERVER }}
-          SQL_USER: ${{ secrets.TimesheetDB_SQL_USER }}
-          SQL_PASSWORD: ${{ secrets.TimesheetDB_SQL_PASSWORD }}
