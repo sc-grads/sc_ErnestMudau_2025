@@ -17,6 +17,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Debug Workspace
+        run: |
+          echo "Workspace: ${{ github.workspace }}"
+          dir "${{ github.workspace }}"
+        shell: powershell
+
       - name: Build SSIS Project
         run: |
           & "C:\SSISDevOpsTools\SSISBuild.exe" `
