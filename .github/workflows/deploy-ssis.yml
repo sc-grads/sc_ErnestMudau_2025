@@ -1,85 +1,121 @@
-name: SSIS Deployment to SSISDB Catalog
+name: Deploy SSIS Packages to SQL Server
 
 on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   deploy-ssis:
     runs-on: self-hosted
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Verify SSISDB Access
+      - name: Debug workspace and user
+        shell: powershell
+        run: |
+          Write-Output "Workspace path: ${{ github.workspace }}"
+          Write-Output "Current user: $env:USERDOMAIN\$env:USERNAME"
+          Get-ChildItem -Path "${{ github.workspace }}" -Recurse
+
+      - name: Verify SSIS project file exists
+        shell: powershell
+        run: |
+          $projectPath = "${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject"
+          if (-not (Test-Path "$projectPath\TimesheetMigrationProject.dtproj")) {
+            Write-Error "SSIS project file not found at: $projectPath"
+            exit 1
+          }
+          Write-Output "Found SSIS project file at $projectPath"
+
+      - name: Verify SSIS build tools exist
+        shell: powershell
+        run: |
+          if (-not (Test-Path "C:\SSISDevOpsTools\SSISBuild.exe")) {
+            Write-Error "SSISBuild.exe not found in C:\SSISDevOpsTools"
+            exit 1
+          }
+          if (-not (Test-Path "C:\Program Files\Microsoft SQL Server\160\DTS\Binn\ISDeploymentWizard.exe")) {
+            Write-Error "ISDeploymentWizard.exe not found"
+            exit 1
+          }
+          if (-not (Get-Command sqlcmd.exe -ErrorAction SilentlyContinue)) {
+            Write-Error "sqlcmd.exe not found"
+            exit 1
+          }
+          Write-Output "All required tools found."
+
+      - name: Build SSIS Project
+        shell: powershell
+        run: |
+          $projectFile = "${{ github.workspace }}\HandsOnProjects\Timesheet\TimesheetMigrationProject\TimesheetMigrationProject.dtproj"
+          $outputDir = "${{ runner.temp }}\SSISOutput"
+          $config = "Development"
+          if (-not (Test-Path $outputDir)) {
+            New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
+          }
+          & "C:\SSISDevOpsTools\SSISBuild.exe" -p:"$projectFile" -o:"$outputDir" -c:"$config" -l:DIAG
+          $ispacPath = Join-Path $outputDir "$config\TimesheetMigrationProject.ispac"
+          if (-not (Test-Path $ispacPath)) {
+            Write-Error "Build failed: .ispac file not found at $ispacPath"
+            exit 1
+          }
+          Write-Output "Build succeeded: $ispacPath"
+
+      - name: Create SSIS Catalog Folder if missing
         shell: powershell
         run: |
           $sqlServer = "LAPTOP-7LSAQSR0"
-          try {
-              $result = sqlcmd -S $sqlServer -d "SSISDB" -Q "SELECT 1 FROM catalog.folders" -E -h -1 -W
-              if ($LASTEXITCODE -ne 0) {
-                  throw "Failed to query SSISDB catalog"
-              }
-              Write-Host "Successfully connected to SSISDB catalog using Windows Authentication"
-          } catch {
-              Write-Error "SSISDB catalog access failed: $_"
-              Write-Host "Troubleshooting Steps:"
-              Write-Host "1. Verify the runner service is running as WORKGROUP\ErnestMudau"
-              Write-Host "2. Confirm ErnestMudau has ssis_admin role (already sysadmin)"
-              Write-Host "3. Restart the runner service if changes were made"
-              exit 1
+          $catalogDB = "SSISDB"
+          $folderName = "TimesheetFolder"
+
+          $folderExists = sqlcmd -S $sqlServer -d $catalogDB -Q "SELECT 1 FROM catalog.folders WHERE name = '$folderName'" -E -h -1
+          if ([string]::IsNullOrEmpty($folderExists)) {
+            Write-Output "Folder '$folderName' does not exist. Creating..."
+            sqlcmd -S $sqlServer -d $catalogDB -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -E
+          } else {
+            Write-Output "Folder '$folderName' exists."
           }
 
-      - name: Ensure Timesheet Folder Exists
+      - name: Deploy SSIS Project via stored procedure
         shell: powershell
         run: |
+          $ispacPath = "${{ runner.temp }}\SSISOutput\Development\TimesheetMigrationProject.ispac"
           $sqlServer = "LAPTOP-7LSAQSR0"
+          $catalogDB = "SSISDB"
           $folderName = "TimesheetFolder"
-          try {
-              $exists = sqlcmd -S $sqlServer -d "SSISDB" -Q "IF EXISTS (SELECT 1 FROM catalog.folders WHERE name = '$folderName') SELECT 1 ELSE SELECT 0" -E -h -1 -W
-              if ($exists -eq "0") {
-                  Write-Host "Creating folder '$folderName' in SSISDB catalog..."
-                  sqlcmd -S $sqlServer -d "SSISDB" -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -E
-                  Write-Host "Folder created successfully in SSISDB catalog"
-              } else {
-                  Write-Host "Folder '$folderName' already exists in SSISDB catalog"
-              }
-          } catch {
-              Write-Error "Failed to create folder in SSISDB catalog: $_"
-              exit 1
-          }
+          $projectName = "TimesheetMigrationProject"
 
-      - name: Deploy Packages to SSISDB
-        shell: powershell
-        run: |
-          $packagePath = "$env:GITHUB_WORKSPACE\HandsOnProjects\Timesheet\TimesheetMigrationProject"
-          $catalogServer = "LAPTOP-7LSAQSR0"
-          $folderName = "TimesheetFolder"
-          $ssisDeployExe = "C:\SSISDevOpsTools\SSISDeploy.exe"
-          
-          if (-not (Test-Path $packagePath)) {
-              Write-Error "SSIS project path not found: $packagePath"
-              exit 1
+          Add-Type -AssemblyName System.Data
+          Write-Output "Reading .ispac file from $ispacPath"
+          $projectBytes = [System.IO.File]::ReadAllBytes($ispacPath)
+
+          $connString = "Data Source=$sqlServer;Initial Catalog=$catalogDB;Integrated Security=SSPI;"
+          $conn = New-Object System.Data.SqlClient.SqlConnection $connString
+          $conn.Open()
+
+          $cmd = $conn.CreateCommand()
+          $cmd.CommandText = "[catalog].[deploy_project]"
+          $cmd.CommandType = [System.Data.CommandType]::StoredProcedure
+
+          $p1 = $cmd.Parameters.Add("@folder_name", [System.Data.SqlDbType]::NVarChar, 128)
+          $p1.Value = $folderName
+
+          $p2 = $cmd.Parameters.Add("@project_name", [System.Data.SqlDbType]::NVarChar, 128)
+          $p2.Value = $projectName
+
+          $p3 = $cmd.Parameters.Add("@project_stream", [System.Data.SqlDbType]::VarBinary, -1)
+          $p3.Value = $projectBytes
+
+          try {
+            Write-Output "Deploying project..."
+            $cmd.ExecuteNonQuery() | Out-Null
+            Write-Output "Deployment succeeded!"
           }
-          
-          if (-not (Test-Path $ssisDeployExe)) {
-              Write-Error "SSISDeploy.exe not found at: $ssisDeployExe"
-              exit 1
+          catch {
+            Write-Error "Deployment failed: $_"
+            exit 1
           }
-          
-          Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
-              $packageName = $_.BaseName
-              Write-Host "Deploying package '$packageName' to SSISDB catalog..."
-              try {
-                  & "$ssisDeployExe" -s "$($_.FullName)" -d "catalog;/SSISDB/$folderName/$packageName" -at "WIN" -server "$catalogServer"
-                  if ($LASTEXITCODE -ne 0) {
-                      Write-Error "Failed to deploy package '$packageName' to SSISDB catalog"
-                      exit $LASTEXITCODE
-                  }
-                  Write-Host "Successfully deployed package '$packageName' to SSISDB catalog"
-              } catch {
-                  Write-Error "Error deploying package '$packageName': $_"
-                  exit 1
-              }
+          finally {
+            $conn.Close()
           }
