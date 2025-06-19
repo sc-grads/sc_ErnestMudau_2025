@@ -15,22 +15,13 @@ jobs:
 
       - name: Set Up SSIS DevOps Tools
         run: |
-          # Assume tools are extracted to C:\SSISDevOpsTools
           $env:Path += ";C:\SSISDevOpsTools"
-          Write-Host "SSIS DevOps Tools added to PATH"
-
-      - name: Build SSIS Project (if .dtproj exists)
-        run: |
-          $projectPath = "HandsOnProjects/Timesheet/TimesheetMigrationProject/YourProject.dtproj"
-          if (Test-Path $projectPath) {
-            SSISBuild.exe -project $projectPath -output ".\output\SSISBuild" -quiet
-            if ($LASTEXITCODE -ne 0) {
-              Write-Error "SSIS Build failed"
-              exit 1
-            }
-          } else {
-            Write-Host "No .dtproj found, skipping build"
+          Write-Host "SSIS DevOps Tools path added: $env:Path"
+          if (-not (Test-Path "C:\SSISDevOpsTools\SSISDeploy.exe")) {
+            Write-Error "SSISDeploy.exe not found in C:\SSISDevOpsTools"
+            exit 1
           }
+          Write-Host "SSIS DevOps Tools verified"
 
       - name: Deploy to SSIS Catalog
         run: |
@@ -41,7 +32,9 @@ jobs:
           Get-ChildItem -Path $packagePath -Filter *.dtsx | ForEach-Object {
             $fullPath = $_.FullName
             $package = $_.BaseName
-            SSISDeploy.exe -source $fullPath -destination "catalog;/SSISDB/$folderName/$package;$catalogServer" -authType winAuth
+            $destination = "catalog;/SSISDB/$folderName/$package;$catalogServer"
+            Write-Host "Deploying $fullPath to $destination"
+            SSISDeploy.exe -source "$fullPath" -destination "$destination" -authType winAuth
             if ($LASTEXITCODE -ne 0) {
               Write-Error "Failed to deploy package $package. Exit code: $LASTEXITCODE"
               exit 1
