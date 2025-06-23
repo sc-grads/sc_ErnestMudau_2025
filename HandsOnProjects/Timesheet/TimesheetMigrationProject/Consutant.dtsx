@@ -1,25 +1,25 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="6/4/2025 9:22:58 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="LAPTOP-7LSAQSR0"
   DTS:CreatorName="LAPTOP-7LSAQSR0\ErnestMudau"
-  DTS:DTSID="{0A2CEC5D-972D-42FE-B153-06F96E16FD82}"
+  DTS:DTSID="{67091428-E809-4463-AFE4-BD62B05646C3}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="7177"
   DTS:ObjectName="Consutant"
   DTS:PackageType="5"
   DTS:VersionBuild="24"
-  DTS:VersionGUID="{101F0681-4782-47F2-99DF-E08961651A03}">
+  DTS:VersionGUID="{397BB694-B9E6-4E04-B422-D67773330CB3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{94CF432D-FC87-4F91-AE30-AC3514B016E4}"
+      DTS:DTSID="{E456159D-8482-4F4B-8231-9D5CF199719E}"
       DTS:ObjectName="Excel Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -31,7 +31,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{E45B7A6F-23E7-455A-85EC-DB315CA33260}"
+      DTS:DTSID="{A3FA01FD-FC92-436E-9345-8DE265FF887F}"
       DTS:ObjectName="Excel Connection Manager 1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -43,7 +43,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager 2]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{F9FF766F-79C9-4F53-A015-67791895EBB4}"
+      DTS:DTSID="{BDD455DE-68B0-4D57-B374-E012669D6656}"
       DTS:ObjectName="Excel Connection Manager 2">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -55,7 +55,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager 3]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{313BA104-E631-4C42-9FD2-FFAD79EAAFD2}"
+      DTS:DTSID="{A315AAB5-A544-4B0E-9D9F-59F520543062}"
       DTS:ObjectName="Excel Connection Manager 3">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -67,13 +67,13 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{D5735C72-2E8B-4BEA-854C-B4C9E1968376}"
+      DTS:DTSID="{F081F376-8CF7-4F18-BB0E-42E2D48F7B35}"
       DTS:ObjectName="LAPTOP-7LSAQSR0.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{D5735C72-2E8B-4BEA-854C-B4C9E1968376}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{F081F376-8CF7-4F18-BB0E-42E2D48F7B35}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -83,7 +83,7 @@
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{B2C2243F-C9D5-4293-97D6-DB65D81F60C2}"
+      DTS:DTSID="{2AE71103-0C23-4A1D-B534-CC9819476FAE}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task"
