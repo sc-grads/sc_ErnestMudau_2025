@@ -16,7 +16,7 @@ jobs:
         run: |
           choco install mssql-tools -y
           # Ensure sqlcmd is in PATH
-          echo "$env:PATH += ';C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn'" | Out-String | Invoke-Expression
+          echo "$env:PATH += HandsOnProjects/Timesheet/sql scripts/CreateClientJob.sql" | Out-String | Invoke-Expression
 
       - name: Deploy SQL Agent Job
         env:
