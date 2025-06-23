@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="6/11/2025 8:37:56 AM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="Auditlog"
   DTS:PackageType="5"
-  DTS:VersionBuild="23"
-  DTS:VersionGUID="{8BA9C0F7-BCA9-4C51-A450-4BE27E09EA3D}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{CD264FC3-A9D7-4BC0-A314-3B3005CB28A9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -39,27 +39,6 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:PackageParameters>
-    <DTS:PackageParameter
-      DTS:CreationName=""
-      DTS:DataType="8"
-      DTS:DTSID="{AEE4AAF8-3FA8-4710-8C07-F9C3433AD9BE}"
-      DTS:ObjectName="Parameter">
-      <DTS:Property
-        DTS:DataType="8"
-        DTS:Name="ParameterValue"
-        xml:space="preserve"></DTS:Property>
-    </DTS:PackageParameter>
-    <DTS:PackageParameter
-      DTS:CreationName=""
-      DTS:DataType="3"
-      DTS:DTSID="{3AA0670E-882A-4F64-A5C8-AAEF7BE8DD36}"
-      DTS:ObjectName="Param_ConsultantID">
-      <DTS:Property
-        DTS:DataType="3"
-        DTS:Name="ParameterValue">0</DTS:Property>
-    </DTS:PackageParameter>
-  </DTS:PackageParameters>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -69,15 +48,6 @@
       DTS:ObjectName="AuditConnectionStrin">
       <DTS:VariableValue
         DTS:DataType="8">Data Source=YourServer;Initial Catalog=TimesheetDB;Integrated Security=SSPI;</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{FBEA214A-08E2-407C-988A-0118D17B967A}"
-      DTS:IncludeInDebugDump="6789"
-      DTS:Namespace="User"
-      DTS:ObjectName="ConsultantID">
-      <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -101,8 +71,6 @@
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{80EFC207-9F09-494D-A728-D2549D1AD531}"
-      DTS:EvaluateAsExpression="True"
-      DTS:Expression="@[$Package::Parameter]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="TimesheetFileName">
@@ -155,132 +123,6 @@
             <pipeline
               version="1">
               <components>
-                <component
-                  refId="Package\Foreach Loop Container\Data Flow Task\Derived Column"
-                  componentClassID="Microsoft.DerivedColumn"
-                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Derived Column"
-                  usesDispositions="true">
-                  <inputs>
-                    <input
-                      refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
-                      description="Input to the Derived Column Transformation"
-                      name="Derived Column Input">
-                      <inputColumns>
-                        <inputColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Details]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
-                          cachedName="Details"
-                          lineageId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Details]" />
-                      </inputColumns>
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
-                      description="Default Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      name="Derived Column Output"
-                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 1]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          length="255"
-                          lineageId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 1]"
-                          name="Derived Column 1"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">[RIGHT](#{Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Details]},[LEN](#{Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Details]}) - [FINDSTRING](#{Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Details]},"\\",[LEN](#{Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Details]}) - [LEN]([REPLACE](#{Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Details]},"\\",""))))</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">RIGHT(Details,LEN(Details) - FINDSTRING(Details,"\\",LEN(Details) - LEN(REPLACE(Details,"\\",""))))</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 2]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 2]"
-                          name="Derived Column 2"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[$Package::Parameter]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[$Package::Parameter]</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 3]"
-                          dataType="i4"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 3]"
-                          name="Derived Column 3"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[$Package::Param_ConsultantID]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[$Package::Param_ConsultantID]</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
-                      description="Error Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Derived Column Error Output"
-                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
                 <component
                   refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination"
                   componentClassID="Microsoft.OLEDBDestination"
@@ -387,18 +229,12 @@
                           externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Details]"
                           lineageId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Details]" />
                         <inputColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Derived Column 1]"
+                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TimesheetFileName]"
                           cachedDataType="wstr"
                           cachedLength="255"
-                          cachedName="Derived Column 1"
+                          cachedName="TimesheetFileName"
                           externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TimesheetFileName]"
-                          lineageId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 1]" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Derived Column 3]"
-                          cachedDataType="i4"
-                          cachedName="Derived Column 3"
-                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ConsultantID]"
-                          lineageId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Derived Column 3]" />
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimesheetFileName]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -434,10 +270,6 @@
                           dataType="wstr"
                           length="255"
                           name="TimesheetFileName" />
-                        <externalMetadataColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ConsultantID]"
-                          dataType="i4"
-                          name="ConsultantID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -491,7 +323,7 @@
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT LogID, OperationType, TableName, RecordID, ConsultantID, ChangeTimestamp, Details, TimesheetFileName
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT LogID, OperationType, TableName, RecordID, ChangeTimestamp, Details, TimesheetFileName
 FROM AuditLog
 WHERE TimesheetFileName = ? AND ChangeTimestamp &gt;= DATEADD(hour, -1, GETDATE())</property>
                     <property
@@ -596,15 +428,6 @@ WHERE TimesheetFileName = ? AND ChangeTimestamp &gt;= DATEADD(hour, -1, GETDATE(
                           lineageId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimesheetFileName]"
                           name="TimesheetFileName"
                           truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConsultantID]"
-                          dataType="i4"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ConsultantID]"
-                          lineageId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConsultantID]"
-                          name="ConsultantID"
-                          truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -640,10 +463,6 @@ WHERE TimesheetFileName = ? AND ChangeTimestamp &gt;= DATEADD(hour, -1, GETDATE(
                           dataType="wstr"
                           length="255"
                           name="TimesheetFileName" />
-                        <externalMetadataColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ConsultantID]"
-                          dataType="i4"
-                          name="ConsultantID" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -673,11 +492,6 @@ WHERE TimesheetFileName = ? AND ChangeTimestamp &gt;= DATEADD(hour, -1, GETDATE(
                           dataType="i4"
                           lineageId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RecordID]"
                           name="RecordID" />
-                        <outputColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ConsultantID]"
-                          dataType="i4"
-                          lineageId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ConsultantID]"
-                          name="ConsultantID" />
                         <outputColumn
                           refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ChangeTimestamp]"
                           dataType="dbTimeStamp"
@@ -715,13 +529,8 @@ WHERE TimesheetFileName = ? AND ChangeTimestamp &gt;= DATEADD(hour, -1, GETDATE(
               </components>
               <paths>
                 <path
-                  refId="Package\Foreach Loop Container\Data Flow Task.Paths[Derived Column Output]"
-                  endId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
-                  name="Derived Column Output"
-                  startId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
-                <path
                   refId="Package\Foreach Loop Container\Data Flow Task.Paths[OLE DB Source Output]"
-                  endId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  endId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
                   name="OLE DB Source Output"
                   startId="Package\Foreach Loop Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
               </paths>
@@ -847,79 +656,41 @@ WHERE TimesheetFileName = ? AND ChangeTimestamp &gt;= DATEADD(hour, -1, GETDATE(
     design-time-name="Package\Foreach Loop Container\Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination"
-          TopLeft="139.166659062936,262.599998173912" />
-        <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\Foreach Loop Container\Data Flow Task\Derived Column"
-          TopLeft="251.666652916207,168.733332616157" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="152,41.6"
           Id="Package\Foreach Loop Container\Data Flow Task\OLE DB Source"
           TopLeft="82.4999954923989,79.7333327788777" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination"
+          TopLeft="139.166659062936,262.599998173912" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\Data Flow Task.Paths[OLE DB Source Output]"
           TopLeft="158.499995492399,121.333332778878">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="169.566657423808,47.3999998372793"
+              EndConnector="66.2666635705367,141.266665395035"
               Start="0,0"
-              End="169.566657423808,39.8999998372793">
+              End="66.2666635705367,133.766665395035">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.6999999186396" />
+                    End="0,66.6333326975173" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.6999999186396"
-                    Point2="0,23.6999999186396"
-                    Point3="4,23.6999999186396" />
+                    Point1="0,66.6333326975173"
+                    Point2="0,70.6333326975173"
+                    Point3="4,70.6333326975173" />
                   <mssgle:LineSegment
-                    End="165.566657423808,23.6999999186396" />
+                    End="62.2666635705367,70.6333326975173" />
                   <mssgle:CubicBezierSegment
-                    Point1="165.566657423808,23.6999999186396"
-                    Point2="169.566657423808,23.6999999186396"
-                    Point3="169.566657423808,27.6999999186396" />
+                    Point1="62.2666635705367,70.6333326975173"
+                    Point2="66.2666635705367,70.6333326975173"
+                    Point3="66.2666635705367,74.6333326975173" />
                   <mssgle:LineSegment
-                    End="169.566657423808,39.8999998372793" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="328.066652916207,210.333332616157">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-103.299993853271,52.266665557755"
-              Start="0,0"
-              End="-103.299993853271,44.766665557755">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.1333327788775" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.1333327788775"
-                    Point2="0,26.1333327788775"
-                    Point3="-4,26.1333327788775" />
-                  <mssgle:LineSegment
-                    End="-99.2999938532709,26.1333327788775" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-99.2999938532709,26.1333327788775"
-                    Point2="-103.299993853271,26.1333327788775"
-                    Point3="-103.299993853271,30.1333327788775" />
-                  <mssgle:LineSegment
-                    End="-103.299993853271,44.766665557755" />
+                    End="66.2666635705367,133.766665395035" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -932,7 +703,7 @@ WHERE TimesheetFileName = ? AND ChangeTimestamp &gt;= DATEADD(hour, -1, GETDATE(
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination">
+    design-time-name="Package\Foreach Loop Container\Data Flow Task\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -945,7 +716,7 @@ WHERE TimesheetFileName = ? AND ChangeTimestamp &gt;= DATEADD(hour, -1, GETDATE(
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container\Data Flow Task\OLE DB Source">
+    design-time-name="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

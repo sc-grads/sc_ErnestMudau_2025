@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="6/10/2025 11:22:42 AM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="Leave"
   DTS:PackageType="5"
-  DTS:VersionBuild="109"
-  DTS:VersionGUID="{37FBE84C-4189-49A1-B33E-44CF32FEE12D}">
+  DTS:VersionBuild="108"
+  DTS:VersionGUID="{74CAD6A9-B62B-45D3-BEB8-1AA92C399D85}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -187,13 +187,12 @@
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{EAA75C4E-8E4C-48C8-86AA-E9FF18FE12CD}"
-      DTS:EvaluateAsExpression="True"
-      DTS:Expression="RIGHT(@[User::FilePath], FINDSTRING(REVERSE(@[User::FilePath]), &quot;\\&quot;, 1) - 1)"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="Filename">
       <DTS:VariableValue
-        DTS:DataType="8">Ronewa Ernest Mudau may Final week (1).xlsx"</DTS:VariableValue>
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -230,16 +229,6 @@
       DTS:ObjectName="tablename">
       <DTS:VariableValue
         DTS:DataType="8">"Leave"</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{B9B08FC4-D0A4-4A9F-AEBC-A9E953E59B1E}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="Variable">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -565,13 +554,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[RIGHT](@[User::FilePath],[FINDSTRING]([REVERSE](@[User::FilePath]),"\\",1) - 1)</property>
+                              name="Expression">[RIGHT](@[User::FilePath],[LEN](@[User::FilePath]) - [FINDSTRING]([REVERSE](@[User::FilePath]),"\\",1) + 1)</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">RIGHT(@[User::FilePath],FINDSTRING(REVERSE(@[User::FilePath]),"\\",1) - 1)</property>
+                              name="FriendlyExpression">RIGHT(@[User::FilePath],LEN(@[User::FilePath]) - FINDSTRING(REVERSE(@[User::FilePath]),"\\",1) + 1)</property>
                           </properties>
                         </outputColumn>
                       </outputColumns>
@@ -1743,35 +1732,14 @@ where [refTable].[ConsultantName] = ?</property>
               Language="CSharp"
               ReadOnlyVariables="User::FilePath">
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_8956f23f0e3147dd9a51887dfa4e6e86")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP")]
-[assembly: AssemblyProduct("ST_8956f23f0e3147dd9a51887dfa4e6e86")]
-[assembly: AssemblyCopyright("Copyright @ HP 2025")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1891,6 +1859,35 @@ using System.Runtime.CompilerServices;
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_8956f23f0e3147dd9a51887dfa4e6e86.Properties.Settings.get_Default():ST_8956f23f0e3147dd9a51887dfa4e6e86.Properties.Sett" +
+    "ings")]
+
+namespace ST_8956f23f0e3147dd9a51887dfa4e6e86.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
               <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
@@ -2026,6 +2023,26 @@ namespace ST_8956f23f0e3147dd9a51887dfa4e6e86
 	}
 }]]></ProjectItem>
               <ProjectItem
+                Name="Project"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>ST_8956f23f0e3147dd9a51887dfa4e6e86</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>ST_8956f23f0e3147dd9a51887dfa4e6e86</msb:DisplayName>
+    <msb:ProjectId>{371BD565-3FA8-470E-84C8-0A193195D085}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_8956f23f0e3147dd9a51887dfa4e6e86.csproj" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="ScriptMain.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+              <ProjectItem
                 Name="ST_8956f23f0e3147dd9a51887dfa4e6e86.csproj"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -2112,63 +2129,35 @@ namespace ST_8956f23f0e3147dd9a51887dfa4e6e86
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
-                Name="Project"
-                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-  <msb:PropertyGroup>
-    <msb:CodeName>ST_8956f23f0e3147dd9a51887dfa4e6e86</msb:CodeName>
-    <msb:Language>msBuild</msb:Language>
-    <msb:DisplayName>ST_8956f23f0e3147dd9a51887dfa4e6e86</msb:DisplayName>
-    <msb:ProjectId>{371BD565-3FA8-470E-84C8-0A193195D085}</msb:ProjectId>
-  </msb:PropertyGroup>
-  <msb:ItemGroup>
-    <msb:Project Include="ST_8956f23f0e3147dd9a51887dfa4e6e86.csproj" />
-    <msb:File Include="Properties\Settings.Designer.cs" />
-    <msb:File Include="Properties\Settings.settings" />
-    <msb:File Include="Properties\AssemblyInfo.cs" />
-    <msb:File Include="Properties\Resources.resx" />
-    <msb:File Include="Properties\Resources.Designer.cs" />
-    <msb:File Include="ScriptMain.cs" />
-  </msb:ItemGroup>
-</c:Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_8956f23f0e3147dd9a51887dfa4e6e86")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("HP")]
+[assembly: AssemblyProduct("ST_8956f23f0e3147dd9a51887dfa4e6e86")]
+[assembly: AssemblyCopyright("Copyright @ HP 2025")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_8956f23f0e3147dd9a51887dfa4e6e86.Properties.Settings.get_Default():ST_8956f23f0e3147dd9a51887dfa4e6e86.Properties.Sett" +
-    "ings")]
-
-namespace ST_8956f23f0e3147dd9a51887dfa4e6e86.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -2473,59 +2462,17 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\LoopErnestTimesheets\Data Flow Task\Excel Source"
           TopLeft="174.999990438422,86.6666660639975" />
         <NodeLayout
-          Size="161.6,41.6"
-          Id="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1"
-          TopLeft="317.708315974516,519.999996383985" />
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination"
-          TopLeft="221.933324136006,382.199997342229" />
-        <NodeLayout
           Size="112.8,41.6"
           Id="Package\LoopErnestTimesheets\Data Flow Task\Lookup"
           TopLeft="219.166654691928,300.733331242071" />
-        <NodeLayout
-          Size="180,41.6"
-          Id="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1"
-          TopLeft="578.124968412644,479.916663329386" />
         <NodeLayout
           Size="153.6,41.6"
           Id="Package\LoopErnestTimesheets\Data Flow Task\Conditional Split"
           TopLeft="207.833322633472,188.933332019515" />
         <NodeLayout
-          Size="120.8,41.6"
-          Id="Package\LoopErnestTimesheets\Data Flow Task\Lookup 1"
-          TopLeft="334.374981730556,445.999997197588" />
-        <EdgeLayout
-          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[OLE DB Destination Error Output]"
-          TopLeft="393.133324136006,402.999997342229">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="1.64165759455017,42.9999998553594"
-              Start="0,0"
-              End="1.64165759455017,35.4999998553594">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-2.35834240544983,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-2.35834240544983,0"
-                    Point2="1.64165759455017,0"
-                    Point3="1.64165759455017,4" />
-                  <mssgle:LineSegment
-                    End="1.64165759455017,35.4999998553594" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-71.5672486554498,-17.43359375,146.4178125,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="171.2,41.6"
+          Id="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination"
+          TopLeft="221.933324136006,382.199997342229" />
         <EdgeLayout
           Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[NotNull]"
           TopLeft="361.433322633472,209.733332019515">
@@ -2553,30 +2500,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="78.611200830109,-15.7490234375,32.8442578125,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Lookup Match Output1]"
-          TopLeft="396.641648852536,487.599997197588">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,32.3999991863965"
-              Start="0,0"
-              End="0,24.8999991863965">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.8999991863965" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,6.64531209319827,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2651,40 +2574,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Derived Column Output1]"
-          TopLeft="479.308315974516,540.799996383985">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="98.816652438128,-40.0833330545987"
-              Start="0,0"
-              End="91.316652438128,-40.0833330545987">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="45.408326219064,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="45.408326219064,0"
-                    Point2="49.408326219064,0"
-                    Point3="49.408326219064,-4" />
-                  <mssgle:LineSegment
-                    End="49.408326219064,-36.0833330545987" />
-                  <mssgle:CubicBezierSegment
-                    Point1="49.408326219064,-36.0833330545987"
-                    Point2="49.408326219064,-40.0833330545987"
-                    Point3="53.408326219064,-40.0833330545987" />
-                  <mssgle:LineSegment
-                    End="91.316652438128,-40.0833330545987" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Derived Column Output]"
           TopLeft="456.466652369831,282.533331657913">
           <EdgeLayout.Curve>
@@ -2740,6 +2629,106 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1"
+          TopLeft="317.708315974516,519.999996383985" />
+        <NodeLayout
+          Size="180,41.6"
+          Id="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1"
+          TopLeft="578.124968412644,479.916663329386" />
+        <EdgeLayout
+          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Derived Column Output1]"
+          TopLeft="479.308315974516,540.799996383985">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="98.816652438128,-40.0833330545987"
+              Start="0,0"
+              End="91.316652438128,-40.0833330545987">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="45.408326219064,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="45.408326219064,0"
+                    Point2="49.408326219064,0"
+                    Point3="49.408326219064,-4" />
+                  <mssgle:LineSegment
+                    End="49.408326219064,-36.0833330545987" />
+                  <mssgle:CubicBezierSegment
+                    Point1="49.408326219064,-36.0833330545987"
+                    Point2="49.408326219064,-40.0833330545987"
+                    Point3="53.408326219064,-40.0833330545987" />
+                  <mssgle:LineSegment
+                    End="91.316652438128,-40.0833330545987" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120.8,41.6"
+          Id="Package\LoopErnestTimesheets\Data Flow Task\Lookup 1"
+          TopLeft="334.374981730556,445.999997197588" />
+        <EdgeLayout
+          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[OLE DB Destination Error Output]"
+          TopLeft="393.133324136006,402.999997342229">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.64165759455017,42.9999998553594"
+              Start="0,0"
+              End="1.64165759455017,35.4999998553594">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-2.35834240544983,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-2.35834240544983,0"
+                    Point2="1.64165759455017,0"
+                    Point3="1.64165759455017,4" />
+                  <mssgle:LineSegment
+                    End="1.64165759455017,35.4999998553594" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-71.5672486554498,-17.43359375,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Lookup Match Output1]"
+          TopLeft="396.641648852536,487.599997197588">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.3999991863965"
+              Start="0,0"
+              End="0,24.8999991863965">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.8999991863965" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,6.64531209319827,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -2757,25 +2746,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\LoopErnestTimesheets\Data Flow Task\Lookup">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2785,10 +2761,23 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -2811,7 +2800,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2821,7 +2810,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
