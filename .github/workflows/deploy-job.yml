@@ -21,10 +21,9 @@ jobs:
 
           while ($attempt -le $maxAttempts -and -not $success) {
             try {
-              Write-Host "Attempt $attempt of $maxAttempts: Downloading sqlcmd.zip from https://aka.ms/download-sqlcmd"
+              Write-Host "Attempt $attempt of $maxAttempts - Downloading sqlcmd.zip from https://aka.ms/download-sqlcmd"
               Invoke-WebRequest -Uri "https://aka.ms/download-sqlcmd" -OutFile "sqlcmd.zip" -ErrorAction Stop
               Write-Host "Download successful. Validating file..."
-              # Check if the file is a valid ZIP
               if (Test-Path "sqlcmd.zip" -PathType Leaf) {
                 $shell = New-Object -ComObject Shell.Application
                 $zip = $shell.NameSpace((Get-Item "sqlcmd.zip").FullName)
