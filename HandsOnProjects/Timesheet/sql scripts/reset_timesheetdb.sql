@@ -1,4 +1,4 @@
-USE master;
+SE master;
 GO
 
 -- Drop TimesheetDB if it exists
@@ -89,14 +89,15 @@ CREATE NONCLUSTERED INDEX IX_Timesheets_ConsultantDateFile ON Timesheet (Consult
 CREATE NONCLUSTERED INDEX IX_Clients_ClientName ON Client (ClientName);
 CREATE NONCLUSTERED INDEX IX_AuditLog_TimestampFile ON AuditLog (ChangeTimestamp, TimesheetFileName);
 
+go
 -- Add Constraints
 ALTER TABLE Leave
 ADD CONSTRAINT UQ_Leave_ConsultantStartDate UNIQUE (ConsultantID, StartDate);
-
+go
 ALTER TABLE Leave
 ADD CONSTRAINT DF_Leave_SickNote DEFAULT 'No' FOR SickNote;
 
-
+GO
 
 -- Trigger for Consultants (Modified to include ConsultantID)
 CREATE TRIGGER TR_Consultants_Audit

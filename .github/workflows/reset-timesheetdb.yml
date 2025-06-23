@@ -39,7 +39,7 @@ jobs:
           SQL_PASSWORD: ${{ secrets.TimesheetDB_SQL_PASSWORD }}
         run: |
           # Run the script and capture output
-          sqlcmd -S $env:SQL_SERVER -U $env:SQL_USER -P $env:SQL_PASSWORD -d master -i sql/reset_timesheetdb.sql -o script_output.txt
+          sqlcmd -S $env:SQL_SERVER -U $env:SQL_USER -P $env:SQL_PASSWORD -d master -i 'HandsOnProjects/Timesheet/sql scripts/reset_timesheetdb.sql' -o script_output.txt
           # Check if the script executed successfully
           if ($LASTEXITCODE -ne 0) {
             Write-Error "SQL script execution failed. Check script_output.txt for details."
