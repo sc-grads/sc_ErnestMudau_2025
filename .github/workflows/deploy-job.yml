@@ -1,0 +1,27 @@
+name: Deploy SQL Agent Job
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up SQLCMD
+        run: |
+          choco install mssql-tools -y
+          # Ensure sqlcmd is in PATH
+          echo "$env:PATH += ';C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn'" | Out-String | Invoke-Expression
+
+      - name: Deploy SQL Agent Job
+        env:
+          SQL_SERVER: ${{ secrets.TIMESHEETDB_SQL_SERVER_PUBLIC_URL }}
+          SQL_USER: ${{ secrets.TIMESHEETDB_SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.TIMESHEETDB_SQL_PASSWORD }}
+        run: |
+          sqlcmd -S "$env:SQL_SERVER" -U "$env:SQL_USER" -P "$env:SQL_PASSWORD" -d msdb -i CreateClientJob.sql
