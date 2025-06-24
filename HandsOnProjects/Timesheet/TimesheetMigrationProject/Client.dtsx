@@ -5,21 +5,21 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="LAPTOP-7LSAQSR0"
   DTS:CreatorName="LAPTOP-7LSAQSR0\ErnestMudau"
-  DTS:DTSID="{B2834443-F7A2-4257-8027-39E4D73A4DC8}"
+  DTS:DTSID="{6B2759F1-506F-481F-88AE-6E84BEBDFDA2}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="7177"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{58DF675F-CA64-45C2-81FE-47A8D03E1C7E}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{31139912-6C9A-4070-B6D5-B00ABFB5477A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{6B415C7A-C96C-46A9-A12B-87A51FE9F811}"
+      DTS:DTSID="{F87A1637-9222-4984-A8D3-ADA991271723}"
       DTS:ObjectName="Excel Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -31,13 +31,25 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{FDD3F7A1-CFE6-4CF1-AA67-7093BBCE718D}"
+      DTS:DTSID="{CC5BCC6C-4C29-4162-B294-B6F3795AAF26}"
       DTS:ObjectName="LAPTOP-7LSAQSR0.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{FDD3F7A1-CFE6-4CF1-AA67-7093BBCE718D}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{CC5BCC6C-4C29-4162-B294-B6F3795AAF26}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BB8857DF-A5E5-4892-87B1-3938FFF05D0C}"
+      DTS:ObjectName="LAPTOP-7LSAQSR0.TimesheetDB 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{BB8857DF-A5E5-4892-87B1-3938FFF05D0C}LAPTOP-7LSAQSR0.TimesheetDB 1;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -47,7 +59,7 @@
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{A3837D67-00FF-4B4A-984A-D6382D93D6DB}"
+      DTS:DTSID="{F394C0F1-8C46-45F3-851D-5484FE5785C7}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task"

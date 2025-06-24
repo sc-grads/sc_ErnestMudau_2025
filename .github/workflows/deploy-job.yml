@@ -1,0 +1,54 @@
+name: Deploy SQL Agent Jobs
+
+on:
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  deploy-sql-jobs:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Debug workspace and user
+        shell: powershell
+        run: |
+          Write-Output "Workspace path: ${{ github.workspace }}"
+          Write-Output "Current user: $env:USERDOMAIN\$env:USERNAME"
+          Get-ChildItem -Path "${{ github.workspace }}" -Recurse
+
+      - name: Verify DeployAllJobs.sql exists
+        shell: powershell
+        run: |
+          $scriptPath = "${{ github.workspace }}\HandsOnProjects\Timesheet\sql scripts\DeployAllJobs.sql"
+          if (-not (Test-Path $scriptPath)) {
+            Write-Error "DeployAllJobs.sql not found at: $scriptPath"
+            exit 1
+          }
+          Write-Output "Found DeployAllJobs.sql at $scriptPath"
+
+      - name: Verify sqlcmd exists
+        shell: powershell
+        run: |
+          if (-not (Get-Command sqlcmd.exe -ErrorAction SilentlyContinue)) {
+            Write-Error "sqlcmd.exe not found"
+            exit 1
+          }
+          Write-Output "sqlcmd.exe found."
+
+      - name: Deploy SQL Agent Jobs
+        shell: powershell
+        env:
+          SQL_SERVER: ${{ secrets.TIMESHEETDB_SQL_SERVER_PUBLIC_URL }}
+          SQL_USER: ${{ secrets.TIMESHEETDB_SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.TIMESHEETDB_SQL_PASSWORD }}
+        run: |
+          $scriptPath = "${{ github.workspace }}\HandsOnProjects\Timesheet\sql scripts\DeployAllJobs.sql"
+          if ($env:SQL_SERVER -and $env:SQL_USER -and $env:SQL_PASSWORD) {
+            Write-Output "Using provided credentials to connect to $env:SQL_SERVER"
+            sqlcmd -S "$env:SQL_SERVER" -U "$env:SQL_USER" -P "$env:SQL_PASSWORD" -d msdb -i $scriptPath
+          } else {
+            Write-Output "Using integrated security to connect to LAPTOP-7LSAQSR0"
+            sqlcmd -S "LAPTOP-7LSAQSR0" -E -d msdb -i $scriptPath
+          }
+          Write-Output "SQL Agent jobs deployment completed."

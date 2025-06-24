@@ -5,14 +5,14 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="LAPTOP-7LSAQSR0"
   DTS:CreatorName="LAPTOP-7LSAQSR0\ErnestMudau"
-  DTS:DTSID="{525AA1F4-4081-4E9F-8C69-B0026A41F562}"
+  DTS:DTSID="{888E9D89-2645-4A6E-8B2E-7F867D35D13B}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="7177"
   DTS:ObjectName="Package3"
   DTS:PackageType="5"
-  DTS:VersionBuild="153"
-  DTS:VersionGUID="{C44AC9D5-09B5-4C17-A9BD-AFEB7792B2A2}">
+  DTS:VersionBuild="234"
+  DTS:VersionGUID="{80EE09BE-2F53-4684-8929-E178823C9689}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -20,7 +20,7 @@
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
       DTS:CreationName="EXCEL"
       DTS:DelayValidation="True"
-      DTS:DTSID="{383CC6D0-916C-42E0-A60A-451BD4CB9746}"
+      DTS:DTSID="{383A302E-B79D-4344-8F63-D6A20EF9E6C7}"
       DTS:ObjectName="Excel Connection Manager">
       <DTS:PropertyExpression
         DTS:Name="ConnectionString">@[User::ExcelConnectionString]</DTS:PropertyExpression>
@@ -34,7 +34,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{2FBE61A4-E966-44F3-B5D2-44E8939FC1FA}"
+      DTS:DTSID="{0A5CB4F1-9157-4028-AC84-80687BA1F890}"
       DTS:ObjectName="Excel Connection Manager 1">
       <DTS:PropertyExpression
         DTS:Name="ExcelFilePath">@[User::CurrentExcelFile]</DTS:PropertyExpression>
@@ -48,31 +48,43 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{1DBF7235-5467-40AF-AE1B-0D9A0B6DFD99}"
+      DTS:DTSID="{728C07F0-F1D7-4817-AFA8-48EDD07F7595}"
       DTS:ObjectName="LAPTOP-7LSAQSR0.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{1DBF7235-5467-40AF-AE1B-0D9A0B6DFD99}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{728C07F0-F1D7-4817-AFA8-48EDD07F7595}LAPTOP-7LSAQSR0.TimesheetDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB 1]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{02CC4093-0EC7-458A-941D-142C7499FD6E}"
+      DTS:DTSID="{FE8EF70F-72CB-4936-A314-44562AE5C69A}"
       DTS:ObjectName="LAPTOP-7LSAQSR0.TimesheetDB 1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package2-{02CC4093-0EC7-458A-941D-142C7499FD6E}LAPTOP-7LSAQSR0.TimesheetDB 1;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package2-{FE8EF70F-72CB-4936-A314-44562AE5C69A}LAPTOP-7LSAQSR0.TimesheetDB 1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-7LSAQSR0.TimesheetDB 2]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BA9EA033-AF85-45D3-8F92-56D140C9631B}"
+      DTS:ObjectName="LAPTOP-7LSAQSR0.TimesheetDB 2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-7LSAQSR0;Initial Catalog=TimesheetDB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package3-{BA9EA033-AF85-45D3-8F92-56D140C9631B}LAPTOP-7LSAQSR0.TimesheetDB 2;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Log Successful Processin]"
       DTS:CreationName="ADO.NET:SQL"
-      DTS:DTSID="{A97609FB-56D8-46DE-B9BA-027AB7305BA4}"
+      DTS:DTSID="{217C94E9-8B69-4E8D-901C-A9C50D6DBAC2}"
       DTS:ObjectName="Log Successful Processin">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -82,7 +94,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[UniqueData]"
       DTS:CreationName="ADO.NET:SQL"
-      DTS:DTSID="{01244530-B1B8-44AA-A199-22747590B3F2}"
+      DTS:DTSID="{128C647F-A794-4406-8106-D86C1C964B9D}"
       DTS:ObjectName="UniqueData">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -93,7 +105,16 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{10F4FF3F-AB1E-481E-A71B-DE26346B1213}"
+      DTS:DTSID="{48412C1C-44E7-4957-A312-5CADD69658C2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ConsultantID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8B07593F-5284-4E46-AB6E-955B09456B52}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="SUBSTRING(@[User::ExcelFile], FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 2) + 1, FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 3) - FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 2) - 1)"
       DTS:IncludeInDebugDump="2345"
@@ -104,7 +125,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{34D70827-2EA4-4A1F-A6BD-427CD590114A}"
+      DTS:DTSID="{1E49F4EE-6C6E-4501-B1EF-6F1F38962CBF}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="CurrentExcelFile">
@@ -114,7 +135,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{03AC90AD-5324-42A3-8E56-08292EA0E53C}"
+      DTS:DTSID="{3D403BFA-9264-40D5-8BDF-E1D5603674D0}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="Details">
@@ -124,7 +145,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{BBA18297-9F6E-4CBE-9FF6-1AFB4FB4490A}"
+      DTS:DTSID="{10F4DC81-B8A5-4B79-9A8B-30B355772483}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ErnestFolder">
@@ -133,7 +154,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{616F4A61-E470-4840-B44F-6D9A16C602EE}"
+      DTS:DTSID="{0F35763A-21B3-4C78-8550-4F6BF94D6FA0}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;Failed to load timesheet data&quot;"
       DTS:IncludeInDebugDump="2345"
@@ -144,7 +165,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{9A8DB0E8-14F6-4710-84A4-F7B8CDB9107F}"
+      DTS:DTSID="{9897A5AE-1216-4E89-8972-B276FDAA4B0D}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;Error associated with ConsultantName &quot; + (SUBSTRING(@[User::ExcelFile], FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 2) + 1, FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 3) - FINDSTRING(@[User::ExcelFile], &quot;\\&quot;, 2) - 1))"
       DTS:IncludeInDebugDump="2345"
@@ -155,7 +176,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{955347F9-58F2-47DC-ABE7-57920D454D0D}"
+      DTS:DTSID="{E67463D9-A4AE-413F-B552-378367FB9D30}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="@[System::PackageName]"
       DTS:IncludeInDebugDump="2345"
@@ -166,7 +187,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{C6E5FB2D-EA78-4078-A56C-5F400D454540}"
+      DTS:DTSID="{5114D808-1B5E-4D2A-A50F-7AFBA2329B3D}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ExcelConnectionString">
@@ -175,7 +196,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{70C9774D-1F8D-43D3-A731-D5E5B5BB9C36}"
+      DTS:DTSID="{CC105E6B-1EA1-4DA0-A9DD-43E8132BB3A4}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ExcelFile">
@@ -184,7 +205,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{4F3C87A1-797B-410C-99D8-38265EEC1BAF}"
+      DTS:DTSID="{6F4E2366-B745-4204-9699-C37D14D6CFBF}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SheetName">
@@ -193,7 +214,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{0B0CE42C-EC8D-44D9-82EA-7D6093416F36}"
+      DTS:DTSID="{547C8771-FF1D-4D0D-BEDF-D6CD1DBE45BD}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="TableName">
@@ -202,7 +223,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{676D1AC1-E06E-4DEB-83AC-918D76F67268}"
+      DTS:DTSID="{647453F7-6BDA-445C-AF12-121A0BF809A6}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="TimesheetFileName">
@@ -216,14 +237,14 @@
       DTS:refId="Package\LoopErnestTimesheets"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
-      DTS:DTSID="{3952C728-91CB-4B54-8CA4-58DB047463B9}"
+      DTS:DTSID="{5385FACE-222B-4E0B-B87A-0D18E021A4D8}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
       DTS:ObjectName="LoopErnestTimesheets">
       <DTS:ForEachEnumerator
         DTS:CreationName="Microsoft.ForEachFileEnumerator"
-        DTS:DTSID="{0C1E4C46-5A4F-49BB-80AA-31282CBEEFF1}"
-        DTS:ObjectName="{0C1E4C46-5A4F-49BB-80AA-31282CBEEFF1}">
+        DTS:DTSID="{CD314D7A-8B60-4D4F-959D-5A251814BC83}"
+        DTS:ObjectName="{CD314D7A-8B60-4D4F-959D-5A251814BC83}">
         <DTS:PropertyExpression
           DTS:Name="Directory">@[User::ErnestFolder]</DTS:PropertyExpression>
         <DTS:ObjectData>
@@ -245,7 +266,7 @@
           DTS:refId="Package\LoopErnestTimesheets\Data Flow Task"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{188A36FD-FA04-404F-97F9-910571F47D31}"
+          DTS:DTSID="{7A157834-823D-48D5-825F-508A4F920C46}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Data Flow Task"
@@ -2172,57 +2193,10 @@ where [refTable].[ConsultantName] = ?</property>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\LoopErnestTimesheets\Execute AuditLogPackage"
-          DTS:CreationName="Microsoft.ExecutePackageTask"
-          DTS:Description="Runs AuditLogPackage to audit database changes"
-          DTS:DTSID="{76CAD7D7-8887-40C9-8BF1-85C91DBC400E}"
-          DTS:ExecutableType="Microsoft.ExecutePackageTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Execute AuditLogPackage"
-          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ExecutePackageTask>
-              <UseProjectReference>True</UseProjectReference>
-              <PackageName>Auditlog (1).dtsx</PackageName>
-            </ExecutePackageTask>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\LoopErnestTimesheets\Log Successful Processing"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Logs successful file processing to AuditLog"
-          DTS:DTSID="{9F631084-CFE6-40D4-AF34-C3F380F52B4A}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Log Successful Processing"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{02CC4093-0EC7-458A-941D-142C7499FD6E}"
-              SQLTask:SqlStatementSource="INSERT INTO AuditLog (OperationType, TableName, RecordID, Details, TimesheetFileName)&#xA;VALUES ('INSERT', 'Timesheet', 0, 'File processed successfully: ' + ?, ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-              <SQLTask:ParameterBinding
-                SQLTask:ParameterName="NewParameterName"
-                SQLTask:DtsVariableName="User::ExcelFile"
-                SQLTask:ParameterDirection="Input"
-                SQLTask:DataType="130"
-                SQLTask:ParameterSize="0" />
-              <SQLTask:ParameterBinding
-                SQLTask:ParameterName="NewParameterName"
-                SQLTask:DtsVariableName="User::TimesheetFileName"
-                SQLTask:ParameterDirection="Input"
-                SQLTask:DataType="130"
-                SQLTask:ParameterSize="1" />
-            </SQLTask:SqlTaskData>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
           DTS:refId="Package\LoopErnestTimesheets\Script Task"
           DTS:CreationName="Microsoft.ScriptTask"
           DTS:Description="Script Task"
-          DTS:DTSID="{F046176E-635D-4807-A9D2-8AC812819CF2}"
+          DTS:DTSID="{DE7BB06B-A8DB-498D-853E-C6BEE571DF33}"
           DTS:ExecutableType="Microsoft.ScriptTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Script Task"
@@ -2237,35 +2211,14 @@ where [refTable].[ConsultantName] = ?</property>
               ReadOnlyVariables="User::CurrentExcelFile,User::SheetName"
               ReadWriteVariables="User::ExcelConnectionString">
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_00ae4d2f01e248d293972c68977ac89c")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP")]
-[assembly: AssemblyProduct("ST_00ae4d2f01e248d293972c68977ac89c")]
-[assembly: AssemblyCopyright("Copyright @ HP 2025")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -2386,35 +2339,6 @@ using System.Runtime.CompilerServices;
   </resheader>
 </root>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_00ae4d2f01e248d293972c68977ac89c.Properties.Settings.get_Default():ST_00ae4d2f01e248d293972c68977ac89c.Properties.Sett" +
-    "ings")]
-
-namespace ST_00ae4d2f01e248d293972c68977ac89c.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
@@ -2493,26 +2417,6 @@ namespace ST_00ae4d2f01e248d293972c68977ac89c
         #endregion
     }
 }]]></ProjectItem>
-              <ProjectItem
-                Name="Project"
-                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-  <msb:PropertyGroup>
-    <msb:CodeName>ST_00ae4d2f01e248d293972c68977ac89c</msb:CodeName>
-    <msb:Language>msBuild</msb:Language>
-    <msb:DisplayName>ST_00ae4d2f01e248d293972c68977ac89c</msb:DisplayName>
-    <msb:ProjectId>{85274C2B-28C0-465A-A93B-80A13B302AFB}</msb:ProjectId>
-  </msb:PropertyGroup>
-  <msb:ItemGroup>
-    <msb:Project Include="ST_00ae4d2f01e248d293972c68977ac89c.csproj" />
-    <msb:File Include="Properties\Settings.settings" />
-    <msb:File Include="Properties\AssemblyInfo.cs" />
-    <msb:File Include="Properties\Resources.resx" />
-    <msb:File Include="Properties\Resources.Designer.cs" />
-    <msb:File Include="Properties\Settings.Designer.cs" />
-    <msb:File Include="ScriptMain.cs" />
-  </msb:ItemGroup>
-</c:Project>]]></ProjectItem>
               <ProjectItem
                 Name="ST_00ae4d2f01e248d293972c68977ac89c.csproj"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -2600,14 +2504,84 @@ namespace ST_00ae4d2f01e248d293972c68977ac89c
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Project"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>ST_00ae4d2f01e248d293972c68977ac89c</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>ST_00ae4d2f01e248d293972c68977ac89c</msb:DisplayName>
+    <msb:ProjectId>{85274C2B-28C0-465A-A93B-80A13B302AFB}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_00ae4d2f01e248d293972c68977ac89c.csproj" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="ScriptMain.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_00ae4d2f01e248d293972c68977ac89c.Properties.Settings.get_Default():ST_00ae4d2f01e248d293972c68977ac89c.Properties.Sett" +
+    "ings")]
+
+namespace ST_00ae4d2f01e248d293972c68977ac89c.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_00ae4d2f01e248d293972c68977ac89c")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("HP")]
+[assembly: AssemblyProduct("ST_00ae4d2f01e248d293972c68977ac89c")]
+[assembly: AssemblyCopyright("Copyright @ HP 2025")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -2806,44 +2780,46 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </ScriptProject>
           </DTS:ObjectData>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LoopErnestTimesheets\Script Task 1"
+          DTS:CreationName="Microsoft.ScriptTask"
+          DTS:Description="Script Task"
+          DTS:DTSID="{E13E8BD6-E01F-4960-BDE6-4CF8A576637F}"
+          DTS:ExecutableType="Microsoft.ScriptTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Script Task 1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_939b9a5e03ec410a883101beab47f6c9"
+              VSTAMajorVersion="16"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
       </DTS:Executables>
       <DTS:PrecedenceConstraints>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\LoopErnestTimesheets.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{233A84B7-DACB-4B26-B989-3206812FB3E6}"
+          DTS:DTSID="{2B6E340B-CD39-41E7-8D15-15D211D31A09}"
           DTS:From="Package\LoopErnestTimesheets\Script Task"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
           DTS:To="Package\LoopErnestTimesheets\Data Flow Task" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\LoopErnestTimesheets.PrecedenceConstraints[Constraint 1]"
-          DTS:CreationName=""
-          DTS:DTSID="{849346D0-6631-4885-A3FE-56CA0EE060BE}"
-          DTS:From="Package\LoopErnestTimesheets\Data Flow Task"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 1"
-          DTS:To="Package\LoopErnestTimesheets\Log Successful Processing" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\LoopErnestTimesheets.PrecedenceConstraints[Constraint 2]"
-          DTS:CreationName=""
-          DTS:DTSID="{B9CF5A81-553E-4C29-9D8F-2DC9F5C0C3FF}"
-          DTS:From="Package\LoopErnestTimesheets\Log Successful Processing"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 2"
-          DTS:To="Package\LoopErnestTimesheets\Execute AuditLogPackage" />
       </DTS:PrecedenceConstraints>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{C120D7E3-01CF-4257-A9CB-C032338C13DD}"
-          DTS:ObjectName="{C120D7E3-01CF-4257-A9CB-C032338C13DD}"
+          DTS:DTSID="{D5E69883-016F-43CC-8BC7-3B57CB85B3EE}"
+          DTS:ObjectName="{D5E69883-016F-43CC-8BC7-3B57CB85B3EE}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::ExcelFile" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{8AD79CFF-4ED8-4020-B410-DFAF91A19BDD}"
-          DTS:ObjectName="{8AD79CFF-4ED8-4020-B410-DFAF91A19BDD}"
+          DTS:DTSID="{9DDD3FCA-6F16-4418-9CAD-39F3FD7B5509}"
+          DTS:ObjectName="{9DDD3FCA-6F16-4418-9CAD-39F3FD7B5509}"
           DTS:ValueIndex="1"
           DTS:VariableName="User::CurrentExcelFile" />
       </DTS:ForEachVariableMappings>
@@ -2864,84 +2840,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         <NodeLayout
           Size="150.4,41.6"
           Id="Package\LoopErnestTimesheets\Data Flow Task"
-          TopLeft="65.7999898920461,78.8666649611129" />
-        <NodeLayout
-          Size="200,41.6"
-          Id="Package\LoopErnestTimesheets\Execute AuditLogPackage"
-          TopLeft="95.6999894822642,272.53333097087" />
-        <NodeLayout
-          Size="203.2,41.6"
-          Id="Package\LoopErnestTimesheets\Log Successful Processing"
-          TopLeft="65.3999904384219,184.133331585593" />
+          TopLeft="68.2999897554522,90.9999982100726" />
         <NodeLayout
           Size="130.4,41.6"
           Id="Package\LoopErnestTimesheets\Script Task"
           TopLeft="69.1333230432542,2.59999882479519" />
         <EdgeLayout
           Id="Package\LoopErnestTimesheets.PrecedenceConstraints[Constraint]"
-          TopLeft="137.66665646765,44.1999988247952">
+          TopLeft="134.333323043254,44.1999988247952">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,34.6666661363177"
+              EndConnector="9.16666671219795,46.7999993852774"
               Start="0,0"
-              End="0,27.1666661363177">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.1666661363177" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\LoopErnestTimesheets.PrecedenceConstraints[Constraint 1]"
-          TopLeft="140.999989892046,120.466664961113">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="26.0000005463758,63.6666666244801"
-              Start="0,0"
-              End="26.0000005463758,56.1666666244801">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.83333331224" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,27.83333331224"
-                    Point2="0,31.83333331224"
-                    Point3="4,31.83333331224" />
-                  <mssgle:LineSegment
-                    End="22.0000005463758,31.83333331224" />
-                  <mssgle:CubicBezierSegment
-                    Point1="22.0000005463758,31.83333331224"
-                    Point2="26.0000005463758,31.83333331224"
-                    Point3="26.0000005463758,35.83333331224" />
-                  <mssgle:LineSegment
-                    End="26.0000005463758,56.1666666244801" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\LoopErnestTimesheets.PrecedenceConstraints[Constraint 2]"
-          TopLeft="166.999990438422,225.733331585593">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="21.0999990438423,46.7999993852775"
-              Start="0,0"
-              End="21.0999990438423,39.2999993852775">
+              End="9.16666671219795,39.2999993852774">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2952,13 +2864,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                     Point2="0,23.3999996926387"
                     Point3="4,23.3999996926387" />
                   <mssgle:LineSegment
-                    End="17.0999990438423,23.3999996926387" />
+                    End="5.16666671219795,23.3999996926387" />
                   <mssgle:CubicBezierSegment
-                    Point1="17.0999990438423,23.3999996926387"
-                    Point2="21.0999990438423,23.3999996926387"
-                    Point3="21.0999990438423,27.3999996926387" />
+                    Point1="5.16666671219795,23.3999996926387"
+                    Point2="9.16666671219795,23.3999996926387"
+                    Point3="9.16666671219795,27.3999996926387" />
                   <mssgle:LineSegment
-                    End="21.0999990438423,39.2999993852775" />
+                    End="9.16666671219795,39.2999993852774" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2967,11 +2879,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="139.2,41.6"
+          Id="Package\LoopErnestTimesheets\Script Task 1"
+          TopLeft="80.7999890724822,183.866665449275" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="337.6,368.8"
-          Size="337.6,412"
+          PanelSize="337.6,396.8"
+          Size="337.6,440"
           Id="Package\LoopErnestTimesheets"
           TopLeft="119.166660155687,123.066665810876" />
       </GraphLayout>
@@ -2995,21 +2911,137 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Id="Package\LoopErnestTimesheets\Data Flow Task\Excel Source 1"
           TopLeft="408.999993905425,200.999997004867" />
         <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1"
+          TopLeft="493.19999726812,589.93333098895" />
+        <NodeLayout
           Size="152.8,41.6"
           Id="Package\LoopErnestTimesheets\Data Flow Task\Derived Column"
           TopLeft="805.166638625994,439.89999530534" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination"
+          TopLeft="443.49999171992,499.699994889498" />
         <NodeLayout
           Size="162.4,41.6"
           Id="Package\LoopErnestTimesheets\Data Flow Task\LookupConsultant"
           TopLeft="626.999990656972,386.199995306134" />
         <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\LoopErnestTimesheets\Data Flow Task\Lookup"
+          TopLeft="663.3332970904,675.666664816472" />
+        <NodeLayout
           Size="153.6,41.6"
           Id="Package\LoopErnestTimesheets\Data Flow Task\Conditional Split"
           TopLeft="553.333303100534,282.199998860955" />
         <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination"
-          TopLeft="443.49999171992,499.699994889498" />
+          Size="180,41.6"
+          Id="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1"
+          TopLeft="766.666655374898,756.733329940306" />
+        <EdgeLayout
+          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="857.433305292661,439.89999530534">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-357.666646177573,-38.133332778878"
+              Start="0,0"
+              End="-357.666646177573,-30.633332778878">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-11.4904315536996" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-11.4904315536996"
+                    Point2="0,-15.4904315536996"
+                    Point3="-4,-15.4904315536996" />
+                  <mssgle:LineSegment
+                    End="-353.666646177573,-15.4904315536996" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-353.666646177573,-15.4904315536996"
+                    Point2="-357.666646177573,-15.4904315536996"
+                    Point3="-357.666646177573,-19.4904315536996" />
+                  <mssgle:LineSegment
+                    End="-357.666646177573,-30.633332778878" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Data Conversion Output]"
+          TopLeft="797.333309982387,315.099996462464">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="84.233328643607,124.799998842876"
+              Start="0,0"
+              End="84.233328643607,117.299998842876">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.399999421438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,58.399999421438"
+                    Point2="0,62.399999421438"
+                    Point3="4,62.399999421438" />
+                  <mssgle:LineSegment
+                    End="80.233328643607,62.399999421438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="80.233328643607,62.399999421438"
+                    Point2="84.233328643607,62.399999421438"
+                    Point3="84.233328643607,66.399999421438" />
+                  <mssgle:LineSegment
+                    End="84.233328643607,117.299998842876" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[OLE DB Destination Error Output]"
+          TopLeft="529.09999171992,541.299994889498">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44.9000055482003,48.6333360994523"
+              Start="0,0"
+              End="44.9000055482003,41.1333360994523">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3166680497262" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3166680497262"
+                    Point2="0,24.3166680497262"
+                    Point3="4,24.3166680497262" />
+                  <mssgle:LineSegment
+                    End="40.9000055482003,24.3166680497262" />
+                  <mssgle:CubicBezierSegment
+                    Point1="40.9000055482003,24.3166680497262"
+                    Point2="44.9000055482003,24.3166680497262"
+                    Point3="44.9000055482003,28.3166680497262" />
+                  <mssgle:LineSegment
+                    End="44.9000055482003,41.1333360994523" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-50.7589034758998,29.3166680497262,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[non-holidays]"
           TopLeft="630.133303100534,323.799998860955">
@@ -3043,6 +3075,42 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="42.677470888843,27.5,57.1783984375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Lookup Match Output2]"
+          TopLeft="719.7332970904,717.266664816472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="136.933358284499,39.4666651238336"
+              Start="0,0"
+              End="136.933358284499,31.9666651238336">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.7333325619168" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.7333325619168"
+                    Point2="0,19.7333325619168"
+                    Point3="4,19.7333325619168" />
+                  <mssgle:LineSegment
+                    End="132.933358284499,19.7333325619168" />
+                  <mssgle:CubicBezierSegment
+                    Point1="132.933358284499,19.7333325619168"
+                    Point2="136.933358284499,19.7333325619168"
+                    Point3="136.933358284499,23.7333325619168" />
+                  <mssgle:LineSegment
+                    End="136.933358284499,31.9666651238336" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="20.2752924234995,24.7333325619168,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -3153,86 +3221,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="857.433305292661,439.89999530534">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-357.666646177573,-38.133332778878"
-              Start="0,0"
-              End="-357.666646177573,-30.633332778878">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-11.4904315536996" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-11.4904315536996"
-                    Point2="0,-15.4904315536996"
-                    Point3="-4,-15.4904315536996" />
-                  <mssgle:LineSegment
-                    End="-353.666646177573,-15.4904315536996" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-353.666646177573,-15.4904315536996"
-                    Point2="-357.666646177573,-15.4904315536996"
-                    Point3="-357.666646177573,-19.4904315536996" />
-                  <mssgle:LineSegment
-                    End="-357.666646177573,-30.633332778878" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Data Conversion Output]"
-          TopLeft="797.333309982387,315.099996462464">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="84.233328643607,124.799998842876"
-              Start="0,0"
-              End="84.233328643607,117.299998842876">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,58.399999421438" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,58.399999421438"
-                    Point2="0,62.399999421438"
-                    Point3="4,62.399999421438" />
-                  <mssgle:LineSegment
-                    End="80.233328643607,62.399999421438" />
-                  <mssgle:CubicBezierSegment
-                    Point1="80.233328643607,62.399999421438"
-                    Point2="84.233328643607,62.399999421438"
-                    Point3="84.233328643607,66.399999421438" />
-                  <mssgle:LineSegment
-                    End="84.233328643607,117.299998842876" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="180,41.6"
-          Id="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1"
-          TopLeft="766.666655374898,756.733329940306" />
-        <NodeLayout
-          Size="161.6,41.6"
-          Id="Package\LoopErnestTimesheets\Data Flow Task\Derived Column 1"
-          TopLeft="493.19999726812,589.93333098895" />
-        <NodeLayout
-          Size="112.8,41.6"
-          Id="Package\LoopErnestTimesheets\Data Flow Task\Lookup"
-          TopLeft="663.3332970904,675.666664816472" />
-        <EdgeLayout
           Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Derived Column Output1]"
           TopLeft="573.99999726812,631.53333098895">
           <EdgeLayout.Curve>
@@ -3266,78 +3254,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[Lookup Match Output2]"
-          TopLeft="719.7332970904,717.266664816472">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="136.933358284499,39.4666651238336"
-              Start="0,0"
-              End="136.933358284499,31.9666651238336">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.7333325619168" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.7333325619168"
-                    Point2="0,19.7333325619168"
-                    Point3="4,19.7333325619168" />
-                  <mssgle:LineSegment
-                    End="132.933358284499,19.7333325619168" />
-                  <mssgle:CubicBezierSegment
-                    Point1="132.933358284499,19.7333325619168"
-                    Point2="136.933358284499,19.7333325619168"
-                    Point3="136.933358284499,23.7333325619168" />
-                  <mssgle:LineSegment
-                    End="136.933358284499,31.9666651238336" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="20.2752924234993,24.7333325619168,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\LoopErnestTimesheets\Data Flow Task.Paths[OLE DB Destination Error Output]"
-          TopLeft="529.09999171992,541.299994889498">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="44.9000055482003,48.6333360994523"
-              Start="0,0"
-              End="44.9000055482003,41.1333360994523">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3166680497262" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3166680497262"
-                    Point2="0,24.3166680497262"
-                    Point3="4,24.3166680497262" />
-                  <mssgle:LineSegment
-                    End="40.9000055482003,24.3166680497262" />
-                  <mssgle:CubicBezierSegment
-                    Point1="40.9000055482003,24.3166680497262"
-                    Point2="44.9000055482003,24.3166680497262"
-                    Point3="44.9000055482003,28.3166680497262" />
-                  <mssgle:LineSegment
-                    End="44.9000055482003,41.1333360994523" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-50.7589034758999,29.3166680497262,146.4178125,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -3347,7 +3263,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3357,30 +3273,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\LoopErnestTimesheets\Data Flow Task\LookupConsultant">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Consultant]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3401,15 +3294,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1">
+    design-time-name="Package\LoopErnestTimesheets\Data Flow Task\LookupConsultant">
     <Properties>
       <Property>
-        <Name>DataSourceViewID</Name>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Consultant]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q2:string">Table</Value>
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -3419,7 +3322,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3429,10 +3332,23 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LoopErnestTimesheets\Data Flow Task\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
