@@ -12,7 +12,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy the current directory contents into the container
-COPY . /app
+COPY requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir flask
@@ -21,5 +21,5 @@ RUN pip install --no-cache-dir flask
 EXPOSE 5000
 
 # Run the Flask app
-#CMD ["python", "app.py"]
+CMD ["python", "app.py"]
 CMD ["flask","run", "--host", "0.0.0.0"]
