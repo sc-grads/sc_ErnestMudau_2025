@@ -8,3 +8,5 @@ class ItemModel(db.Model):
     price = db.Column(db.Float(precision=2),unique=False, nullable=False)
     store_id = db.Column(db.Intiger,db.ForeignKey("store.id"), unique=False , nullable=False)
     store = db.relationship("Storemodel", back_populates ="Items")
+    #items
+    
