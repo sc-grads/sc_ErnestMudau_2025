@@ -1,11 +1,9 @@
 from flask import Flask
 from flask_smorest import Api
 
+import models
+
 from db import db
-
-
-#import Models
-
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
 
