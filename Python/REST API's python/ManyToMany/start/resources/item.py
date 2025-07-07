@@ -3,7 +3,7 @@ from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError
 
 from db import db
-from Models import ItemModel
+from models import ItemModel
 from schemas import ItemSchema, ItemUpdateSchema
 
 blp = Blueprint("Items", "items", description="Operations on items")

@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_smorest import Api
 
-import Models
+import models
 
 from db import db
 from resources.item import blp as ItemBlueprint
