@@ -1,0 +1,1 @@
+select ('akbandhbnkjnkm'::char(5)) --this will filter out first 5 characters

@@ -1,0 +1,1 @@
+select (1.99999::DECIMAL - 1.99998::DECIMAL);
