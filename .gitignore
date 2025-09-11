@@ -8,7 +8,7 @@ obj/
 *.param
 
 *.database
-
+node_modules/
 
 # Ignore deployment packages
 
