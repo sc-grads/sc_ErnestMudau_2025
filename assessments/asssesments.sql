@@ -133,134 +133,68 @@ where name like '%Manager' or name like 'Manager%'
 
 --20----------------------------------------------------------------------------------
 
-SELECT 
-    c.BusinessEntityID,
-    p.LastName,
-    p.FirstName
-FROM 
-    Person.Person AS p
-JOIN 
-    HumanResources.Employee AS e ON p.BusinessEntityID = e.BusinessEntityID
-JOIN 
-    Person.BusinessEntityContact AS c ON p.BusinessEntityID = c.[BusinessEntityID]
+SELECT c.BusinessEntityID,p.LastName,p.FirstName
+FROM Person.Person AS p
+JOIN HumanResources.Employee AS e 
+ON p.BusinessEntityID = e.BusinessEntityID
+JOIN Person.BusinessEntityContact AS c 
+ON p.BusinessEntityID = c.[BusinessEntityID]
+where [ContactTypeID] = 15
 
-	where [ContactTypeID] = 15
+go
+
+select c.BusinessEntityID,p.LastName,p.FirstName
+from Person.Person as p
+join Person.BusinessEntityContact as c 
+on p.BusinessEntityID = c.[BusinessEntityID]
+where [ContactTypeID] = 15
 
 --21---------------------------------------------------------------------------------------
 
 
-SELECT
-
-  ROW_NUMBER() OVER (PARTITION BY a.PostalCode ORDER BY sp.SalesYTD DESC) AS RowNum,
-
-  p.LastName,
-
-  sp.SalesYTD,
-
-  a.PostalCode
-
-FROM Sales.SalesPerson AS sp
-
-JOIN Person.Person AS p
-
-  ON sp.BusinessEntityID = p.BusinessEntityID
-
-JOIN Person.BusinessEntityAddress AS bea
-
-  ON p.BusinessEntityID = bea.BusinessEntityID
-
-JOIN Person.Address AS a
-
-  ON bea.AddressID = a.AddressID
-
-WHERE sp.TerritoryID IS NOT NULL    -- salesperson "belongs to a territory"
-
-  AND sp.SalesYTD <> 0              -- SalesYTD is not zero
-
-  AND a.PostalCode IS NOT NULL
-
-ORDER BY a.PostalCode ASC, RowNum ASC;
+select row_number() over (partition by a.PostalCode order by sp.SalesYTD desc) as RowNum,p.LastName,sp.SalesYTD,a.PostalCode
+from Sales.SalesPerson as sp
+join Person.Person as p
+on sp.BusinessEntityID = p.BusinessEntityID
+join Person.BusinessEntityAddress as bea
+on p.BusinessEntityID = bea.BusinessEntityID
+join Person.Address as a
+on bea.AddressID = a.AddressID
+where sp.TerritoryID is not null    -- salesperson "belongs to a territory"
+and sp.SalesYTD <> 0              -- SalesYTD is not zero
+and a.PostalCode is not null
+order by a.PostalCode asc, RowNum asc;
  
  
 --Question 22
 
-SELECT
-
-  ct.ContactTypeID,
-
-  ct.Name AS ContactTypeName,
-
-  COUNT(*) AS BusinessEntityContact
-
-FROM Person.BusinessEntityContact AS bec
-
-JOIN Person.ContactType AS ct
-
-  ON bec.ContactTypeID = ct.ContactTypeID
-
-GROUP BY
-
-  ct.ContactTypeID,
-
-  ct.Name
-
-HAVING
-
-  COUNT(*) >= 100
-
-ORDER BY
-
-  BusinessEntityContact DESC;
+select ct.ContactTypeID,ct.Name as ContactTypeName,count(*) as BusinessEntityContact
+from Person.BusinessEntityContact as bec
+join Person.ContactType AS ct
+on bec.ContactTypeID = ct.ContactTypeID
+group by ct.ContactTypeID,ct.Name
+Having count(*) >= 100
+order by BusinessEntityContact DESC;
  
  
 --Question 23
 
-SELECT
-
-    CONVERT(date, eph.RateChangeDate) AS RateChangeDate,
-
-    LTRIM(
-
-        RTRIM(
-
-            p.FirstName + ' ' +
-
-            ISNULL(p.MiddleName + ' ', '') +
-
-            p.LastName
-
-        )
-
-    ) AS NameInFull,
-
-    (eph.Rate * 40) AS WeeklySalary
-
-FROM HumanResources.EmployeePayHistory eph
-
-JOIN HumanResources.Employee e
-
-    ON eph.BusinessEntityID = e.BusinessEntityID
-
-JOIN Person.Person p
-
-    ON p.BusinessEntityID = e.BusinessEntityID
-
-ORDER BY
-
-    NameInFull ASC;
+select convert(date, eph.RateChangeDate) as RateChangeDate,
+ltrim(
+rtrim( p.FirstName + ' ' +
+		isnull(p.MiddleName + ' ', '') + p.LastName)) as NameInFull,(eph.Rate * 40) as WeeklySalary
+from HumanResources.EmployeePayHistory eph
+join HumanResources.Employee e
+on eph.BusinessEntityID = e.BusinessEntityID
+join Person.Person p
+on p.BusinessEntityID = e.BusinessEntityID
+order by NameInFull asc;
  
  
 --Question 24
 
-;WITH LatestRate AS (
-
-    SELECT
-
-        eph.BusinessEntityID,
-
-        eph.Rate,
-
-        eph.RateChangeDate,
+with LatestRate as (
+select eph.BusinessEntityID,eph.Rate,eph.RateChangeDate,
 
         ROW_NUMBER() OVER (
 
